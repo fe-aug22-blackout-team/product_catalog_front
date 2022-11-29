@@ -4,9 +4,9 @@ import './App.scss';
 const App: React.FC = () => {
   return (
     <div className="App">
-      <h1>Product Catalog App</h1>
+      <h1>Product Catalog App with Eslint and Husky</h1>
     </div>
   );
-}
+};
 
 export default App;

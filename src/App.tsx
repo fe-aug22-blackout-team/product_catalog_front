@@ -6,7 +6,7 @@ const App: React.FC = () => {
     <div className="App">
       <h1>Product Catalog App with Eslint</h1>
     </div>
-  )
+  );
 };
 
 export default App;

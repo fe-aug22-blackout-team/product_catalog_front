@@ -45,6 +45,7 @@
     ]
   },
   "devDependencies": {
+    "@mate-academy/eslint-config": "0.0.20",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
     "@typescript-eslint/parser": "^5.45.0",
     "eslint": "^8.28.0",

@@ -7,6 +7,6 @@ const App: React.FC = () => {
       <h1>Product Catalog App with Eslint</h1>
     </div>
   );
-}
+};
 
 export default App;

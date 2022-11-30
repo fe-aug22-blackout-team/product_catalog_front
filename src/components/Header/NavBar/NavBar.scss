@@ -71,7 +71,7 @@
   .is-active {
     color: $white;
     border-color: $white;
-    background-color: rgba(0, 128, 128, 0.24);
+    background-color: rgba(0, 128, 128, 0.137);
   }
 
   &__right {
@@ -92,19 +92,19 @@
     }
   }
 
-  &__favourites-logo {
+  &__favourites-logo, &__cart-logo {
     width: 48px;
     height: 22px;
     background-image: url(../../../images/icons_svg/Favorites_Heart.svg);
     background-position: center;
     background-repeat: no-repeat;
+
+    @include onDesktop {
+      width: 64px;
+    }
   }
 
   &__cart-logo {
-    width:48px;
-    height: 22px;
     background-image: url(../../../images/icons_svg/Shopping-bag_Cart.svg);
-    background-position: center;
-    background-repeat: no-repeat;
   }
 }

@@ -2,5 +2,8 @@
 @import '../../styles/utils/palette';
 
 .title {
-  @extend %h1_desktop-tablet
+  @extend %h1_desktop-tablet;
+  text-align: center;
+  color: teal;
+  margin-top: 50px;
 }

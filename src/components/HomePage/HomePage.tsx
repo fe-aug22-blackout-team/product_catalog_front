@@ -3,6 +3,6 @@ import './HomePage.scss';
 
 export const HomePage: React.FC = () => {
   return (
-    <h1 className='title'>HomePage</h1>
+    <h1 className='title'>HomePage is under development</h1>
   );
 };

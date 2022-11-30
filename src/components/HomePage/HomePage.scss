@@ -1,0 +1,6 @@
+@import '../../styles/utils/typography';
+@import '../../styles/utils/palette';
+
+.title {
+  @extend %h1_desktop-tablet
+}

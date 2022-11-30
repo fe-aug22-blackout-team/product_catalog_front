@@ -1,27 +1,3 @@
 @import "./styles/utils/reset";
 @import "./styles/utils/mixins";
 @import "./styles/grid-templates.scss";
-
-@font-face {
-  font-family: "Mont-Regular";
-  font-weight: 400;
-  src: url(./fonts/Mont-Regular.ttf);
-}
-
-@font-face {
-  font-family: "Mont-SemiBold";
-  font-weight: 500;
-  src: url(./fonts/Mont-SemiBold.ttf);
-}
-
-@font-face {
-  font-family: "Mont-Bold";
-  font-weight: 700;
-  src: url(./fonts/Mont-Bold.ttf);
-}
-
-* {
-  box-sizing: border-box;
-
-  font-family: "Mont-Regular";
-}

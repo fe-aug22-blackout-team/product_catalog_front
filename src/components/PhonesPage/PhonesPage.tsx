@@ -1,7 +1,8 @@
 import React from 'react';
+import './PhonesPage.scss';
 
 export const PhonesPage: React.FC = () => {
   return (
-    <h1>PhonesPage</h1>
+    <h1 className="title">PhonesPage is under development</h1>
   );
 };

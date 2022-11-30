@@ -1,3 +1,7 @@
+@import "./styles/utils/reset";
+@import "./styles/utils/mixins";
+@import "./styles/grid-templates.scss";
+
 @font-face {
   font-family: "Mont-Regular";
   font-weight: 400;
@@ -17,8 +21,7 @@
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  font-family: "Mont-Regular";
   box-sizing: border-box;
+
+  font-family: "Mont-Regular";
 }

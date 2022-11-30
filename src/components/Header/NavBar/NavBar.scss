@@ -4,20 +4,20 @@
   justify-content: space-between;
   padding: 0 20px;
   width: 100%;
-  height: 60px;
+  height: 64px;
   background-color: wheat;
   border-bottom: 2px solid teal;
 
   &__logo {
-    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-family: "Mont-Regular";
     padding: 7px;
     color: darkgreen;
-    font-weight: bold;
     font-size: 20px;
   }
 
   &__links {
     display: flex;
+    align-items: center;
     gap: 20px;
     text-decoration: none;
   }
@@ -49,5 +49,10 @@
   .is-active {
     border-color: teal;
     background-color: rgba(0, 128, 128, 0.116);
+  }
+
+  &__right {
+    display: flex;
+    gap: 10px
   }
 }

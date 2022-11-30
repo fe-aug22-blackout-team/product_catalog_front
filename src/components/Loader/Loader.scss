@@ -1,12 +1,5 @@
-$white: #fff;
+@import "../../styles/utils/palette";
 
-@mixin WidthAndHeight($w,$h) {
-    width: $w;
-    height: $h;
-  }
-  body {
-    margin: 0;
-  }
   .preloaders {
     width: 100%;
     min-height: 100vh;
@@ -14,6 +7,7 @@ $white: #fff;
     flex-wrap: wrap;
     justify-content: center;
   }
+
   .loader-wrapper {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -24,19 +18,21 @@ $white: #fff;
     min-height: 300px;
     display: block;
     z-index: 30000;
-    border: 2px solid $white;
+    // border: 2px solid $white;
+
     .loader {
       position: absolute;
       top: 50%;
       left: 40%;
       margin-left: 10%;
       transform: translate3d(-50%, -50%, 0);
+      
       .square {
         width: 50px;
         height: 50px;
         display: inline-block;
         animation: rotateXY 2s infinite;
-        background: #905BFF;
+        background: $accent;
       }
     }
 }

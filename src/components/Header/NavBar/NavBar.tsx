@@ -2,6 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './NavBar.scss';
 
+// import * '../../../images/icons_svg/Logo.svg'
+
 export const NavBar: React.FC = () => {
   const navbarLinks = ['home', 'phones', 'tablets', 'accessories'];
 
@@ -9,7 +11,15 @@ export const NavBar: React.FC = () => {
     <div className='navbar'>
       <div className="navbar__left">
         <ul className='navbar__links'>
-          <div className='navbar__logo'>NICE GADGETS</div>
+          <div className='navbar__logo'>
+            {/* <a href="#" className="navbar__logo-link">
+              <img
+                className="header__logo"
+                src="../../../images/icons_svg/Logo.svg"
+                alt="Catalog logo"
+              />
+            </a> */}
+          </div>
 
           {navbarLinks.map((link, index) => (
             <li className='navbar__item' key={index}>
@@ -34,7 +44,7 @@ export const NavBar: React.FC = () => {
               'navbar__link ' + (isActive ? 'is-active' : '')
             }
           >
-            FAV
+            <div className="navbar__favourites-logo"></div>
           </NavLink>
         </div>
         <div className="navbar__cart">
@@ -44,7 +54,7 @@ export const NavBar: React.FC = () => {
               'navbar__link ' + (isActive ? 'is-active' : '')
             }
           >
-            CART
+            <div className="navbar__cart-logo"></div>
           </NavLink>
         </div>
       </div>

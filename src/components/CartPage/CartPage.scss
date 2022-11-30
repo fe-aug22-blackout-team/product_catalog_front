@@ -1,0 +1,70 @@
+@import '../../styles/utils/typography';
+@import "../../styles/utils/palette";
+
+.cart-page {
+  padding: 24px 16px 56px;
+
+  background-color: $black;
+  &--back {
+    @extend %smallText_desktop-tablet;
+    text-decoration: none;
+    color: $white;
+
+    transition: 0.3s;
+    &::before {
+      content: '';
+      display: inline-block;
+      height: 9px;
+      width: 9px;
+      background-image: url('../../images/left-arrow.svg');
+      background-repeat: no-repeat;
+      background-size: contain;
+      transition: 0.3s;
+    }
+
+    &:hover {
+      color: $accent;
+
+      &::before {
+        background-image: url('../../images/left-arrow-hover.svg');
+      }
+    }
+  }
+
+  &--title {
+    @extend %h1_mobile;
+    margin: 24px 0 32px;
+    color: $white;
+  }
+
+  &--content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &--order {
+    padding: 24px;
+    border: 1px solid $elements;
+  }
+
+  &--price {
+    @extend %h2_desktop-tablet;
+    text-align: center;
+    color: $white;
+    font-size: 32px;
+  }
+
+  &--total-items {
+    @extend %h4_mobile;
+    padding-bottom: 16px;
+    color: $secondary;
+    text-align: center;
+    border-bottom: 1px solid $elements;
+  }
+
+  &--list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+}

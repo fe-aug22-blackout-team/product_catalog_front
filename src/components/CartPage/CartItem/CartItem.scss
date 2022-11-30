@@ -1,0 +1,60 @@
+@import '../../../styles/utils/typography';
+@import "../../../styles/utils/palette";
+
+.cart-item {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  width: 100%;
+  padding: 16px;
+
+  background-color: $surface1;
+  color: $white;
+
+  &--main-part {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+
+  &--remove {
+    display: block;
+    height: 15px;
+    width: 15px;
+    background-image: url('../../../images/icons_svg/Remove-chart.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  &--name-description {
+    display: flex;
+    gap: 16px;
+
+    align-items: center;
+  }
+
+  &--image {
+    width: 66px;
+    height: 66px;
+    padding: 7px;
+  }
+
+  &--secondary-part {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &--counter {
+    @extend %bodyText_desktop-tablet;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+  }
+
+  &--price {
+    @extend %h3_mobile;
+  }
+}

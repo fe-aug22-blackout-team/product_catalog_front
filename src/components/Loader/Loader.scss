@@ -1,4 +1,4 @@
-@import "../../styles/utils/vars";
+@import "../../styles/utils/palette";
 
   .preloaders {
     width: 100%;
@@ -18,7 +18,7 @@
     min-height: 300px;
     display: block;
     z-index: 30000;
-    border: 2px solid $white;
+    // border: 2px solid $white;
 
     .loader {
       position: absolute;
@@ -32,7 +32,7 @@
         height: 50px;
         display: inline-block;
         animation: rotateXY 2s infinite;
-        background: #905BFF;
+        background: $accent;
       }
     }
 }

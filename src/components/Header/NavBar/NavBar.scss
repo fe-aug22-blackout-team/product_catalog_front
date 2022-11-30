@@ -1,25 +1,45 @@
+@import '../../../styles/utils/typography';
+@import '../../../styles/utils/palette';
+@import '../../../styles/utils/mixins';
+
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  padding-left: 16px;
   width: 100%;
-  height: 64px;
-  background-color: wheat;
-  border-bottom: 2px solid teal;
+  height: 48px;
+  background-color: $black;
+  box-shadow: 0px 2px 0px #323542;
+
+  @include onDesktop {
+    height: 64px;
+    padding-left: 24px;
+  }
 
   &__logo {
-    font-family: "Mont-Regular";
-    padding: 7px;
-    color: darkgreen;
-    font-size: 20px;
+    width: 64px;
+    height: 23px;
+    background-image: url(../../../images/icons_svg/Logo.svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    @include onDesktop {
+      width: 80px;
+      height: 29px;
+    }
   }
 
   &__links {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 32px;
     text-decoration: none;
+
+    @include onDesktop {
+      gap: 64px;
+    }
   }
 
   &__item {
@@ -27,17 +47,19 @@
   }
 
   &__link {
-    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-    font-size: 17px;
+    @extend %uppercase_desktop-tablet;
     text-decoration: none;
-    color: teal;
+    color: $secondary;
     transition: all 0.3s;
-    padding: 5px 0;
-    border-bottom: 1px solid transparent;
-    border-top: 1px solid transparent;
+    padding: 12px 0;
+    border-bottom: 3px solid transparent;
+
+    @include onDesktop {
+      padding: 20px 0;
+    }
 
     &:hover {
-      border-color: teal;
+      border-color: $secondary;
     }
 
     &:focus {
@@ -47,12 +69,42 @@
   }
 
   .is-active {
-    border-color: teal;
-    background-color: rgba(0, 128, 128, 0.116);
+    color: $white;
+    border-color: $white;
+    background-color: rgba(0, 128, 128, 0.24);
   }
 
   &__right {
     display: flex;
-    gap: 10px
+    height: 100%;
+  }
+
+  &__favourites, &__cart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 48px;
+    box-shadow: -1px 0px 0px #323542;
+
+    @include onDesktop {
+      width: 64px;
+    }
+  }
+
+  &__favourites-logo {
+    width: 48px;
+    height: 22px;
+    background-image: url(../../../images/icons_svg/Favorites_Heart.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &__cart-logo {
+    width:48px;
+    height: 22px;
+    background-image: url(../../../images/icons_svg/Shopping-bag_Cart.svg);
+    background-position: center;
+    background-repeat: no-repeat;
   }
 }

@@ -21,7 +21,7 @@ const App: React.FC = () => {
           />
           <Route
             path="/product_catalog_front/"
-            element={<HomePage />}
+            element={<Navigate to='/product_catalog_front/home' replace />}
           />
           <Route
             path="/product_catalog_front/home"

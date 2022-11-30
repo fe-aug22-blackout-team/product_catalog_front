@@ -3,8 +3,8 @@ import './Loader.scss';
 
 export const Loader: React.FC = () => {
   return (
-    <div className="loader-wrapper loader-wrapper--5">
-      <div className="loader loader--5">
+    <div className="loader-wrapper">
+      <div className="loader">
         <div className="square"></div>
       </div>
     </div>

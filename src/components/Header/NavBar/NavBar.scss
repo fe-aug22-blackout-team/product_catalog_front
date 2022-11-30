@@ -1,0 +1,53 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  width: 100%;
+  height: 60px;
+  background-color: wheat;
+  border-bottom: 2px solid teal;
+
+  &__logo {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    padding: 7px;
+    color: darkgreen;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  &__links {
+    display: flex;
+    gap: 20px;
+    text-decoration: none;
+  }
+
+  &__item {
+    list-style: none;
+  }
+
+  &__link {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 17px;
+    text-decoration: none;
+    color: teal;
+    transition: all 0.3s;
+    padding: 5px 0;
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+
+    &:hover {
+      border-color: teal;
+    }
+
+    &:focus {
+      background-color: rgba(0, 128, 128, 0.034);
+      color: teal;
+    }
+  }
+
+  .is-active {
+    border-color: teal;
+    background-color: rgba(0, 128, 128, 0.116);
+  }
+}

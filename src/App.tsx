@@ -4,6 +4,7 @@ import './App.scss';
 import { AccessoriesPage } from './components/AccessoriesPage';
 import { CartPage } from './components/CartPage';
 import { FavouritesPage } from './components/FavouritesPage';
+import { Footer } from './components/Footer';
 import { Header } from './components/Header';
 import { MobileMenu } from './components/Header/MobileMenu';
 import { HomePage } from './components/HomePage';
@@ -60,6 +61,7 @@ const App: React.FC = () => {
             }
           />
         </Routes>
+        <Footer />
       </div>
     </BrowserRouter>
   );

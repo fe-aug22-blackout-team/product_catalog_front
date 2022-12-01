@@ -1,9 +1,10 @@
 @import '../../styles/utils/typography';
 @import '../../styles/utils/mixins';
+@import '../../styles/utils/palette';
 
 .footer {
-  color: #F1F2F9;
-  background-color: #0F1121;
+  color: $white;
+  background-color: $black;
 
   &__container {
     position: relative;
@@ -84,7 +85,7 @@
     transition: all 0.3s;
 
     &:hover {
-      color:#75767F;
+      color:$secondary;
     }
   }
 
@@ -121,7 +122,7 @@
   &__text {
     @extend %footerText_desktop-tablet;
 
-    color: #75767F;
+    color: $secondary;
   }
   
   &__arrow {

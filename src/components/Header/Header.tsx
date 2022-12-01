@@ -9,8 +9,8 @@ type Props = {
 
 export const Header: React.FC<Props> = ({ isMobileMenu, menuHandler }) => {
   return (
-    <div className="header">
+    <header className="header">
       <NavBar isMobileMenu={isMobileMenu} menuHandler={menuHandler} />
-    </div>
+    </header>
   );
 };

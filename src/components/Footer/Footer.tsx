@@ -19,6 +19,7 @@ export const Footer: React.FC = () => {
             <a
               href="https://github.com/fe-aug22-blackout-team"
               className="footer__link footer__github"
+              target="blanc"
             >
               Github
             </a>

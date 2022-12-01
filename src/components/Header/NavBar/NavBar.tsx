@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './NavBar.scss';
 
@@ -8,7 +8,6 @@ type Props = {
 };
 
 export const NavBar: React.FC<Props> = ({ isMobileMenu, menuHandler }) => {
-  // const [isMobileMenuOpen, setIsMoMobileMenuOpen] = useState(false);
   const navbarLinks = ['home', 'phones', 'tablets', 'accessories'];
 
   return (
@@ -53,7 +52,7 @@ export const NavBar: React.FC<Props> = ({ isMobileMenu, menuHandler }) => {
             <div className="navbar__cart-logo"></div>
           </NavLink>
         </div>
-        <div className="navbar__mobileMenu">
+        <div className="navbar__mobileMenu" onClick={menuHandler}>
           {isMobileMenu ? (
             <NavLink
               to={'/product_catalog_front/home'}
@@ -63,7 +62,6 @@ export const NavBar: React.FC<Props> = ({ isMobileMenu, menuHandler }) => {
             >
               <div
                 className="navbar__mobileMenu-logo navbar__mobileMenu-logo_open"
-                onClick={menuHandler}
               />
             </NavLink>
           ) : (
@@ -75,7 +73,6 @@ export const NavBar: React.FC<Props> = ({ isMobileMenu, menuHandler }) => {
             >
               <div
                 className="navbar__mobileMenu-logo navbar__mobileMenu-logo_clos"
-                onClick={menuHandler}
               />
             </NavLink>
           )}

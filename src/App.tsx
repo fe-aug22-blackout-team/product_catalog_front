@@ -12,7 +12,7 @@ import { TabletsPage } from './components/TabletsPage';
 
 const App: React.FC = () => {
   const [isMobileMenu, setIsMobileMenu] = useState(false);
-  const menuHandler = () => setIsMobileMenu(prev => !prev);
+  const menuHandler = () => setIsMobileMenu(current => !current);
 
   return (
     <BrowserRouter>

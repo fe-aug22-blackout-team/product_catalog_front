@@ -7,7 +7,7 @@ type Props = {
   menuHandler: () => void;
 };
 
-export const MobileMenu: React.FC<Props> = ({ isMobileMenu, menuHandler }) => {
+export const MobileMenu: React.FC<Props> = ({ menuHandler }) => {
   const navbarLinks = ['home', 'phones', 'tablets', 'accessories'];
 
   return (
@@ -34,27 +34,27 @@ export const MobileMenu: React.FC<Props> = ({ isMobileMenu, menuHandler }) => {
       </div>
 
       <div className="mobileMenu__bottom">
-        <div className="mobileMenu__favourites">
+        <div
+          className="mobileMenu__favourites"
+          onClick={menuHandler}
+        >
           <NavLink
             to={'/product_catalog_front/favourites'}
             className={({ isActive }) =>
               'mobileMenu__link ' + (isActive ? 'is-active' : '')
             }
           >
-            <div
-              className="mobileMenu__favourites-logo"
-              onClick={menuHandler}
-            ></div>
+            <div className="mobileMenu__favourites-logo"></div>
           </NavLink>
         </div>
-        <div className="mobileMenu__cart">
+        <div className="mobileMenu__cart" onClick={menuHandler}>
           <NavLink
             to={'/product_catalog_front/cart'}
             className={({ isActive }) =>
               'mobileMenu__link ' + (isActive ? 'is-active' : '')
             }
           >
-            <div className="mobileMenu__cart-logo" onClick={menuHandler}></div>
+            <div className="mobileMenu__cart-logo"></div>
           </NavLink>
         </div>
       </div>

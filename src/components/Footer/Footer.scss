@@ -1,14 +1,5 @@
-@mixin onDesktop {
-  @media (min-width: 1024px) {
-    @content;
-  }
-}
-
-@mixin onTablet {
-  @media (min-width: 644px) {
-    @content;
-  }
-}
+@import '../../styles/utils/typography';
+@import '../../styles/utils/mixins';
 
 .footer {
   color: #F1F2F9;
@@ -36,6 +27,12 @@
       justify-content: space-between;
       align-items: center;
     }
+
+    @include onDesktop {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
 
   &__logo {
@@ -43,6 +40,10 @@
     margin-bottom: 32px;
 
     @include onTablet {
+      margin-bottom: 0;
+    }
+
+    @include onDesktop {
       margin-bottom: 0;
     }
 
@@ -64,15 +65,19 @@
 
       width: 280px;
     }
+
+    @include onDesktop {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: row;
+
+      width: 280px;
+    }
   }
 
   &__link {
-    font-family: 'Mont';
-    font-weight: 800;
-    font-size: 12px;
-    line-height: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
+    @extend %uppercase_desktop-tablet;
 
     text-decoration: none;
     color: inherit;
@@ -84,12 +89,20 @@
     @include onTablet {
       margin-bottom: 0;
     }
+
+    @include onDesktop {
+      margin-bottom: 0;
+    }
   }
 
   &__rights {
     margin-bottom: 32px;
 
     @include onTablet {
+      margin-bottom: 0;
+    }
+
+    @include onDesktop {
       margin-bottom: 0;
     }
   }
@@ -101,11 +114,9 @@
   }
 
   &__text {
-    font-family: 'Mont';
-    font-weight: 700;
-    font-size: 12px;
-    line-height: 15px;
-    text-align: right;
+    @extend %footerText_desktop-tablet;
+
+    color: #75767F;
   }
   
   &__arrow {

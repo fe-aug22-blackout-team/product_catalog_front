@@ -1,25 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './NavBar.scss';
 
-// import * '../../../images/icons_svg/Logo.svg'
+type Props = {
+  isMobileMenu: boolean;
+  menuHandler: () => void;
+};
 
-export const NavBar: React.FC = () => {
+export const NavBar: React.FC<Props> = ({ isMobileMenu, menuHandler }) => {
+  // const [isMobileMenuOpen, setIsMoMobileMenuOpen] = useState(false);
   const navbarLinks = ['home', 'phones', 'tablets', 'accessories'];
 
   return (
     <div className='navbar'>
       <div className="navbar__left">
         <ul className='navbar__links'>
-          <div className='navbar__logo'>
-            {/* <a href="#" className="navbar__logo-link">
-              <img
-                className="header__logo"
-                src="../../../images/icons_svg/Logo.svg"
-                alt="Catalog logo"
-              />
-            </a> */}
-          </div>
+          <div className='navbar__logo'></div>
 
           {navbarLinks.map((link, index) => (
             <li className='navbar__item' key={index}>
@@ -56,6 +52,33 @@ export const NavBar: React.FC = () => {
           >
             <div className="navbar__cart-logo"></div>
           </NavLink>
+        </div>
+        <div className="navbar__mobileMenu">
+          {isMobileMenu ? (
+            <NavLink
+              to={'/product_catalog_front/home'}
+              className={({ isActive }) =>
+                'navbar__link ' + (isActive ? 'is-active' : '')
+              }
+            >
+              <div
+                className="navbar__mobileMenu-logo navbar__mobileMenu-logo_open"
+                onClick={menuHandler}
+              />
+            </NavLink>
+          ) : (
+            <NavLink
+              to={'/product_catalog_front/mobile-menu'}
+              className={({ isActive }) =>
+                'navbar__link ' + (isActive ? 'is-active' : '')
+              }
+            >
+              <div
+                className="navbar__mobileMenu-logo navbar__mobileMenu-logo_clos"
+                onClick={menuHandler}
+              />
+            </NavLink>
+          )}
         </div>
       </div>
     </div>

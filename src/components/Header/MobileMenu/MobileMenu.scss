@@ -1,0 +1,93 @@
+@import '../../../styles/utils/typography';
+@import '../../../styles/utils/palette';
+@import '../../../styles/utils/mixins';
+
+.mobileMenu {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  background-color: $black;
+  overflow: hidden;
+
+  &__links {
+    padding-top: 15vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7vh;
+    text-decoration: none;
+  }
+
+  &__item {
+    list-style: none;
+    transition: transform 0.5s;
+
+    &:hover {
+      transform: scaleX(1.2);
+    }
+  }
+
+  &__link {
+    @extend %uppercase_desktop-tablet;
+    text-decoration: none;
+    color: $secondary;
+    transition: all 0.3s;
+    padding: 12px 0;
+    border-bottom: 3px solid transparent;
+
+    &:hover {
+      border-color: $white;
+      color: $white
+    }
+
+    &:focus {
+      background-color: rgba(0, 128, 128, 0.034);
+      color: $white;
+    }
+  }
+
+  &__bottom {
+    width: 100%;
+    display: flex;
+  }
+
+  &__favourites,
+  &__cart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    border: 1px solid #323542;
+    flex-grow: 1;
+  }
+
+  &__link {
+    width: 100%;
+  }
+
+  &__favourites-logo,
+  &__cart-logo {
+    width: 100%;
+    height: 22px;
+    background-image: url(../../../images/icons_svg/Favorites_Heart.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 0.3s;
+
+    &:hover {
+      transform: scaleX(1.3);
+    }
+  }
+
+  &__cart-logo {
+    background-image: url(../../../images/icons_svg/Shopping-bag_Cart.svg);
+  }
+}

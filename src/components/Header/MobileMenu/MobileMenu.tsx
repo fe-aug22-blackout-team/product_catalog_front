@@ -1,5 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { appRoutes } from '../../../routes/Routes';
+
+import { navbarLinksContent } from '../NavBar/constants';
 import './MobileMenu.scss';
 
 type Props = {
@@ -7,23 +10,21 @@ type Props = {
 };
 
 export const MobileMenu: React.FC<Props> = ({ menuHandler }) => {
-  const navbarLinks = ['home', 'phones', 'tablets', 'accessories'];
-
   return (
     <div className='mobileMenu'>
       <div className="mobileMenu__top">
         <ul className='mobileMenu__links'>
-          {navbarLinks.map((link, index) => (
+          {navbarLinksContent.map(({ id, route, title }) => (
             <li
               className='mobileMenu__item'
-              key={index}
+              key={id}
               onClick={menuHandler}
             >
               <NavLink
-                to={`/product_catalog_front/${link}`}
+                to={route}
                 className="mobileMenu__link"
               >
-                {link.toUpperCase()}
+                {title.toUpperCase()}
               </NavLink>
             </li>
           ))}
@@ -36,7 +37,7 @@ export const MobileMenu: React.FC<Props> = ({ menuHandler }) => {
           onClick={menuHandler}
         >
           <NavLink
-            to={'/product_catalog_front/favourites'}
+            to={appRoutes.favourites}
             className="mobileMenu__link"
           >
             <div className="mobileMenu__favourites-logo"></div>
@@ -44,7 +45,7 @@ export const MobileMenu: React.FC<Props> = ({ menuHandler }) => {
         </div>
         <div className="mobileMenu__cart" onClick={menuHandler}>
           <NavLink
-            to={'/product_catalog_front/cart'}
+            to={appRoutes.cart}
             className="mobileMenu__link"
           >
             <div className="mobileMenu__cart-logo"></div>

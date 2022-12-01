@@ -11,13 +11,13 @@ import { PhonesPage } from './components/PhonesPage';
 import { TabletsPage } from './components/TabletsPage';
 
 const App: React.FC = () => {
-  const [isMobileMenu, setIsMobileMenu] = useState(false);
-  const menuHandler = () => setIsMobileMenu(current => !current);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const menuHandler = () => setIsMobileMenuOpen(current => !current);
 
   return (
     <BrowserRouter>
       <div className="App">
-        <Header isMobileMenu={isMobileMenu} menuHandler={menuHandler} />
+        <Header isMobileMenu={isMobileMenuOpen} menuHandler={menuHandler} />
         <Routes>
           <Route
             path="/"
@@ -55,7 +55,6 @@ const App: React.FC = () => {
             path="/product_catalog_front/mobile-menu"
             element={
               <MobileMenu
-                isMobileMenu={isMobileMenu}
                 menuHandler={menuHandler}
               />
             }

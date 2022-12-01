@@ -44,18 +44,13 @@
 
     &:hover {
       border-color: $white;
+      color: $white
     }
 
     &:focus {
       background-color: rgba(0, 128, 128, 0.034);
       color: $white;
     }
-  }
-
-  .is-active {
-    color: $white;
-    border-color: $white;
-    background-color: rgba(0, 128, 128, 0.137);
   }
 
   &__bottom {

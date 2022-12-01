@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import './MobileMenu.scss';
 
 type Props = {
-  isMobileMenu: boolean;
   menuHandler: () => void;
 };
 
@@ -22,9 +21,7 @@ export const MobileMenu: React.FC<Props> = ({ menuHandler }) => {
             >
               <NavLink
                 to={`/product_catalog_front/${link}`}
-                className={({ isActive }) =>
-                  'mobileMenu__link ' + (isActive ? 'is-active' : '')
-                }
+                className="mobileMenu__link"
               >
                 {link.toUpperCase()}
               </NavLink>
@@ -40,9 +37,7 @@ export const MobileMenu: React.FC<Props> = ({ menuHandler }) => {
         >
           <NavLink
             to={'/product_catalog_front/favourites'}
-            className={({ isActive }) =>
-              'mobileMenu__link ' + (isActive ? 'is-active' : '')
-            }
+            className="mobileMenu__link"
           >
             <div className="mobileMenu__favourites-logo"></div>
           </NavLink>
@@ -50,9 +45,7 @@ export const MobileMenu: React.FC<Props> = ({ menuHandler }) => {
         <div className="mobileMenu__cart" onClick={menuHandler}>
           <NavLink
             to={'/product_catalog_front/cart'}
-            className={({ isActive }) =>
-              'mobileMenu__link ' + (isActive ? 'is-active' : '')
-            }
+            className="mobileMenu__link"
           >
             <div className="mobileMenu__cart-logo"></div>
           </NavLink>

@@ -1,0 +1,21 @@
+@import '../../App.scss';
+
+.SmallButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 40px;
+  width: 40px;
+
+  background-color: #323542;
+  border: 1px solid transparent;
+
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &--selected {
+    background-color: #161827;
+    border: 1px solid #3B3E4A;
+  }
+}

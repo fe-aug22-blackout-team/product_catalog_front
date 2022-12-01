@@ -4,6 +4,7 @@ import './App.scss';
 import { AccessoriesPage } from './components/AccessoriesPage';
 import { CartPage } from './components/CartPage';
 import { FavouritesPage } from './components/FavouritesPage';
+import { Footer } from './components/Footer';
 import { Header } from './components/Header';
 import { HomePage } from './components/HomePage';
 import { PhonesPage } from './components/PhonesPage';
@@ -48,6 +49,7 @@ const App: React.FC = () => {
             element={<CartPage />}
           />
         </Routes>
+        <Footer />
       </div>
     </BrowserRouter>
   );

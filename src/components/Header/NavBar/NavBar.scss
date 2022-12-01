@@ -49,10 +49,10 @@
 
   &__item {
     list-style: none;
-    transition: transform 0.5s;
+    transition: transform 0.4s;
 
     &:hover {
-      transform: scaleX(1.2);
+      transform: scaleX(1.15);
     }
 
     @include onMobile {
@@ -127,7 +127,7 @@
     transition: transform 0.3s;
         
     &:hover {
-      transform: scaleX(1.3);
+      transform: scaleY(1.3);
     }
 
     @include onDesktop {

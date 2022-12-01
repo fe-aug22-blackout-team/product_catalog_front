@@ -1,5 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+
+import { appRoutes } from '../../../routes/Routes';
+import { navbarLinksContent } from './constants';
 import './NavBar.scss';
 
 type Props = {
@@ -8,23 +11,21 @@ type Props = {
 };
 
 export const NavBar: React.FC<Props> = ({ isMobileMenu, menuHandler }) => {
-  const navbarLinks = ['home', 'phones', 'tablets', 'accessories'];
-
   return (
     <div className='navbar'>
       <div className="navbar__left">
         <ul className='navbar__links'>
           <div className='navbar__logo'></div>
 
-          {navbarLinks.map((link, index) => (
-            <li className='navbar__item' key={index}>
+          {navbarLinksContent.map(({ id, route, title }) => (
+            <li className='navbar__item' key={id}>
               <NavLink
-                to={`/product_catalog_front/${link}`}
+                to={route}
                 className={({ isActive }) =>
                   'navbar__link ' + (isActive ? 'is-active' : '')
                 }
               >
-                {link.toUpperCase()}
+                {title.toUpperCase()}
               </NavLink>
             </li>
           ))}
@@ -34,7 +35,7 @@ export const NavBar: React.FC<Props> = ({ isMobileMenu, menuHandler }) => {
       <div className="navbar__right">
         <div className="navbar__favourites">
           <NavLink
-            to={'/product_catalog_front/favourites'}
+            to={appRoutes.favourites}
             className={({ isActive }) =>
               'navbar__link ' + (isActive ? 'is-active' : '')
             }
@@ -44,7 +45,7 @@ export const NavBar: React.FC<Props> = ({ isMobileMenu, menuHandler }) => {
         </div>
         <div className="navbar__cart">
           <NavLink
-            to={'/product_catalog_front/cart'}
+            to={appRoutes.cart}
             className={({ isActive }) =>
               'navbar__link ' + (isActive ? 'is-active' : '')
             }
@@ -55,7 +56,7 @@ export const NavBar: React.FC<Props> = ({ isMobileMenu, menuHandler }) => {
         <div className="navbar__mobileMenu" onClick={menuHandler}>
           {isMobileMenu ? (
             <NavLink
-              to={'/product_catalog_front/home'}
+              to={appRoutes.home}
               className={({ isActive }) =>
                 'navbar__link ' + (isActive ? 'is-active' : '')
               }
@@ -66,7 +67,7 @@ export const NavBar: React.FC<Props> = ({ isMobileMenu, menuHandler }) => {
             </NavLink>
           ) : (
             <NavLink
-              to={'/product_catalog_front/mobile-menu'}
+              to={appRoutes.mobile_menu}
               className={({ isActive }) =>
                 'navbar__link ' + (isActive ? 'is-active' : '')
               }

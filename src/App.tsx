@@ -10,6 +10,7 @@ import { MobileMenu } from './components/Header/MobileMenu';
 import { HomePage } from './components/HomePage';
 import { PhonesPage } from './components/PhonesPage';
 import { TabletsPage } from './components/TabletsPage';
+import { appRoutes } from './routes/Routes';
 
 const App: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -22,43 +23,35 @@ const App: React.FC = () => {
         <Routes>
           <Route
             path="/"
-            element={<Navigate to='/product_catalog_front/home' replace />}
+            element={<Navigate to={appRoutes.home} />}
           />
           <Route
-            path="/product_catalog_front/"
-            element={<Navigate to='/product_catalog_front/home' replace />}
-          />
-          <Route
-            path="/product_catalog_front/home"
+            path={appRoutes.home}
             element={<HomePage />}
           />
           <Route
-            path="/product_catalog_front/phones"
+            path={appRoutes.phones}
             element={<PhonesPage />}
           />
           <Route
-            path="/product_catalog_front/tablets"
+            path={appRoutes.tablets}
             element={<TabletsPage />}
           />
           <Route
-            path="/product_catalog_front/accessories"
+            path={appRoutes.accessories}
             element={<AccessoriesPage />}
           />
           <Route
-            path="/product_catalog_front/favourites"
+            path={appRoutes.favourites}
             element={<FavouritesPage />}
           />
           <Route
-            path="/product_catalog_front/cart"
+            path={appRoutes.cart}
             element={<CartPage />}
           />
           <Route
-            path="/product_catalog_front/mobile-menu"
-            element={
-              <MobileMenu
-                menuHandler={menuHandler}
-              />
-            }
+            path={appRoutes.mobile_menu}
+            element={<MobileMenu menuHandler={menuHandler} />}
           />
         </Routes>
         <Footer />

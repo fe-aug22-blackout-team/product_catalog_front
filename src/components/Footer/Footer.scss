@@ -81,6 +81,11 @@
 
     text-decoration: none;
     color: inherit;
+    transition: all 0.3s;
+
+    &:hover {
+      color:#75767F;
+    }
   }
 
   &__github, &__contacts {
@@ -126,9 +131,11 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: 32px;
+    transition: all 0.3s;
   
     &:hover {
-      transform: scale(1.2) rotate(270deg);
+      background-image: url("../../images/HoverButton.png");
+      transform: scale(1.08) rotate(270deg);
     }
   }
 }

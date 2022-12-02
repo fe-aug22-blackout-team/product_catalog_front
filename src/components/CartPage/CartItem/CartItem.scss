@@ -1,0 +1,112 @@
+@import "../../../styles/utils/typography";
+@import "../../../styles/utils/palette";
+@import "../../../styles/utils/mixins";
+
+.cart-item {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  width: 100%;
+  padding: 16px;
+
+  background-color: $surface1;
+  color: $white;
+
+  @include onTablet {
+    padding: 24px;
+
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  @include onDesktop {
+    padding: 24px;
+
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &--main-part {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+
+  &--remove {
+    display: block;
+    height: 15px;
+    width: 15px;
+    background-image: url('../../../images/icons_svg/Remove-chart.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  &--name-description {
+    display: flex;
+    gap: 16px;
+
+    align-items: center;
+  }
+
+  &--image {
+    width: 66px;
+    height: 66px;
+    padding: 7px;
+  }
+
+  &--secondary-part {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include onDesktop {
+      gap: 54px;
+    }
+  }
+
+  &--counter {
+    @extend %bodyText_desktop-tablet;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+  }
+
+  &--price {
+    @extend %h3_mobile;
+  }
+
+  &--button {
+    display: block;
+    width: 32px;
+    height: 32px;
+
+    background-color: $surface2;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    &:hover {
+      background-color: $icons;
+    }
+
+    &--minus {
+      background-image: url('../../../images/icons_svg/Minus.svg');
+
+      &--disabled {
+        box-sizing: border-box;
+        background-color: transparent;
+        border: 1px solid $surface2; 
+        background-image: url('../../../images/icons_svg/Minus_disabled.svg');
+
+        &:hover {
+          background-image: url('../../../images/icons_svg/Minus.svg');
+        }
+      }
+    }
+
+    &--plus {
+      background-image: url('../../../images/icons_svg/Plus.svg');
+    }
+  }
+}

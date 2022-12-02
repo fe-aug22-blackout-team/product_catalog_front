@@ -3,8 +3,6 @@
 @import '../../../styles/utils/mixins';
 
 .navbar {
-  // position: sticky;
-  // top: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -26,6 +24,11 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    transition: transform 0.5s;
+
+    &:hover {
+      transform: scale(1.2);
+    }
 
     @include onDesktop {
       width: 80px;
@@ -46,6 +49,15 @@
 
   &__item {
     list-style: none;
+    transition: transform 0.4s;
+
+    &:hover {
+      transform: scaleX(1.15);
+    }
+
+    @include onMobile {
+      display: none;
+    }
   }
 
   &__link {
@@ -81,7 +93,7 @@
     height: 100%;
   }
 
-  &__favourites, &__cart {
+  &__favourites, &__cart, &__mobileMenu {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -92,14 +104,31 @@
     @include onDesktop {
       width: 64px;
     }
+
+    @include onMobile {
+      display: none;
+    }
   }
 
-  &__favourites-logo, &__cart-logo {
+    &__mobileMenu {
+      display: none;
+
+      @include onMobile {
+        display: flex;
+      }
+    }
+
+  &__favourites-logo, &__cart-logo, &__mobileMenu-logo {
     width: 48px;
     height: 22px;
     background-image: url(../../../images/icons_svg/Favorites_Heart.svg);
     background-position: center;
     background-repeat: no-repeat;
+    transition: transform 0.3s;
+        
+    &:hover {
+      transform: scaleY(1.3);
+    }
 
     @include onDesktop {
       width: 64px;
@@ -108,5 +137,15 @@
 
   &__cart-logo {
     background-image: url(../../../images/icons_svg/Shopping-bag_Cart.svg);
+  }
+
+  &__mobileMenu-logo {
+    &_clos {
+      background-image: url(../../../images/icons_svg/mobile-menu_open.svg);
+    }
+
+    &_open {
+      background-image: url(../../../images/icons_svg/mobile-menu_close.svg);
+    }
   }
 }

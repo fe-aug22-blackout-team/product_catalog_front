@@ -1,18 +1,10 @@
-@mixin onDesktop {
-  @media (min-width: 1024px) {
-    @content;
-  }
-}
-
-@mixin onTablet {
-  @media (min-width: 644px) {
-    @content;
-  }
-}
+@import '../../styles/utils/typography';
+@import '../../styles/utils/mixins';
+@import '../../styles/utils/palette';
 
 .footer {
-  color: #F1F2F9;
-  background-color: #0F1121;
+  color: $white;
+  background-color: $black;
 
   &__container {
     position: relative;
@@ -36,6 +28,12 @@
       justify-content: space-between;
       align-items: center;
     }
+
+    @include onDesktop {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
 
   &__logo {
@@ -43,6 +41,10 @@
     margin-bottom: 32px;
 
     @include onTablet {
+      margin-bottom: 0;
+    }
+
+    @include onDesktop {
       margin-bottom: 0;
     }
 
@@ -64,18 +66,27 @@
 
       width: 280px;
     }
+
+    @include onDesktop {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: row;
+
+      width: 280px;
+    }
   }
 
   &__link {
-    font-family: 'Mont';
-    font-weight: 800;
-    font-size: 12px;
-    line-height: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
+    @extend %uppercase_desktop-tablet;
 
     text-decoration: none;
     color: inherit;
+    transition: all 0.3s;
+
+    &:hover {
+      color:$secondary;
+    }
   }
 
   &__github, &__contacts {
@@ -84,12 +95,20 @@
     @include onTablet {
       margin-bottom: 0;
     }
+
+    @include onDesktop {
+      margin-bottom: 0;
+    }
   }
 
   &__rights {
     margin-bottom: 32px;
 
     @include onTablet {
+      margin-bottom: 0;
+    }
+
+    @include onDesktop {
       margin-bottom: 0;
     }
   }
@@ -101,11 +120,9 @@
   }
 
   &__text {
-    font-family: 'Mont';
-    font-weight: 700;
-    font-size: 12px;
-    line-height: 15px;
-    text-align: right;
+    @extend %footerText_desktop-tablet;
+
+    color: $secondary;
   }
   
   &__arrow {
@@ -115,9 +132,11 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: 32px;
+    transition: all 0.3s;
   
     &:hover {
-      transform: scale(1.2) rotate(270deg);
+      background-image: url("../../images/HoverButton.png");
+      transform: scale(1.08) rotate(270deg);
     }
   }
 }

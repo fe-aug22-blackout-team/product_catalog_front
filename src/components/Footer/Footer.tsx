@@ -1,6 +1,6 @@
 import React from 'react';
 import './Footer.scss';
-import logo from '../../images/Logo.png';
+import logo from '../../images/icons_svg/Logo.svg';
 
 export const Footer: React.FC = () => {
   return (
@@ -19,6 +19,8 @@ export const Footer: React.FC = () => {
             <a
               href="https://github.com/fe-aug22-blackout-team"
               className="footer__link footer__github"
+              rel="noreferrer"
+              target="_blank"
             >
               Github
             </a>

@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/product_catalog_front/static/css/main.2c4ba17b.css",
-    "main.js": "/product_catalog_front/static/js/main.28e8dd4b.js",
+    "main.css": "/product_catalog_front/static/css/main.df639138.css",
+    "main.js": "/product_catalog_front/static/js/main.3907499d.js",
     "static/media/Logo.svg": "/product_catalog_front/static/media/Logo.bf07abe342b4d6acf7528bdc0fcea3a4.svg",
     "static/media/Mont-Regular.ttf": "/product_catalog_front/static/media/Mont-Regular.e797167c18f9897bb607.ttf",
     "static/media/Mont-SemiBold.ttf": "/product_catalog_front/static/media/Mont-SemiBold.0b5e68ebb36ca4006e21.ttf",
@@ -9,14 +9,20 @@
     "static/media/00.png": "/product_catalog_front/static/media/00.be79a9fafc78ddd120aa.png",
     "static/media/Shopping-bag_Cart.svg": "/product_catalog_front/static/media/Shopping-bag_Cart.fbb7bb4b7513df420fa1.svg",
     "static/media/Favorites_Heart.svg": "/product_catalog_front/static/media/Favorites_Heart.bda5fbc9746bfe2e1329.svg",
+    "static/media/Remove-chart.svg": "/product_catalog_front/static/media/Remove-chart.63825bff3c8ba3b4528b.svg",
     "static/media/mobile-menu_close.svg": "/product_catalog_front/static/media/mobile-menu_close.c89cd55fcda471b596c2.svg",
     "static/media/mobile-menu_open.svg": "/product_catalog_front/static/media/mobile-menu_open.571b3bb49f127bd00746.svg",
+    "static/media/Plus.svg": "/product_catalog_front/static/media/Plus.1377f8b445ceb66e847d.svg",
     "index.html": "/product_catalog_front/index.html",
-    "main.2c4ba17b.css.map": "/product_catalog_front/static/css/main.2c4ba17b.css.map",
-    "main.28e8dd4b.js.map": "/product_catalog_front/static/js/main.28e8dd4b.js.map"
+    "static/media/left-arrow-hover.svg": "/product_catalog_front/static/media/left-arrow-hover.fe11b82cffe65d43c567.svg",
+    "static/media/left-arrow.svg": "/product_catalog_front/static/media/left-arrow.c92aaf27f38b627f918c.svg",
+    "static/media/Minus.svg": "/product_catalog_front/static/media/Minus.0365a13e7f5baa53bce8.svg",
+    "static/media/Minus_disabled.svg": "/product_catalog_front/static/media/Minus_disabled.d5c39f976623a3fc1fc0.svg",
+    "main.df639138.css.map": "/product_catalog_front/static/css/main.df639138.css.map",
+    "main.3907499d.js.map": "/product_catalog_front/static/js/main.3907499d.js.map"
   },
   "entrypoints": [
-    "static/css/main.2c4ba17b.css",
-    "static/js/main.28e8dd4b.js"
+    "static/css/main.df639138.css",
+    "static/js/main.3907499d.js"
   ]
 }

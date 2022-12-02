@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import cn from 'classnames';
 
 import './CartItem.scss';
 
@@ -30,13 +31,21 @@ export const CartItem: React.FC<Props> = ({
       </div>
       <div className="cart-item--secondary-part">
         <div className="cart-item--counter">
-          <button onClick={() => setCount(count - 1)}>
-            -
-          </button>
+          <a
+            className={cn(
+              'cart-item--button',
+              'cart-item--button--minus',
+              { 'cart-item--button--minus--disabled': count <= 1 },
+            )}
+            onClick={() => setCount(count - 1)}
+          >
+          </a>
           {count}
-          <button onClick={() => setCount(count + 1)}>
-            +
-          </button>
+          <a
+            className="cart-item--button cart-item--button--plus"
+            onClick={() => setCount(count + 1)}
+          >
+          </a>
         </div>
         <span className="cart-item--price">
           { `$ ${price}` }

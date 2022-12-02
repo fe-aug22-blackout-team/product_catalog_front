@@ -95,15 +95,19 @@ export const CartPage: React.FC = () => {
             })}
           </section>
           : <Loader />}
-        <section className="cart-page--order">
-          <p className="cart-page--price">
-            ${fullPrice}
-          </p>
-          <p className="cart-page--total-items">
-            Total for {cartItems.length} items
-          </p>
-          <Button innerText="Checkout" />
-        </section>
+        <div className="order-container">
+          <section className="cart-page--order">
+            <p className="cart-page--price">
+              ${fullPrice}
+            </p>
+            <p className="cart-page--total-items">
+              Total for {cartItems.length} items
+            </p>
+            <div className="cart-page--button-container">
+              <Button innerText="Checkout" />
+            </div>
+          </section>
+        </div>
       </div>
     </main>
   );

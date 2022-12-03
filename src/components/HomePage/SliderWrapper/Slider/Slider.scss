@@ -1,0 +1,55 @@
+@import '../../../../styles/utils/palette';
+@import '../../../../styles/utils/typography';
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.slider {
+  overflow: hidden;
+  flex-grow: 1;
+
+  &__button {
+    @extend %h4_mobile;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    color: $white;
+    background-color: $surface2;
+    width: 32px;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: $icons;
+    }
+
+    &:active {
+      background-color: $secondary;
+    }
+  }
+
+  &__items-container {
+    white-space: nowrap;
+    transition: transform 0.5s linear;
+    margin-bottom: 18px;
+  }
+
+  &__indicators {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+  }
+
+  &__indicator {
+    width: 14px;
+    height: 4px;
+    background-color: $secondary;
+    cursor: pointer;
+
+    &-active {
+      background-color: $white;
+    }
+  }
+}

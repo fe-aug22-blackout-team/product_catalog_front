@@ -1,0 +1,31 @@
+@import '../../../../styles/utils/mixins';
+
+.slider-item {
+  display: inline-flex;
+  height: 400px;
+
+  &__1,
+  &__2,
+  &__3,
+  &__4 {
+    width: 100%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+
+  &__1 {
+    background-image: url('../../../../images/photos/slider_banner1.png');
+  }
+
+  &__2 {
+    background-image: url('../../../../images/photos/slider_banner2.png');
+  }
+
+  &__3 {
+    background-image: url('../../../../images/photos/slider_banner3.png');
+  }
+
+  &__4 {
+    background-image: url('../../../../images/photos/slider_banner4.png');
+  }
+}

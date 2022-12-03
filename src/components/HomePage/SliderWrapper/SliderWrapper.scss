@@ -1,26 +1,13 @@
-@import '../../../styles/utils/palette';
 @import '../../../styles/utils/mixins';
-@import '../../../styles/utils/typography';
 
+.sliderWrapper {
+  margin-bottom: 66px;
 
+  @include onTablet {
+    margin-bottom: 74px;
+  }
 
-// .slider__button {
-//   @extend %h3_mobile;
-//   background-color: $surface2;
-//   color: $white;
-//   width: 32px;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   cursor: pointer;
-// }
-
-// <div className="slider__button"> {
-//   '>'
-// }
-// </div>
-
-/* <img
-  src={require('../../../images/photos/slider_banner1.png')}
-  alt="banner1">
-</img> */
+  @include onDesktop {
+    margin-bottom: 90
+  }
+}

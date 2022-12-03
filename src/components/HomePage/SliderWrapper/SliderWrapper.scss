@@ -1,0 +1,13 @@
+@import '../../../styles/utils/mixins';
+
+.sliderWrapper {
+  margin-bottom: 66px;
+
+  @include onTablet {
+    margin-bottom: 74px;
+  }
+
+  @include onDesktop {
+    margin-bottom: 90
+  }
+}

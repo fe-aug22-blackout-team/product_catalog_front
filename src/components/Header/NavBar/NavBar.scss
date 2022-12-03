@@ -49,11 +49,6 @@
 
   &__item {
     list-style: none;
-    transition: transform 0.4s;
-
-    &:hover {
-      transform: scaleX(1.15);
-    }
 
     @include onMobile {
       display: none;
@@ -64,7 +59,7 @@
     @extend %uppercase_desktop-tablet;
     text-decoration: none;
     color: $secondary;
-    transition: all 0.3s;
+    transition: border-color 0.3s, background-color 0.3s;
     padding: 12px 0;
     border-bottom: 3px solid transparent;
 
@@ -74,11 +69,11 @@
 
     &:hover {
       border-color: $secondary;
+      background-color: rgba(0, 128, 128, 0.055);
     }
 
     &:focus {
-      background-color: rgba(0, 128, 128, 0.034);
-      color: teal;
+      border-color: $white;
     }
   }
 

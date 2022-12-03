@@ -5,6 +5,7 @@
 .footer {
   color: $white;
   background-color: $black;
+  border-top: 2px solid $elements;
 
   &__container {
     position: relative;

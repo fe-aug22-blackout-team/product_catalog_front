@@ -20,40 +20,21 @@ const App: React.FC = () => {
     <BrowserRouter>
       <div className="App">
         <Header isMobileMenu={isMobileMenuOpen} menuHandler={menuHandler} />
+
         <Routes>
-          <Route
-            path="/"
-            element={<Navigate to={appRoutes.home} />}
-          />
-          <Route
-            path={appRoutes.home}
-            element={<HomePage />}
-          />
-          <Route
-            path={appRoutes.phones}
-            element={<PhonesPage />}
-          />
-          <Route
-            path={appRoutes.tablets}
-            element={<TabletsPage />}
-          />
-          <Route
-            path={appRoutes.accessories}
-            element={<AccessoriesPage />}
-          />
-          <Route
-            path={appRoutes.favourites}
-            element={<FavouritesPage />}
-          />
-          <Route
-            path={appRoutes.cart}
-            element={<CartPage />}
-          />
+          <Route path="/" element={<Navigate to={appRoutes.home} />} />
+          <Route path={appRoutes.home} element={<HomePage />} />
+          <Route path={appRoutes.phones} element={<PhonesPage />} />
+          <Route path={appRoutes.tablets} element={<TabletsPage />} />
+          <Route path={appRoutes.accessories} element={<AccessoriesPage />} />
+          <Route path={appRoutes.favourites} element={<FavouritesPage />} />
+          <Route path={appRoutes.cart} element={<CartPage />} />
           <Route
             path={appRoutes.mobile_menu}
             element={<MobileMenu menuHandler={menuHandler} />}
           />
         </Routes>
+
         <Footer />
       </div>
     </BrowserRouter>

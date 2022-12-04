@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 
 import './ProductCard.scss';
 import img from './img/00.png';
-import { Button } from '../Button';
-import { SmallButton } from '../SmallButton';
+import { ButtonType } from '../../types/Button';
+import { Button } from '../UI/Button';
+import { SmallButton } from '../UI/SmallButton';
 
 const productData = {
   'id': '1',
@@ -77,7 +78,7 @@ export const ProductCard: React.FC = () => {
         </div>
 
         <div className="product__controls">
-          <Button innerText='Add to cart'/>
+          <Button type={ButtonType.Main} innerText='Add to cart'/>
           <SmallButton />
         </div>
       </div>

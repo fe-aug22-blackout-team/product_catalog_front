@@ -3,16 +3,15 @@
 @import '../../../styles/utils/palette';
 
 .Categories {
-  margin-bottom: 56px;
-  margin: 0 auto;
+  margin: 40px auto 56px;
 
   @include onTablet {
     width: 593px;
-    margin-bottom: 80px;
+    margin: 50px auto 64px;
   }
 
   @include onDesktop {
-    margin-bottom: 80px;
+    margin: 64px auto 80px;
   }
 
   &__title {
@@ -20,6 +19,12 @@
 
     color: $white;
     margin-bottom: 24px;
+
+    @include onMobile {
+      font-family: "Mont-Bold";
+      font-size: 22px;
+      line-height: 140%;
+    }
   }
 
   &__list {
@@ -27,7 +32,6 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-
     }
 
     @include onTablet {

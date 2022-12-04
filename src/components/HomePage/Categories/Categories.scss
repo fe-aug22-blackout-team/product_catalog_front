@@ -1,0 +1,113 @@
+@import '../../../styles/utils/typography';
+@import '../../../styles/utils/mixins';
+@import '../../../styles/utils/palette';
+
+.Categories {
+  margin-bottom: 56px;
+  margin: 0 auto;
+
+  @include onTablet {
+    width: 593px;
+    margin-bottom: 80px;
+  }
+
+  @include onDesktop {
+    margin-bottom: 80px;
+  }
+
+  &__title {
+    @extend %h2_desktop-tablet;
+
+    color: $white;
+    margin-bottom: 24px;
+  }
+
+  &__list {
+    @include onMobile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+    }
+
+    @include onTablet {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  
+    @include onDesktop {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  &__item {
+    list-style: none;
+  }
+
+  &__subtitle {
+    @extend %h4_desktop-tablet;
+    
+    color: $white;
+    text-decoration: none;
+  }
+
+  &__link-container {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    margin-bottom: 24px;
+    transition: transform 0.4s;
+
+    height: 288px;
+    width: 288px;
+
+  @include onTablet {
+    height: 187px;
+    width: 187px;
+  }
+
+  @include onDesktop {
+    height: 368px;
+    width: 368px;
+  }
+  }
+
+  &__phones {
+    background-image: url('../../../images/Phones.png');
+    margin-right: 16px;
+
+    @include onMobile {
+      margin-bottom: 32px;
+    }
+  }
+
+  &__tablets {
+    background-image: url('../../../images/Tablets.png');
+    margin-right: 16px;
+
+    @include onMobile {
+      margin-bottom: 32px;
+    }
+  }
+
+  &__accessories {
+    background-image: url('../../../images/Accessories.png');
+  }
+
+  &__link {
+    text-decoration: none;
+  }
+
+  &__link:hover &__img {
+    transform: scale(1.1);
+  }
+
+  &__info {
+    @extend %bodyText_desktop-tablet;
+
+    color: $white;
+  }
+}

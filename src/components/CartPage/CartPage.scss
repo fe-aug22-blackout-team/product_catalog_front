@@ -121,4 +121,43 @@
     @extend %h2_desktop-tablet;
     color: $white;
   }
+
+  &--completed {
+    pointer-events: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+
+    transition: 0.5s;
+
+    &-background {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+
+      background-color: $black;
+    }
+
+    &--active {
+      pointer-events: inherit;
+      opacity: 0.8;
+    }
+
+    &-message {
+      @extend %h3_desktop-tablet;
+      position: relative;
+      padding: 30px 50px;
+
+      color: $white;
+      background-color: $green;
+    }
+  }
 }

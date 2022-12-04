@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import cn from 'classnames';
 
+import { Button } from '../../UI/Button';
 import './CartItem.scss';
+import { ButtonType } from '../../../types/Button';
 
 interface Props {
   imageUrl: string,
@@ -18,6 +20,16 @@ export const CartItem: React.FC<Props> = ({
 }) => {
   const [count, setCount] = useState(1);
 
+  const handleCountChange = (type: string) => {
+    if (count > 1 && type === 'minus') {
+      setCount(count - 1);
+    }
+
+    if (type === 'plus') {
+      setCount(count + 1);
+    }
+  };
+
   return (
     <section className="cart-item">
       <div className="cart-item--main-part">
@@ -31,21 +43,17 @@ export const CartItem: React.FC<Props> = ({
       </div>
       <div className="cart-item--secondary-part">
         <div className="cart-item--counter">
-          <a
-            className={cn(
-              'cart-item--button',
-              'cart-item--button--minus',
-              { 'cart-item--button--minus--disabled': count <= 1 },
-            )}
-            onClick={() => setCount(count - 1)}
-          >
-          </a>
+          <Button
+            buttonType={ButtonType.CartMinus}
+            countCartItem={count}
+            setCountCartItem={handleCountChange}
+          />
           {count}
-          <a
-            className="cart-item--button cart-item--button--plus"
-            onClick={() => setCount(count + 1)}
-          >
-          </a>
+          <Button
+            buttonType={ButtonType.CartPlus}
+            countCartItem={count}
+            setCountCartItem={handleCountChange}
+          />
         </div>
         <span className="cart-item--price">
           { `$ ${price}` }

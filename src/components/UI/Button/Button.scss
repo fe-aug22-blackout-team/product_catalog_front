@@ -26,6 +26,10 @@
   &:active {
       background-color: $surface2;
   }
+
+  &--active {
+    background-color: $surface2;
+  }
 }
 
 .SmallButton {

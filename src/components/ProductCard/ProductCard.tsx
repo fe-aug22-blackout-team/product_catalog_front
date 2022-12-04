@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import './ProductCard.scss';
@@ -11,6 +11,32 @@ interface Props {
 }
 
 export const ProductCard: React.FC<Props> = ({ phone }) => {
+  const [isInCart, setIsInCart] = useState(false);
+
+  useEffect(() => {
+    const itemsInCart: Phone[]
+    = JSON.parse(localStorage.getItem('cartItems') || '[]');
+
+    setIsInCart(itemsInCart.some(item => item.id === phone.id));
+  }, []);
+
+  const handleAddCart = () => {
+    const cartItems: Phone[]
+    = JSON.parse(localStorage.getItem('cartItems') || '[]');
+
+    if (!isInCart) {
+      const newCartItems = [...cartItems, { ...phone, count: 1 }];
+
+      localStorage.setItem('cartItems', JSON.stringify(newCartItems));
+      setIsInCart(newCartItems.some(item => item.id === phone.id));
+    } else {
+      const newCartItems = cartItems.filter(item => item.id !== phone.id);
+
+      localStorage.setItem('cartItems', JSON.stringify(newCartItems));
+      setIsInCart(newCartItems.some(item => item.id === phone.id));
+    }
+  };
+
   return (
     <article className='product'>
       <Link to='/item'>
@@ -56,8 +82,18 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
         </div>
 
         <div className="product__controls">
-          <Button buttonType={ButtonType.Main} innerText='Add to cart'/>
-          <Button buttonType={ButtonType.Favourite} />
+          <div onClick={() => handleAddCart()}>
+            <Button
+              buttonType={ButtonType.Main}
+              isInCart={isInCart}
+              innerText={isInCart
+                ? 'Remove from cart'
+                : 'Add to cart'}
+            />
+          </div>
+          <div>
+            <Button buttonType={ButtonType.Favourite} />
+          </div>
         </div>
       </div>
     </article>

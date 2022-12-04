@@ -116,4 +116,9 @@
       width: 752px;
     }
   }
+
+  &--empty {
+    @extend %h2_desktop-tablet;
+    color: $white;
+  }
 }

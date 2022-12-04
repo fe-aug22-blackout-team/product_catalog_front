@@ -2,41 +2,20 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './ProductCard.scss';
-import img from './img/00.png';
-import { Button } from '../Button';
-import { SmallButton } from '../SmallButton';
+import { Phone } from '../../types/Phone';
+import { ButtonType } from '../../types/Button';
+import { Button } from '../UI/Button';
 
-const productData = {
-  'id': '1',
-  'category': 'phones',
-  'phoneId': 'apple-iphone-7-32gb-black',
-  'itemId': 'apple-iphone-7-32gb-black',
-  'name': 'Apple iPhone 7 32GB Black',
-  'fullPrice': 400,
-  'price': 375,
-  'screen': '4.7\' IPS',
-  'capacity': '32GB',
-  'color': 'black',
-  'ram': '2GB',
-  'year': 2016,
-  'image': 'img/phones/apple-iphone-7/black/00.jpg',
-};
+interface Props {
+  phone: Phone;
+}
 
-export const ProductCard: React.FC = () => {
-  const {
-    name: productName,
-    price,
-    fullPrice,
-    screen: productScreen,
-    capacity,
-    ram,
-  } = productData;
-
+export const ProductCard: React.FC<Props> = ({ phone }) => {
   return (
     <article className='product'>
       <Link to='/item'>
         <img
-          src={img}
+          src={phone.image}
           alt="Product image"
           className="product__img"
         />
@@ -45,40 +24,40 @@ export const ProductCard: React.FC = () => {
       <div className="product__info">
         <h3 className="product__title">
           <Link to='/item' className='product__title-link'>
-            {productName}
+            {phone.name}
           </Link>
         </h3>
 
         <div className="product__price">
           <p className="product__price-item">
-            {price}
+            {phone.price}
           </p>
 
           <p className="product__price-item product__price-item--crossed">
-            {fullPrice}
+            {phone.fullPrice}
           </p>
         </div>
 
         <div className="product__specs">
           <div className="product__specs-item">
             <p className='product__specs-title'>Screen</p>
-            <p className='product__specs-value'>{productScreen}</p>
+            <p className='product__specs-value'>{phone.screen}</p>
           </div>
 
           <div className="product__specs-item">
             <p className='product__specs-title'>Capacity</p>
-            <p className='product__specs-value'>{capacity}</p>
+            <p className='product__specs-value'>{phone.capacity}</p>
           </div>
 
           <div className="product__specs-item">
             <p className='product__specs-title'>RAM</p>
-            <p className='product__specs-value'>{ram}</p>
+            <p className='product__specs-value'>{phone.ram}</p>
           </div>
         </div>
 
         <div className="product__controls">
-          <Button innerText='Add to cart'/>
-          <SmallButton />
+          <Button buttonType={ButtonType.Main} innerText='Add to cart'/>
+          <Button buttonType={ButtonType.Favourite} />
         </div>
       </div>
     </article>

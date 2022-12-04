@@ -1,0 +1,82 @@
+@import '../../../App.scss';
+@import '../../../styles/utils/palette';
+
+.main-button {
+  display: flex;
+  height: 40px;
+  width: 100%;
+  min-width: 170px;
+  background-color: $accent;
+  border: none;
+
+  font-family: Mont-SemiBold, sans-serif;
+  font-size: 14px;
+  letter-spacing: 0;
+  color: $white;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+      background-color: $accent-light;
+  }
+
+  &:active {
+      background-color: $surface2;
+  }
+}
+
+.SmallButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 40px;
+  width: 40px;
+
+  background-color: #323542;
+  border: 1px solid transparent;
+
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &--selected {
+    background-color: #161827;
+    border: 1px solid #3B3E4A;
+  }
+}
+
+.button {
+  display: block;
+  width: 32px;
+  height: 32px;
+
+  background-color: $surface2;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  &:hover {
+    background-color: $icons;
+  }
+
+  &--minus {
+    background-image: url('../../../images/icons_svg/Minus.svg');
+
+    &--disabled {
+      box-sizing: border-box;
+      background-color: transparent;
+      border: 1px solid $surface2; 
+      background-image: url('../../../images/icons_svg/Minus_disabled.svg');
+
+      &:hover {
+        background-image: url('../../../images/icons_svg/Minus.svg');
+      }
+    }
+  }
+
+  &--plus {
+    background-image: url('../../../images/icons_svg/Plus.svg');
+  }
+}

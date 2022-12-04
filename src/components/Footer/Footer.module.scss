@@ -6,7 +6,7 @@
   box-sizing: border-box;
   color: $white;
   background-color: $black;
-  border-top: solid 2px #323542;
+  border-top: 2px solid $elements;
 
   &__container {
     position: relative;

@@ -1,0 +1,51 @@
+@import '../../../../styles/utils/mixins';
+
+.slider-item {
+  display: inline-flex;
+  height: 400px;
+
+  @include onMobile {
+    height: 320px;
+  }
+
+  &__1,
+  &__2,
+  &__3,
+  &__4 {
+    width: 100%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+
+  &__1 {
+    background-image: url('../../../../images/slider_items/slider_banner1.png');
+
+    @include onMobile {
+      background-image: url('../../../../images/slider_items/slider_mobile1.png');
+    }
+  }
+
+  &__2 {
+    background-image: url('../../../../images/slider_items/slider_banner2.png');
+
+    @include onMobile {
+      background-image: url('../../../../images/slider_items/slider_mobile2.png');
+    }
+  }
+
+  &__3 {
+    background-image: url('../../../../images/slider_items/slider_banner3.png');
+
+    @include onMobile {
+      background-image: url('../../../../images/slider_items/slider_mobile3.png');
+    }
+  }
+
+  &__4 {
+    background-image: url('../../../../images/slider_items/slider_banner4.png');
+
+    @include onMobile {
+      background-image: url('../../../../images/slider_items/slider_mobile4.png');
+    }
+  }
+}

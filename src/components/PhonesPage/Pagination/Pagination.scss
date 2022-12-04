@@ -1,0 +1,75 @@
+@import "../../../styles/utils/mixins";
+@import "../../../styles/utils/palette";
+@import "../../../styles/utils/typography";
+
+.pagination {
+  margin-bottom: 64px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  &__button {
+    width: 32px;
+    height: 32px;
+
+    background-color: $surface2;
+    border: none;
+
+    cursor: pointer;
+
+    &--prev {
+      margin-right: 16px;
+    }
+
+    &--page-number {
+      margin-right: 8px;
+
+      background-color: $surface1;
+      color: $white;
+
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: $elements;
+      }
+    }
+    
+    &--next {
+      margin-left: 8px;
+    }
+
+    &--prev, &--next {
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: $icons;
+      }
+    }
+
+    &--selected {
+      background-color: $accent;
+
+      &:hover {
+        background-color: $accent;
+      }
+    }
+
+    &--disabled {
+      background-color: transparent;
+      border: 1px solid $elements;
+
+      cursor:not-allowed;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+  
+  &__arrow {
+    &--disabled {
+      fill: $icons;
+    }
+  }
+}

@@ -1,3 +1,5 @@
+@import '../styles/utils/mixins';
+
 .grid {
   display: grid;
   column-gap: 16px;
@@ -16,7 +18,7 @@
 
   &--desktop {
     @include onDesktop {
-      grid-template-columns: repeat(24, 32px);
+      grid-template-columns: repeat(24, 1fr);
     }
   }
 

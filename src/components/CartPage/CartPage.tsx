@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import '../../App.scss';
-import { Button } from '../Button';
-import { Loader } from '../Loader';
+import { ButtonType } from '../../types/Button';
+import { Button } from '../UI/Button';
+import { Loader } from '../UI/Loader';
 import { CartItem } from './CartItem';
 import './CartPage.scss';
 
@@ -104,7 +105,7 @@ export const CartPage: React.FC = () => {
               Total for {cartItems.length} items
             </p>
             <div className="cart-page--button-container">
-              <Button innerText="Checkout" />
+              <Button buttonType={ ButtonType.Main } innerText="Checkout" />
             </div>
           </section>
         </div>

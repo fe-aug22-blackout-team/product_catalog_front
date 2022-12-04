@@ -1,0 +1,110 @@
+@import "../../../styles/utils/mixins";
+@import "../../../styles/utils/typography";
+@import "../../../styles/utils/palette";
+
+.dropdown {
+  &__title {
+    margin-bottom: 4px;
+
+    display: block;
+
+    @extend %smallText_desktop-tablet;
+
+    color: $secondary;
+  }
+
+  &__field {
+    width: 136px;
+    height: 40px;
+    
+    padding: 0 12px;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    @extend %buttons_desktop-tablet;
+    
+    color: $white;
+    
+    cursor: pointer;
+    
+    background-color: $surface2;
+    border: transparent;
+    
+    transition: border-color 0.3s;
+    
+    @include onTablet {
+      width: 188px;
+    }
+
+    @include onDesktop {
+      width: 176px;
+    }
+
+    &:hover {
+      border: 1px solid $icons;
+    }
+
+    &--focused {
+      &:focus {
+        border: 1px solid $accent;
+      }
+    }
+
+    &--option {
+      width: 134px;
+      height: 32px;
+  
+      background-color: $black;
+  
+      transition: background-color 0.3s, border-color 0.3s;
+
+      @include onTablet {
+        width: 186px;
+      }
+
+      @include onDesktop {
+        width: 174px;
+      }
+  
+      &:hover {
+        background-color: $surface2;
+
+        border-color: $surface2;
+      }
+    }
+  }
+
+  &__field--focused:focus &__field-name {
+    margin: -1px;
+  }
+
+  &__field--focused:focus &__arrow-down {
+    margin: -1px;
+  }
+
+  &__field:hover &__field-name {
+    margin: -1px;
+  }
+
+  &__field:hover &__arrow-down {
+    margin: -1px;
+  }
+
+  &__options {
+    padding: 8px 0;
+
+    position: absolute;
+
+    background-color: $black;
+    border: 1px solid $elements;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.05);
+
+    z-index: 1;
+
+    &--hidden {
+      visibility: hidden;
+    }
+  }
+}

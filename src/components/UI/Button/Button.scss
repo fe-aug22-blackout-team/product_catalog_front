@@ -1,22 +1,18 @@
-@import '../../App.scss';
-
-$accent-color: #905BFF;
-$gray-white-color: #F1F2F9;
-$accent-light-color: #A378FF;
-$gray2: #323542;
+@import '../../../App.scss';
+@import '../../../styles/utils/palette';
 
 .button {
     display: flex;
     height: 40px;
     width: 100%;
     min-width: 170px;
-    background-color: $accent-color;
+    background-color: $accent;
     border: none;
 
     font-family: Mont-SemiBold, sans-serif;
     font-size: 14px;
     letter-spacing: 0;
-    color: $gray-white-color;
+    color: $white;
     justify-content: center;
     align-items: center;
 
@@ -24,10 +20,10 @@ $gray2: #323542;
     transition: 0.3s;
 
     &:hover {
-        background-color: $accent-light-color;
+        background-color: $accent-light;
     }
 
     &:active {
-        background-color: $gray2;
+        background-color: $surface2;
     }
 }

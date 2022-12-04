@@ -5,7 +5,7 @@ import '../../styles/grid-templates.scss';
 import { ProductCard } from '../ProductCard';
 import { getPhonesByPagination } from '../../api/phones';
 import { Phone } from '../../types/Phone';
-import { Loader } from '../Loader';
+import { Loader } from '../UI/Loader';
 import { Pagination } from './Pagination';
 import { Dropdown } from './Dropdown';
 

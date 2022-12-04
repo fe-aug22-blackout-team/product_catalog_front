@@ -1,9 +1,66 @@
-@import '../../styles/utils/typography';
-@import '../../styles/utils/palette';
+@import "../../styles/utils/mixins";
+@import "../../styles/utils/typography";
+@import "../../styles/utils/palette";
 
-.title {
-  @extend %h1_desktop-tablet;
-  text-align: center;
-  color: teal;
-  margin-top: 50px;
+.phones-page {
+  padding: 0 16px;
+
+  @include onTablet {
+    padding: 0 24px;
+  }
+
+  @include onDesktop {
+    max-width: 1180px;
+
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  &__title {
+    margin-bottom: 8px;
+
+    @extend %h1_mobile;
+
+    @include onTablet {
+      font-size: 48px;
+      line-height: 56px;
+
+      letter-spacing: -0.01em;
+    }
+
+    color: $white;
+  }
+
+  &__items-amount {
+    margin-bottom: 32px;
+
+    display: block;
+
+    @extend %bodyText_desktop-tablet;
+
+    color: $secondary;
+
+    @include onTablet {
+      margin-bottom: 40px;
+    }
+  }
+
+  &__selects {
+    margin-bottom: 24px;
+  }
+
+  &__catalog {
+    margin-bottom: 40px;
+    display: grid;
+    column-gap: 16px;
+    row-gap: 40px;
+
+    @include onTablet {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    @include onDesktop {
+      grid-template-columns: repeat(4, minmax(200px, 1fr));
+    }
+  }
 }

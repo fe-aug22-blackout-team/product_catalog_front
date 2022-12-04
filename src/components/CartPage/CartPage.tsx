@@ -105,7 +105,7 @@ export const CartPage: React.FC = () => {
               Total for {cartItems.length} items
             </p>
             <div className="cart-page--button-container">
-              <Button type={ ButtonType.Main } innerText="Checkout" />
+              <Button buttonType={ ButtonType.Main } innerText="Checkout" />
             </div>
           </section>
         </div>

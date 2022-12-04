@@ -78,8 +78,8 @@ export const ProductCard: React.FC = () => {
         </div>
 
         <div className="product__controls">
-          <Button type={ButtonType.Main} innerText='Add to cart'/>
-          <SmallButton />
+          <Button buttonType={ButtonType.Main} innerText='Add to cart'/>
+          <Button buttonType={ButtonType.Favourite} />
         </div>
       </div>
     </article>

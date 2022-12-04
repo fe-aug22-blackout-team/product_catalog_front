@@ -5,7 +5,6 @@ import './ProductCard.scss';
 import { Phone } from '../../types/Phone';
 import { ButtonType } from '../../types/Button';
 import { Button } from '../UI/Button';
-import { SmallButton } from '../UI/SmallButton';
 
 interface Props {
   phone: Phone;
@@ -57,8 +56,8 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
         </div>
 
         <div className="product__controls">
-          <Button type={ButtonType.Main} innerText='Add to cart'/>
-          <SmallButton />
+          <Button buttonType={ButtonType.Main} innerText='Add to cart'/>
+          <Button buttonType={ButtonType.Favourite} />
         </div>
       </div>
     </article>

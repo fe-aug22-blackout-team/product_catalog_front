@@ -1,6 +1,7 @@
 import React from 'react';
 import style from './Footer.module.scss';
 import logo from '../../images/icons_svg/Logo.svg';
+import { NavLink } from 'react-router-dom';
 
 const footerLinks = [
   {
@@ -22,13 +23,16 @@ export const Footer: React.FC = () => {
     <footer className={style.footer}>
       <div className={style.footer__container}>
         <div className={style.footer__extra}>
-          <a href="#" className={style.footer__logo}>
+          <NavLink
+            className={style.footer__logo}
+            to="/"
+          >
             <img
               className={style.footer__logo_image}
               src={logo}
               alt="NiceGadgets"
             ></img>
-          </a>
+          </NavLink>
 
           <ul className={style.footer__links}>
             {footerLinks.map(({ href, text }) => (
@@ -50,10 +54,10 @@ export const Footer: React.FC = () => {
               Back to top
             </div>
 
-            <a
-              href="#home"
+            <div
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               className={style.footer__arrow}
-            ></a>
+            ></div>
           </div>
         </div>
       </div>

@@ -2,9 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './ProductCard.scss';
-import { Button } from '../Button';
-import { SmallButton } from '../SmallButton';
 import { Phone } from '../../types/Phone';
+import { ButtonType } from '../../types/Button';
+import { Button } from '../UI/Button';
+import { SmallButton } from '../UI/SmallButton';
 
 interface Props {
   phone: Phone;
@@ -56,7 +57,7 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
         </div>
 
         <div className="product__controls">
-          <Button innerText='Add to cart'/>
+          <Button type={ButtonType.Main} innerText='Add to cart'/>
           <SmallButton />
         </div>
       </div>

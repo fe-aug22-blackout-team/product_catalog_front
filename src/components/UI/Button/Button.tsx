@@ -1,8 +1,10 @@
 import React from 'react';
+import { ButtonType } from '../../../types/Button';
 import './Button.scss';
 
 type Props = {
-  innerText: string;
+  type: ButtonType;
+  innerText?: string;
   path?: string;
 }
 

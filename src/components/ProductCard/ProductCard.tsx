@@ -5,7 +5,6 @@ import './ProductCard.scss';
 import img from './img/00.png';
 import { ButtonType } from '../../types/Button';
 import { Button } from '../UI/Button';
-import { SmallButton } from '../UI/SmallButton';
 
 const productData = {
   'id': '1',

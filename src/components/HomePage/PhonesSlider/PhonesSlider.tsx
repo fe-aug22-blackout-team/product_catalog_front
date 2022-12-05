@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSwipeable } from 'react-swipeable';
 import cn from 'classnames';
 
 import { Phone } from '../../../types/Phone';
@@ -29,6 +30,11 @@ export const PhonesSlider: React.FC<Props> = ({ phones, title, itemWidth }) => {
     }
   };
 
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: () => setCardIndex(current => current + 1),
+    onSwipedRight: () => setCardIndex(current => current - 1),
+  });
+
   return (
     <div className="PhonesSlider">
       <div className="PhonesSlider__top-container">
@@ -56,6 +62,7 @@ export const PhonesSlider: React.FC<Props> = ({ phones, title, itemWidth }) => {
 
       <div className="PhonesSlider__items-container">
         <ul
+          {...swipeHandlers}
           className="PhonesSlider__items"
           style={{ transform: `translateX(-${cardIndex * shift}px)` }}
         >

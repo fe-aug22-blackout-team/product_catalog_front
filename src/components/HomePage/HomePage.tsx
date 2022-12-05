@@ -2,9 +2,9 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { SliderWrapper } from './SliderWrapper';
 import './HomePage.scss';
-import { Categories } from './Categories';
+import { MemoizedCategories } from './Categories';
 import { getAllSortedPhones } from '../../api/phones';
-import { PhonesSlider } from './PhonesSlider';
+import { MemoizedPhoneSlider } from './PhonesSlider';
 import { Loader } from '../UI/Loader';
 import { Phone } from '../../types/Phone';
 
@@ -51,14 +51,14 @@ export const HomePage: React.FC = () => {
 
       {isLoading
         ? <Loader />
-        : <PhonesSlider
+        : <MemoizedPhoneSlider
           phones={phones.slice(0, 15)}
           title='Brand new models'
           itemWidth={272}
         />
       }
 
-      <Categories
+      <MemoizedCategories
         phonesCount={phonesCount}
         tabletCount={tabletsCount}
         accessoriesCount={accessoriesCount}
@@ -66,7 +66,7 @@ export const HomePage: React.FC = () => {
 
       {isLoading
         ? <Loader />
-        : <PhonesSlider
+        : <MemoizedPhoneSlider
           phones={phonesForHotPricesSlider.slice(0, 15)}
           title='Hot prices'
           itemWidth={272}

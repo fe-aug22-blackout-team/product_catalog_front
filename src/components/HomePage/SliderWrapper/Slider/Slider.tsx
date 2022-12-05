@@ -90,3 +90,5 @@ export const Slider: React.FC<Props> = ({ children }) => {
     </>
   );
 };
+
+export const MemoizedSlider = React.memo(Slider);

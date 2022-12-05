@@ -76,3 +76,5 @@ export const PhonesSlider: React.FC<Props> = ({ phones, title, itemWidth }) => {
     </div>
   );
 };
+
+export const MemoizedPhoneSlider = React.memo(PhonesSlider);

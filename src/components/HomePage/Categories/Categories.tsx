@@ -73,3 +73,5 @@ export const Categories: React.FC<Props> = ({
     </section>
   );
 };
+
+export const MemoizedCategories = React.memo(Categories);

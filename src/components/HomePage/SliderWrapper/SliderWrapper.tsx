@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { Slider } from './Slider';
+import { MemoizedSlider } from './Slider';
 import { SliderItem } from './SliderItem';
 import './SliderWrapper.scss';
 
 export const SliderWrapper: React.FC = () => {
   return (
     <div className="sliderWrapper">
-      <Slider>
+      <MemoizedSlider>
         <SliderItem>
           <div className="slider-item__1"></div>
         </SliderItem>
@@ -20,7 +20,7 @@ export const SliderWrapper: React.FC = () => {
         <SliderItem>
           <div className="slider-item__4"></div>
         </SliderItem>
-      </Slider>
+      </MemoizedSlider>
     </div>
   );
 };

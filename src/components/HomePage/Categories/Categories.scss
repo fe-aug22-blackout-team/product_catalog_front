@@ -3,16 +3,14 @@
 @import '../../../styles/utils/palette';
 
 .Categories {
-  margin-bottom: 56px;
-  margin: 0 auto;
+  margin: 40px auto 56px;
 
   @include onTablet {
-    width: 593px;
-    margin-bottom: 80px;
+    margin: 50px auto 64px;
   }
 
   @include onDesktop {
-    margin-bottom: 80px;
+    margin: 64px auto 80px;
   }
 
   &__title {
@@ -20,6 +18,12 @@
 
     color: $white;
     margin-bottom: 24px;
+
+    @include onMobile {
+      font-family: "Mont-Bold";
+      font-size: 22px;
+      line-height: 140%;
+    }
   }
 
   &__list {
@@ -27,13 +31,13 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-
     }
 
     @include onTablet {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
       align-items: center;
+      gap: 16px;
     }
   
     @include onDesktop {
@@ -57,16 +61,30 @@
   &__link-container {
     background-repeat: no-repeat;
     background-position: center;
-    background-size: contain;
+    background-size: 100% 100%;
     margin-bottom: 24px;
     transition: transform 0.4s;
+    min-height: 288px;
+    min-width: 288px;
+    transition: background-size 0.5s, background-position 0.5s;
 
-    height: 288px;
-    width: 288px;
+    &:hover {
+      background-size: 120% 120%;
+      background-position: -50px -50px;
+
+
+      @include onTablet {
+        background-position: -30px -30px;
+      }
+
+      @include onMobile {
+        background-position: -40px -40px;
+      }
+    }
 
     @include onTablet {
-      height: 187px;
-      width: 187px;
+      min-height: 200px;
+      min-width: 200px;
     }
 
     @include onDesktop {
@@ -75,13 +93,8 @@
     }
   }
 
-  &__link-container:hover {
-    transform: scale(1.1);
-  }
-
   &__phones {
     background-image: url('../../../images/Phones.png');
-    margin-right: 16px;
 
     @include onMobile {
       margin-bottom: 32px;
@@ -90,7 +103,6 @@
 
   &__tablets {
     background-image: url('../../../images/Tablets.png');
-    margin-right: 16px;
 
     @include onMobile {
       margin-bottom: 32px;

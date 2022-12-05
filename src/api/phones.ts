@@ -10,3 +10,9 @@ export async function getPhonesByPagination(
 
   return response.json();
 }
+
+export async function getAllSortedPhones(sortBy: string) {
+  const response = await fetch(`${API_URL}/phones?sort=${sortBy}&page=1&limit=100`);
+
+  return response.json();
+}

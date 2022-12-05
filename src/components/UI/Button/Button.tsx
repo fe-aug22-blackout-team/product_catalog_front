@@ -10,9 +10,10 @@ type Props = {
   path?: string;
   countCartItem?: number;
   setCountCartItem?: (type: string) => void;
+  isInCart?: boolean;
 }
 
-export const Button: React.FC<Props> = ({ buttonType, innerText, path, countCartItem, setCountCartItem }) => {
+export const Button: React.FC<Props> = ({ buttonType, innerText, path, countCartItem, setCountCartItem, isInCart }) => {
   const [selected, setSelected] = useState(false);
 
   switch (buttonType) {
@@ -62,7 +63,9 @@ export const Button: React.FC<Props> = ({ buttonType, innerText, path, countCart
 
   case ButtonType.Main:
     return (
-      <a className="main-button" href={path} >
+      <a className={cn('main-button', {
+        'main-button--active': isInCart,
+      })} href={path} >
         {innerText}
       </a>
     );

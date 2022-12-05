@@ -1,0 +1,77 @@
+@import '../../../styles/utils/typography';
+@import '../../../styles/utils/palette';
+@import '../../../styles/utils/mixins';
+
+.PhonesSlider {
+  &__top-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+
+  &__title {
+    @extend %h2_mobile;
+    color: $white;
+
+    @include onTablet {
+      font-family: "Mont-Bold";
+      font-size: 32px;
+      line-height: 41px;
+      letter-spacing: -0.01em;
+    }
+
+    @include onDesktop {
+      font-family: "Mont-Bold";
+      font-size: 32px;
+      line-height: 41px;
+      letter-spacing: -0.01em;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 16px;
+  }
+
+  &__button {
+    @extend %h4_mobile;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    color: $white;
+    background-color: $surface2;
+    width: 32px;
+    height: 32px;
+    transition: background-color 0.3s;
+    border: 1px solid $elements;
+
+    &:hover {
+      background-color: $icons;
+    }
+    
+    &:active {
+      background-color: $secondary;
+    }
+
+    &--active {
+      background-color: transparent;
+      color: $elements;
+
+      &:hover {
+        background-color: transparent;
+        cursor: auto;
+      }
+    }
+  }
+
+  &__items-container {
+    overflow: hidden;
+  }
+
+  &__items {
+    display: flex;
+    gap: 16px;
+    transition: transform 0.3s ease-in-out;
+  }
+}

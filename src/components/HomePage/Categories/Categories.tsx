@@ -17,8 +17,8 @@ export const Categories: React.FC<Props> = ({
   return (
     <section className="Categories">
       <h2 className="Categories__title">Shop by category</h2>
-      <div className="Categories__list">
 
+      <div className="Categories__list">
         <div className="Categories__item">
           <NavLink
             className="Categories__link"
@@ -73,3 +73,5 @@ export const Categories: React.FC<Props> = ({
     </section>
   );
 };
+
+export const MemoizedCategories = React.memo(Categories);

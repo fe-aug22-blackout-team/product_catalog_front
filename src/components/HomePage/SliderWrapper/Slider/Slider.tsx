@@ -41,53 +41,52 @@ export const Slider: React.FC<Props> = ({ children }) => {
   });
 
   return (
-    <div className="container">
-      <button
-        className="slider__button"
-        onClick={() => {
-          updateIndex(activeIndex - 1);
-        }}
-      >
-        {'<'}
-      </button>
-
-      <div
-        {...swipeHandlers}
-        className="slider"
-      >
-
-        <div
-          className="slider__items-container"
-          style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+    <>
+      <div className="slider__container">
+        <button
+          className="slider__button"
+          onClick={() => {
+            updateIndex(activeIndex - 1);
+          }}
         >
-          {children}
+          {'<'}
+        </button>
+        <div
+          {...swipeHandlers}
+          className="slider"
+        >
+          <div
+            className="slider__items-container"
+            style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+          >
+            {children}
+          </div>
         </div>
-
-        <div className="slider__indicators">
-          {React.Children.map(children, (child, index) => {
-            return (
-              <div
-                className={cn(
-                  'slider__indicator',
-                  { 'slider__indicator-active': index === activeIndex },
-                )}
-                onClick={() => {
-                  updateIndex(index);
-                }}
-              />
-            );
-          })}
-        </div>
+        <button
+          className="slider__button"
+          onClick={() => {
+            updateIndex(activeIndex + 1);
+          }}
+        >
+          {'>'}
+        </button>
       </div>
 
-      <button
-        className="slider__button"
-        onClick={() => {
-          updateIndex(activeIndex + 1);
-        }}
-      >
-        {'>'}
-      </button>
-    </div>
+      <div className="slider__indicators">
+        {React.Children.map(children, (child, index) => {
+          return (
+            <div
+              className={cn(
+                'slider__indicator',
+                { 'slider__indicator-active': index === activeIndex },
+              )}
+              onClick={() => {
+                updateIndex(index);
+              }}
+            />
+          );
+        })}
+      </div>
+    </>
   );
 };

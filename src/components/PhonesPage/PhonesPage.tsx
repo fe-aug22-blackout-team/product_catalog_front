@@ -8,6 +8,7 @@ import { Phone } from '../../types/Phone';
 import { Loader } from '../UI/Loader';
 import { Pagination } from './Pagination';
 import { Dropdown } from './Dropdown';
+import { NavString } from '../NavString';
 
 export const PhonesPage: React.FC = () => {
   const [phones, setPhones] = useState<Phone[]>([]);
@@ -67,6 +68,15 @@ export const PhonesPage: React.FC = () => {
 
   return (
     <div className="phones-page">
+      <div className="phones-page__navstring">
+        <NavString
+          links={[
+            { title: 'home', path: '/' },
+            { title: 'Phones', path: '/phones' },
+          ]}
+        />
+      </div>
+
       <h1 className="phones-page__title">
         Mobile phones
       </h1>

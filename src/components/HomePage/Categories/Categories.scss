@@ -72,6 +72,7 @@
       background-size: 120% 120%;
       background-position: -50px -50px;
 
+
       @include onTablet {
         background-position: -30px -30px;
       }
@@ -116,13 +117,9 @@
     text-decoration: none;
   }
 
-  &__link:hover &__img {
-    transform: scale(1.1);
-  }
-
   &__info {
     @extend %bodyText_desktop-tablet;
 
-    color: $white;
+    color: $secondary;
   }
 }

@@ -64,15 +64,19 @@
     height: 288px;
     width: 288px;
 
-  @include onTablet {
-    height: 187px;
-    width: 187px;
+    @include onTablet {
+      height: 187px;
+      width: 187px;
+    }
+
+    @include onDesktop {
+      height: 368px;
+      width: 368px;
+    }
   }
 
-  @include onDesktop {
-    height: 368px;
-    width: 368px;
-  }
+  &__link-container:hover {
+    transform: scale(1.1);
   }
 
   &__phones {
@@ -101,13 +105,9 @@
     text-decoration: none;
   }
 
-  &__link:hover &__img {
-    transform: scale(1.1);
-  }
-
   &__info {
     @extend %bodyText_desktop-tablet;
 
-    color: $white;
+    color: $secondary;
   }
 }

@@ -6,7 +6,6 @@
   margin: 40px auto 56px;
 
   @include onTablet {
-    width: 593px;
     margin: 50px auto 64px;
   }
 
@@ -36,8 +35,9 @@
 
     @include onTablet {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
       align-items: center;
+      gap: 16px;
     }
   
     @include onDesktop {
@@ -61,27 +61,39 @@
   &__link-container {
     background-repeat: no-repeat;
     background-position: center;
-    background-size: contain;
+    background-size: 100% 100%;
     margin-bottom: 24px;
     transition: transform 0.4s;
+    min-height: 288px;
+    min-width: 288px;
+    transition: background-size 0.5s, background-position 0.5s;
 
-    height: 288px;
-    width: 288px;
+    &:hover {
+      background-size: 120% 120%;
+      background-position: -50px -50px;
 
-  @include onTablet {
-    height: 187px;
-    width: 187px;
-  }
+      @include onTablet {
+        background-position: -30px -30px;
+      }
 
-  @include onDesktop {
-    height: 368px;
-    width: 368px;
-  }
+      @include onMobile {
+        background-position: -40px -40px;
+      }
+    }
+
+    @include onTablet {
+      min-height: 200px;
+      min-width: 200px;
+    }
+
+    @include onDesktop {
+      height: 368px;
+      width: 368px;
+    }
   }
 
   &__phones {
     background-image: url('../../../images/Phones.png');
-    margin-right: 16px;
 
     @include onMobile {
       margin-bottom: 32px;
@@ -90,7 +102,6 @@
 
   &__tablets {
     background-image: url('../../../images/Tablets.png');
-    margin-right: 16px;
 
     @include onMobile {
       margin-bottom: 32px;

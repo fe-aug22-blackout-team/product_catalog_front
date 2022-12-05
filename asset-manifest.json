@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/product_catalog_front/static/css/main.5b41a5f0.css",
-    "main.js": "/product_catalog_front/static/js/main.2a16ad4e.js",
+    "main.css": "/product_catalog_front/static/css/main.e0288f58.css",
+    "main.js": "/product_catalog_front/static/js/main.9b57f181.js",
     "static/media/Tablets.png": "/product_catalog_front/static/media/Tablets.4ff7eb1d8dc162b74732.png",
     "static/media/Phones.png": "/product_catalog_front/static/media/Phones.bde458a07aad65a5ba22.png",
     "static/media/slider_banner3.png": "/product_catalog_front/static/media/slider_banner3.3e757b6f9fb9aca85eaa.png",
@@ -17,6 +17,7 @@
     "static/media/slider_mobile1.png": "/product_catalog_front/static/media/slider_mobile1.d67d667c5547c1a339ce.png",
     "static/media/Shopping-bag_Cart.svg": "/product_catalog_front/static/media/Shopping-bag_Cart.fbb7bb4b7513df420fa1.svg",
     "static/media/Favorites_Heart.svg": "/product_catalog_front/static/media/Favorites_Heart.bda5fbc9746bfe2e1329.svg",
+    "static/media/Home.svg": "/product_catalog_front/static/media/Home.901f72c9436f9e8c63573838c422c80d.svg",
     "static/media/Remove-chart.svg": "/product_catalog_front/static/media/Remove-chart.63825bff3c8ba3b4528b.svg",
     "static/media/mobile-menu_close.svg": "/product_catalog_front/static/media/mobile-menu_close.c89cd55fcda471b596c2.svg",
     "static/media/mobile-menu_open.svg": "/product_catalog_front/static/media/mobile-menu_open.571b3bb49f127bd00746.svg",
@@ -26,11 +27,11 @@
     "static/media/left-arrow.svg": "/product_catalog_front/static/media/left-arrow.c92aaf27f38b627f918c.svg",
     "static/media/Minus.svg": "/product_catalog_front/static/media/Minus.0365a13e7f5baa53bce8.svg",
     "static/media/Minus_disabled.svg": "/product_catalog_front/static/media/Minus_disabled.d5c39f976623a3fc1fc0.svg",
-    "main.5b41a5f0.css.map": "/product_catalog_front/static/css/main.5b41a5f0.css.map",
-    "main.2a16ad4e.js.map": "/product_catalog_front/static/js/main.2a16ad4e.js.map"
+    "main.e0288f58.css.map": "/product_catalog_front/static/css/main.e0288f58.css.map",
+    "main.9b57f181.js.map": "/product_catalog_front/static/js/main.9b57f181.js.map"
   },
   "entrypoints": [
-    "static/css/main.5b41a5f0.css",
-    "static/js/main.2a16ad4e.js"
+    "static/css/main.e0288f58.css",
+    "static/js/main.9b57f181.js"
   ]
 }

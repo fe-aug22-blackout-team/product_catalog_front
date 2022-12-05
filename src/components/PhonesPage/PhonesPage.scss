@@ -53,18 +53,32 @@
     margin-bottom: 24px;
   }
 
+  &__loader {
+    height: 1000px;
+
+    display: flex;
+    justify-content: center;
+    align-self: center;
+  }
+
   &__catalog {
     margin-bottom: 40px;
-    display: grid;
-    column-gap: 16px;
     row-gap: 40px;
+  }
+
+  &__item {
+    grid-column: span 4;
 
     @include onTablet {
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-column: span 6;
+    }
+
+    @media (min-width: 920px) {
+      grid-column: span 4;
     }
 
     @include onDesktop {
-      grid-template-columns: repeat(4, minmax(200px, 1fr));
+      grid-column: span 6;
     }
   }
 }

@@ -2,15 +2,16 @@
 @import '../../../../styles/utils/typography';
 @import '../../../../styles/utils/mixins';
 
-.container {
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-}
-
 .slider {
   overflow: hidden;
   flex-grow: 1;
+
+  &__container {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 18px;
+    }
 
   &__button {
     @extend %h4_mobile;
@@ -38,7 +39,6 @@
   &__items-container {
     white-space: nowrap;
     transition: transform 0.5s linear;
-    margin-bottom: 18px;
   }
 
   &__indicators {

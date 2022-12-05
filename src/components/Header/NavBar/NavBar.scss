@@ -120,10 +120,6 @@
     background-position: center;
     background-repeat: no-repeat;
     transition: transform 0.3s;
-        
-    &:hover {
-      transform: scaleY(1.3);
-    }
 
     @include onDesktop {
       width: 64px;

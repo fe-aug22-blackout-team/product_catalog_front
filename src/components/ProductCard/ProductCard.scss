@@ -28,6 +28,7 @@ $card-width: 272px;
   &__title {
     @extend %buttons_desktop-tablet;
 
+    height: 42px;
     color: $white;
 
     &-link {

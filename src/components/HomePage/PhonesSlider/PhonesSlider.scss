@@ -65,9 +65,13 @@
     }
   }
 
+  &__items-container {
+    overflow: hidden;
+  }
+
   &__items {
     display: flex;
     gap: 16px;
-    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
   }
 }

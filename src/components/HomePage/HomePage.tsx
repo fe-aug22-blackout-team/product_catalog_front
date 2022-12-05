@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { SliderWrapper } from './SliderWrapper';
 import './HomePage.scss';
@@ -6,37 +6,23 @@ import { Categories } from './Categories';
 import { getAllSortedPhones } from '../../api/phones';
 import { PhonesSlider } from './PhonesSlider';
 import { Loader } from '../UI/Loader';
+import { Phone } from '../../types/Phone';
 
 export const HomePage: React.FC = () => {
-  const [phonesSortedByYear, setPhonesSortedByYear] = useState([]);
-  const [phonesSortedByPrice, setPhonesSortedByPrice] = useState([]);
+  const [phones, setPhones] = useState<Phone[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const phonesCount = phonesSortedByYear.length;
+  const phonesCount = phones.length;
   const tabletsCount = 0;
   const accessoriesCount = 0;
 
-  const getPhonesSortedByYear = useCallback(async() => {
+  const getAllPhones = useCallback(async() => {
     try {
       setIsLoading(true);
 
       const phonesFromServer = await getAllSortedPhones('Newest');
 
-      setPhonesSortedByYear(phonesFromServer.content);
-      setIsLoading(false);
-    } catch (error) {
-      setIsLoading(false);
-      throw new Error(`Something went wrong ${error}`);
-    }
-  }, []);
-
-  const getPhonesSortedByPrice = useCallback(async() => {
-    try {
-      setIsLoading(true);
-
-      const phonesFromServer = await getAllSortedPhones('Cheapest');
-
-      setPhonesSortedByPrice(phonesFromServer.content);
+      setPhones(phonesFromServer.content);
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
@@ -45,9 +31,15 @@ export const HomePage: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    getPhonesSortedByYear();
-    getPhonesSortedByPrice();
+    getAllPhones();
   }, []);
+
+  const phonesForHotPricesSlider = useMemo(() => {
+    return [...phones].sort((ph1, ph2) => {
+      return (ph2.fullPrice - ph2.price) / ph2.fullPrice * 100
+        - (ph1.fullPrice - ph1.price) / ph1.fullPrice * 100;
+    });
+  }, [phones]);
 
   return (
     <div className="homePage">
@@ -59,7 +51,11 @@ export const HomePage: React.FC = () => {
 
       {isLoading
         ? <Loader />
-        : <PhonesSlider phones={phonesSortedByYear} title='Brand new models' />
+        : <PhonesSlider
+          phones={phones.slice(0, 15)}
+          title='Brand new models'
+          itemWidth={272}
+        />
       }
 
       <Categories
@@ -70,7 +66,11 @@ export const HomePage: React.FC = () => {
 
       {isLoading
         ? <Loader />
-        : <PhonesSlider phones={phonesSortedByPrice} title='Hot prices' />
+        : <PhonesSlider
+          phones={phonesForHotPricesSlider.slice(0, 15)}
+          title='Hot prices'
+          itemWidth={272}
+        />
       }
     </div>
   );

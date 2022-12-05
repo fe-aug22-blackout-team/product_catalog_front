@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { appRoutes } from '../../../routes/Routes';
@@ -11,6 +11,25 @@ type Props = {
 };
 
 export const NavBar: React.FC<Props> = ({ isMobileMenu, menuHandler }) => {
+  const [cartItemsCount, setCartItemsCount] = useState(0);
+
+  useEffect(() => {
+    let storeValue = '';
+    const storageListner = setInterval(() => {
+      const newValue = localStorage.getItem('cartItems');
+
+      if (newValue && storeValue !== newValue) {
+        storeValue = newValue;
+
+        setCartItemsCount(JSON.parse(storeValue).length);
+      }
+    }, 1000);
+
+    return () => {
+      clearInterval(storageListner);
+    };
+  }, []);
+
   return (
     <div className='navbar'>
       <div className="navbar__left">
@@ -50,9 +69,16 @@ export const NavBar: React.FC<Props> = ({ isMobileMenu, menuHandler }) => {
               'navbar__link ' + (isActive ? 'is-active' : '')
             }
           >
-            <div className="navbar__cart-logo"></div>
+            <div className="navbar__cart-logo">
+              {cartItemsCount > 0 && (
+                <div className="navbar__cart-items-count">
+                  {cartItemsCount}
+                </div>
+              )}
+            </div>
           </NavLink>
         </div>
+
         <div className="navbar__mobileMenu" onClick={menuHandler}>
           {isMobileMenu ? (
             <NavLink

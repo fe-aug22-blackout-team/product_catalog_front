@@ -16,7 +16,6 @@ $card-width: 272px;
 
   &__img {
     display: block;
-    width: 208px;
     height: 196px;
     margin-bottom: 24px;
   }
@@ -29,6 +28,7 @@ $card-width: 272px;
   &__title {
     @extend %buttons_desktop-tablet;
 
+    height: 42px;
     color: $white;
 
     &-link {

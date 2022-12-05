@@ -13,12 +13,21 @@ type Props = {
 export const NavBar: React.FC<Props> = ({ isMobileMenu, menuHandler }) => {
   const [cartItemsCount, setCartItemsCount] = useState(0);
 
-  const cartItems = window.localStorage.getItem('cartItems');
-
   useEffect(() => {
-    if (cartItems !== null) {
-      setCartItemsCount(JSON.parse(cartItems).length);
-    }
+    let storeValue = '';
+    const storageListner = setInterval(() => {
+      const newValue = localStorage.getItem('cartItems');
+
+      if (newValue && storeValue !== newValue) {
+        storeValue = newValue;
+
+        setCartItemsCount(JSON.parse(storeValue).length);
+      }
+    }, 1000);
+
+    return () => {
+      clearInterval(storageListner);
+    };
   }, []);
 
   return (

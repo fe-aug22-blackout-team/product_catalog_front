@@ -12,12 +12,15 @@ interface Props {
 
 export const ProductCard: React.FC<Props> = ({ phone }) => {
   const [isInCart, setIsInCart] = useState(false);
+  const [favSelected, setFavSelected] = useState(false);
+  const [isFavourite, setIsFavourite] = useState(false);
 
   useEffect(() => {
     const itemsInCart: Phone[]
     = JSON.parse(localStorage.getItem('cartItems') || '[]');
 
     setIsInCart(itemsInCart.some(item => item.id === phone.id));
+    setIsFavourite(itemsInCart.some(item => item.id === phone.id));
   }, []);
 
   const handleAddCart = () => {
@@ -34,6 +37,23 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
 
       localStorage.setItem('cartItems', JSON.stringify(newCartItems));
       setIsInCart(newCartItems.some(item => item.id === phone.id));
+    }
+  };
+
+  const handleAddFav = () => {
+    const cartItems: Phone[]
+    = JSON.parse(localStorage.getItem('cartItems') || '[]');
+
+    if (!isFavourite) {
+      const newCartItems = [...cartItems, { ...phone }];
+
+      localStorage.setItem('favItems', JSON.stringify(newCartItems));
+      setFavSelected(newCartItems.some(item => item.id === phone.id));
+    } else {
+      const newCartItems = cartItems.filter(item => item.id !== phone.id);
+
+      localStorage.setItem('favItems', JSON.stringify(newCartItems));
+      setFavSelected(newCartItems.some(item => item.id === phone.id));
     }
   };
 
@@ -91,7 +111,7 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
                 : 'Add to cart'}
             />
           </div>
-          <div>
+          <div onClick={() => handleAddFav()}>
             <Button buttonType={ButtonType.Favourite} />
           </div>
         </div>

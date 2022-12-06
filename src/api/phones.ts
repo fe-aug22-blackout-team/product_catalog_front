@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-const API_URL = 'https://638ef7e6bb6c0b07412739d0--melodic-centaur-2d31fb.netlify.app/.netlify/functions/server';
+const API_URL = 'https://638f403b39548d27b988301f--melodic-centaur-2d31fb.netlify.app/.netlify/functions/server';
 
 export async function getPhonesByPagination(
   sortBy: string,
@@ -13,6 +13,12 @@ export async function getPhonesByPagination(
 
 export async function getAllSortedPhones(sortBy: string) {
   const response = await fetch(`${API_URL}/phones?sort=${sortBy}&page=1&limit=100`);
+
+  return response.json();
+}
+
+export async function getPhoneById(phoneId: string) {
+  const response = await fetch(`${API_URL}/phones/${phoneId}`);
 
   return response.json();
 }

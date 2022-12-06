@@ -49,8 +49,9 @@ export const ProductInfo: React.FC = () => {
 
         <Link
           to={appRoutes.phones}
+          className='product-info__back-btn'
         >
-          Back
+          <Button buttonType={ButtonType.Back} innerText='Back' />
         </Link>
 
         <h2 className='product-info__title'>Apple iPhone 11 Pro Max 64GB Gold (iMT9G2FS/A)</h2>

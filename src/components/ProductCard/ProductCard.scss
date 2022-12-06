@@ -9,7 +9,7 @@ $card-width: 272px;
   justify-content: center;
   align-items: center;
 
-  width: $card-width;
+  min-width: $card-width;
   padding: 32px;
 
   background-color: $surface1;

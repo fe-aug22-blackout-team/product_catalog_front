@@ -12,6 +12,8 @@ const getNumbers = (to: number) => {
   return numbers;
 };
 
+const scrollToTop = () => window.scrollTo({ top: 0 });
+
 interface Props {
   totalPhones: number;
   phonesPerPage: number;
@@ -43,7 +45,10 @@ export const Pagination: React.FC<Props> = ({
               'pagination__button--disabled': currentPage === 1,
             },
           )}
-          onClick={onPrevPage}
+          onClick={() => {
+            onPrevPage();
+            scrollToTop();
+          }}
         >
           <svg
             width="6"
@@ -76,7 +81,10 @@ export const Pagination: React.FC<Props> = ({
               { 'pagination__button--selected': currentPage === item },
             )
             }
-            onClick={() => onCurrentPage(item)}
+            onClick={() => {
+              onCurrentPage(item);
+              scrollToTop();
+            }}
           >
             {item}
           </button>
@@ -92,7 +100,10 @@ export const Pagination: React.FC<Props> = ({
               'pagination__button--disabled': currentPage === paginationLength,
             },
           )}
-          onClick={() => onNextPage(paginationLength)}
+          onClick={() => {
+            onNextPage(paginationLength);
+            scrollToTop();
+          }}
         >
           <svg
             width="6"

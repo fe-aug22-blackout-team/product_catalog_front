@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-const API_URL = 'https://638e0fbd3acec732984dac94--melodic-centaur-2d31fb.netlify.app/.netlify/functions/server';
+const API_URL = 'https://638ef7e6bb6c0b07412739d0--melodic-centaur-2d31fb.netlify.app/.netlify/functions/server';
 
 export async function getPhonesByPagination(
   sortBy: string,

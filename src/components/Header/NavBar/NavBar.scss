@@ -114,6 +114,7 @@
     }
 
   &__favourites-logo, &__cart-logo, &__mobileMenu-logo {
+    position: relative;
     width: 48px;
     height: 20px;
     background-image: url(../../../images/icons_svg/Favorites_Heart.svg);
@@ -126,10 +127,11 @@
     }
   }
 
-  &__cart-items-count {
+  &__cart-items-count,
+  &__favourites-items-count {
     position: absolute;
-    left: 50%;
-    top: -20%;
+    left: 52%;
+    top: -25%;
     font-family: "Mont-SemiBold";
     font-weight: 700;
     font-size: 10px;
@@ -144,7 +146,6 @@
   }
 
   &__cart-logo {
-    position: relative;
     background-image: url(../../../images/icons_svg/Shopping-bag_Cart.svg);
   }
 

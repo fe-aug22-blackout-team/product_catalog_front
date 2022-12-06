@@ -12,21 +12,33 @@ type Props = {
 
 export const NavBar: React.FC<Props> = ({ isMobileMenu, menuHandler }) => {
   const [cartItemsCount, setCartItemsCount] = useState(0);
+  const [favItemsCount, setFavItemsCount] = useState(8);
 
   useEffect(() => {
-    let storeValue = '';
+    let storeCartValue = '';
+    let storeFavValue = '';
+
     const storageListner = setInterval(() => {
-      const newValue = localStorage.getItem('cartItems');
+      const newCartValue = localStorage.getItem('cartItems');
+      const newFavValue = localStorage.getItem('favItems');
 
-      if (newValue && storeValue !== newValue) {
-        storeValue = newValue;
+      if (newCartValue && storeCartValue !== newCartValue) {
+        storeCartValue = newCartValue;
 
-        setCartItemsCount(JSON.parse(storeValue).length);
+        setCartItemsCount(JSON.parse(storeCartValue).length);
+      }
+
+      if (newFavValue && storeFavValue !== newFavValue) {
+        storeFavValue = newFavValue;
+
+        setFavItemsCount(JSON.parse(storeFavValue).length);
       }
     }, 1000);
 
     return () => {
-      clearInterval(storageListner);
+      if (storageListner) {
+        clearInterval(storageListner);
+      }
     };
   }, []);
 
@@ -59,7 +71,13 @@ export const NavBar: React.FC<Props> = ({ isMobileMenu, menuHandler }) => {
               'navbar__link ' + (isActive ? 'is-active' : '')
             }
           >
-            <div className="navbar__favourites-logo"></div>
+            <div className="navbar__favourites-logo">
+              {favItemsCount > 0 && (
+                <div className="navbar__favourites-items-count">
+                  {favItemsCount}
+                </div>
+              )}
+            </div>
           </NavLink>
         </div>
         <div className="navbar__cart">

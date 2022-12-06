@@ -78,7 +78,7 @@ export const PhonesSlider: React.FC<Props> = ({ phones, title, itemWidth }) => {
           style={{ transform: `translateX(-${cardIndex * shift}px)` }}
         >
           {phones.map(phone => (
-            <li className="NewModels__item-container" key={phone.id}>
+            <li className="PhonesSlider__item-container" key={phone.id}>
               <ProductCard phone={phone} />
             </li>
           ))}

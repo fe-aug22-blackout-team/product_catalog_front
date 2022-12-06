@@ -2,19 +2,38 @@
 @import '../../../styles/utils/palette';
 @import '../../../styles/utils/mixins';
 
-.mobileMenu {
+.page__with-menu {
+  overflow: hidden;
+}
+
+.menuWrapper {
   position: absolute;
   top: 50px;
-  right: 0;
   left: 0;
-  bottom: 0;
-  z-index: 999;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: column;
-  background-color: $black;
+  right: 0;
+  height: calc(100vh - 50px);
+  z-index: 8;
   overflow: hidden;
+}
+
+.MenuBurger {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transform: translateY(-100%);
+  transition: all 0.5s;
+  background-color: rgb(4, 4, 43);
+  opacity: 0.9;
+
+  &--active {
+    transform: translateY(0);
+    transition: all 0.5s;
+  }
+
+  @include onTablet {
+    display: none;
+  }
 
   &__links {
     padding-top: 15vh;
@@ -37,7 +56,7 @@
   &__link {
     @extend %uppercase_desktop-tablet;
     text-decoration: none;
-    color: $secondary;
+    color: $white;
     transition: border-color 0.3s, color 0.3s;
     padding: 12px 0;
     border-bottom: 3px solid transparent;
@@ -56,6 +75,7 @@
   &__bottom {
     width: 100%;
     display: flex;
+    background-color: $black;
   }
 
   &__favourites,
@@ -65,7 +85,7 @@
     align-items: center;
     height: 100%;
     width: 100%;
-    border: 1px solid #323542;
+    border: 1px solid $secondary;
     flex-grow: 1;
   }
 

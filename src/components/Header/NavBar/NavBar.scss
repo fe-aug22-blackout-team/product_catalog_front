@@ -88,13 +88,21 @@
     height: 100%;
   }
 
-  &__favourites, &__cart, &__mobileMenu {
+  &__favourites, &__cart, &__burgerMenu {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
     width: 48px;
     box-shadow: -1px 0px 0px #323542;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s;
+
+    &:hover {
+      cursor: pointer;
+      border-color: $secondary;
+      background-color: rgba(0, 128, 128, 0.055);
+    }
 
     @include onDesktop {
       width: 64px;
@@ -105,7 +113,7 @@
     }
   }
 
-    &__mobileMenu {
+    &__burgerMenu {
       display: none;
 
       @include onMobile {
@@ -113,7 +121,7 @@
       }
     }
 
-  &__favourites-logo, &__cart-logo, &__mobileMenu-logo {
+  &__favourites-logo, &__cart-logo, &__burgerMenu-logo {
     position: relative;
     width: 48px;
     height: 20px;
@@ -149,7 +157,7 @@
     background-image: url(../../../images/icons_svg/Shopping-bag_Cart.svg);
   }
 
-  &__mobileMenu-logo {
+  &__burgerMenu-logo {
     &_clos {
       background-image: url(../../../images/icons_svg/mobile-menu_open.svg);
     }

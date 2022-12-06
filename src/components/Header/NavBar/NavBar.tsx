@@ -2,17 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { appRoutes } from '../../../routes/Routes';
+import { MenuBurger } from '../MenuBurger';
 import { navbarLinksContent } from './constants';
 import './NavBar.scss';
 
-type Props = {
-  isMobileMenu: boolean;
-  menuHandler: () => void;
-};
-
-export const NavBar: React.FC<Props> = ({ isMobileMenu, menuHandler }) => {
+export const NavBar: React.FC = () => {
   const [cartItemsCount, setCartItemsCount] = useState(0);
-  const [favItemsCount, setFavItemsCount] = useState(8);
+  const [favItemsCount, setFavItemsCount] = useState(0);
+  const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
+
+  const menuHandler = () => setIsBurgerMenuOpen(current => !current);
 
   useEffect(() => {
     let storeCartValue = '';
@@ -80,6 +79,7 @@ export const NavBar: React.FC<Props> = ({ isMobileMenu, menuHandler }) => {
             </div>
           </NavLink>
         </div>
+
         <div className="navbar__cart">
           <NavLink
             to={appRoutes.cart}
@@ -97,32 +97,20 @@ export const NavBar: React.FC<Props> = ({ isMobileMenu, menuHandler }) => {
           </NavLink>
         </div>
 
-        <div className="navbar__mobileMenu" onClick={menuHandler}>
-          {isMobileMenu ? (
-            <NavLink
-              to={appRoutes.home}
-              className={({ isActive }) =>
-                'navbar__link ' + (isActive ? 'is-active' : '')
-              }
-            >
-              <div
-                className="navbar__mobileMenu-logo navbar__mobileMenu-logo_open"
-              />
-            </NavLink>
+        <div className="navbar__burgerMenu" onClick={menuHandler}>
+          {isBurgerMenuOpen ? (
+            <div
+              className="navbar__burgerMenu-logo navbar__burgerMenu-logo_open"
+            />
           ) : (
-            <NavLink
-              to={appRoutes.mobile_menu}
-              className={({ isActive }) =>
-                'navbar__link ' + (isActive ? 'is-active' : '')
-              }
-            >
-              <div
-                className="navbar__mobileMenu-logo navbar__mobileMenu-logo_clos"
-              />
-            </NavLink>
+            <div
+              className="navbar__burgerMenu-logo navbar__burgerMenu-logo_clos"
+            />
           )}
         </div>
       </div>
+
+      <MenuBurger isBurgerMenu={isBurgerMenuOpen} menuHandler={menuHandler} />
     </div>
   );
 };

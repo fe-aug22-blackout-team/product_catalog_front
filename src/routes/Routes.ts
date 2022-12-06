@@ -5,5 +5,4 @@ export const appRoutes = {
   accessories: '/product_catalog_front/accessories',
   favourites: '/product_catalog_front/favourites',
   cart: '/product_catalog_front/cart',
-  mobile_menu: '/product_catalog_front/mobile_menu',
 };

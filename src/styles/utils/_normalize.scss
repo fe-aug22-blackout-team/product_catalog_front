@@ -1,0 +1,25 @@
+@import "./mixins";
+@import "./palette";
+
+$mobile-tablet-header-height: 48px;
+$mobile-footer-height: 258px;
+$tablet-desktop-footer-height: 97px;
+$desktop-header-height: 64px;
+
+body {
+  background-color: $black;
+}
+
+.main-container {
+  @include onMobile {
+    min-height: calc(100vh - $mobile-tablet-header-height - $mobile-footer-height);
+  }
+
+  @include onTablet {
+    min-height: calc(100vh - $mobile-tablet-header-height - $tablet-desktop-footer-height);
+  }
+
+  @include onDesktop {
+    min-height: calc(100vh - $desktop-header-height - $tablet-desktop-footer-height);
+  }
+}

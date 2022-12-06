@@ -31,8 +31,19 @@ export const PhonesSlider: React.FC<Props> = ({ phones, title, itemWidth }) => {
   };
 
   const swipeHandlers = useSwipeable({
-    onSwipedLeft: () => setCardIndex(current => current + 1),
-    onSwipedRight: () => setCardIndex(current => current - 1),
+    onSwipedLeft: () => {
+      if (cardIndex >= phones.length - 4) {
+        return;
+      }
+      setCardIndex(current => current + 1);
+    },
+    onSwipedRight: () => {
+      if (cardIndex <= 0) {
+        return;
+      }
+
+      setCardIndex(current => current - 1);
+    },
   });
 
   return (

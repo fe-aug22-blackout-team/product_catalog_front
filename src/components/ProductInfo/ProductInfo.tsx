@@ -1,21 +1,27 @@
 /* eslint-disable max-len */
 import React from 'react';
-// import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { appRoutes } from '../../routes/Routes';
 
 import './ProductInfo.scss';
 
 import { ButtonType } from '../../types/Button';
 import { Button } from '../UI/Button';
+import { NavString } from '../NavString';
 
 export const ProductInfo: React.FC = () => {
-  // const { phoneId } = useParams();
+  const { phoneId } = useParams();
 
   return (
     <main className='product-info'>
       <div className="product-info__container">
-        {/* Breadcrumbs */}
+        <div className="product-info__breadcrumbs">
+          <NavString links={[
+            { title: 'home', path: appRoutes.home },
+            { title: 'Phones', path: appRoutes.phones },
+            { title: 'Apple iPhone 11 Pro Max 64GB Gold', path: `${appRoutes.phones}/${phoneId}` },
+          ]} />
+        </div>
 
         <Link
           to={appRoutes.phones}

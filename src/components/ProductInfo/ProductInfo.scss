@@ -3,6 +3,8 @@
 @import "../../styles/utils/palette";
 
 .product-info { 
+  padding-top: 24px;
+  
   &__container {
     margin: 0 16px;
 
@@ -13,6 +15,10 @@
     @include onDesktop {
       margin: 0 32px;
     }
+  }
+
+  &__breadcrumbs {
+    margin-bottom: 44px;
   }
 
   &__title {

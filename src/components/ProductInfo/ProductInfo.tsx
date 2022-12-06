@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { appRoutes } from '../../routes/Routes';
 
@@ -8,9 +8,33 @@ import './ProductInfo.scss';
 import { ButtonType } from '../../types/Button';
 import { Button } from '../UI/Button';
 import { NavString } from '../NavString';
+import { MemoizedPhoneSlider } from '../HomePage/PhonesSlider';
+import { getAllSortedPhones } from '../../api/phones';
+import { Phone } from '../../types/Phone';
+import { Loader } from '../UI/Loader';
 
 export const ProductInfo: React.FC = () => {
+  const [phones, setPhones] = useState<Phone[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
   const { phoneId } = useParams();
+
+  const getAllPhones = useCallback(async() => {
+    try {
+      setIsLoading(true);
+
+      const phonesFromServer = await getAllSortedPhones('Alfabetically');
+
+      setPhones(phonesFromServer.content);
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+      throw new Error(`Something went wrong ${error}`);
+    }
+  }, []);
+
+  useEffect(() => {
+    getAllPhones();
+  }, []);
 
   return (
     <main className='product-info'>
@@ -173,9 +197,16 @@ export const ProductInfo: React.FC = () => {
             </div>
           </div>
         </section>
-
-        {/* You may also like component */}
       </div>
+
+      {isLoading
+        ? <Loader />
+        : <MemoizedPhoneSlider
+          phones={phones.slice(5, 20)}
+          title='You may also like'
+          itemWidth={272}
+        />
+      }
     </main>
   );
 };

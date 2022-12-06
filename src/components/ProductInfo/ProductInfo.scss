@@ -3,18 +3,16 @@
 @import "../../styles/utils/palette";
 
 .product-info { 
-  padding-top: 24px;
-  
-  &__container {
-    margin: 0 16px;
-
-    @include onTablet {
-      margin: 0 24px;
-    }
-
-    @include onDesktop {
-      margin: 0 32px;
-    }
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 25px 16px 64px;
+    
+  @include onTablet {
+    padding: 25px 24px 64px;
+  }
+    
+  @include onDesktop {
+    padding: 25px 32px 80px;
   }
 
   &__breadcrumbs {

@@ -5,6 +5,7 @@ import './ProductCard.scss';
 import { Phone } from '../../types/Phone';
 import { ButtonType } from '../../types/Button';
 import { Button } from '../UI/Button';
+import { appRoutes } from '../../routes/Routes';
 
 interface Props {
   phone: Phone;
@@ -39,7 +40,7 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
 
   return (
     <article className='product'>
-      <Link to='/item'>
+      <Link to={`${appRoutes.phones}/${phone.id}`}>
         <img
           src={phone.image}
           alt="Product image"
@@ -49,7 +50,7 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
 
       <div className="product__info">
         <h3 className="product__title">
-          <Link to='/item' className='product__title-link'>
+          <Link to={`${appRoutes.phones}/${phone.id}`} className='product__title-link'>
             {phone.name}
           </Link>
         </h3>

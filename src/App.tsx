@@ -9,6 +9,7 @@ import { Header } from './components/Header';
 import { MobileMenu } from './components/Header/MobileMenu';
 import { HomePage } from './components/HomePage';
 import { PhonesPage } from './components/PhonesPage';
+import { ProductInfo } from './components/ProductInfo';
 import { TabletsPage } from './components/TabletsPage';
 import { appRoutes } from './routes/Routes';
 
@@ -24,7 +25,13 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<Navigate to={appRoutes.home} />} />
           <Route path={appRoutes.home} element={<HomePage />} />
-          <Route path={appRoutes.phones} element={<PhonesPage />} />
+
+          <Route path={appRoutes.phones}>
+            <Route index element={<PhonesPage />} />
+
+            <Route path=":phoneId" element={<ProductInfo />} />
+          </Route>
+
           <Route path={appRoutes.tablets} element={<TabletsPage />} />
           <Route path={appRoutes.accessories} element={<AccessoriesPage />} />
           <Route path={appRoutes.favourites} element={<FavouritesPage />} />

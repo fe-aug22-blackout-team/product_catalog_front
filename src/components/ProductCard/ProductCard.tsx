@@ -8,16 +8,21 @@ import { Button } from '../UI/Button';
 
 interface Props {
   phone: Phone;
+  setFavItems?: React.Dispatch<React.SetStateAction<Phone[]>>;
 }
 
-export const ProductCard: React.FC<Props> = ({ phone }) => {
+export const ProductCard: React.FC<Props> = ({ phone, setFavItems }) => {
   const [isInCart, setIsInCart] = useState(false);
+  const [isFavourite, setIsFavourite] = useState(false);
 
   useEffect(() => {
     const itemsInCart: Phone[]
     = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    const itemsFavourite: Phone[]
+    = JSON.parse(localStorage.getItem('favItems') || '[]');
 
     setIsInCart(itemsInCart.some(item => item.id === phone.id));
+    setIsFavourite(itemsFavourite.some(item => item.id === phone.id));
   }, []);
 
   const handleAddCart = () => {
@@ -34,6 +39,27 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
 
       localStorage.setItem('cartItems', JSON.stringify(newCartItems));
       setIsInCart(newCartItems.some(item => item.id === phone.id));
+    }
+  };
+
+  const handleAddFav = () => {
+    const favItems: Phone[]
+    = JSON.parse(localStorage.getItem('favItems') || '[]');
+
+    if (!isFavourite) {
+      const newFavItems = [...favItems, { ...phone }];
+
+      localStorage.setItem('favItems', JSON.stringify(newFavItems));
+      setIsFavourite(newFavItems.some(item => item.id === phone.id));
+    } else {
+      const newCartItems = favItems.filter(item => item.id !== phone.id);
+
+      localStorage.setItem('favItems', JSON.stringify(newCartItems));
+      setIsFavourite(newCartItems.some(item => item.id === phone.id));
+    }
+
+    if (setFavItems) {
+      setFavItems(JSON.parse(localStorage.getItem('favItems') || '[]'));
     }
   };
 
@@ -91,8 +117,11 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
                 : 'Add to cart'}
             />
           </div>
-          <div>
-            <Button buttonType={ButtonType.Favourite} />
+          <div onClick={() => handleAddFav()}>
+            <Button
+              buttonType={ButtonType.Favourite}
+              isFavourite={isFavourite}
+            />
           </div>
         </div>
       </div>

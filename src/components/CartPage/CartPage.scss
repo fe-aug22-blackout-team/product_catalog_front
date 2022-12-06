@@ -6,8 +6,6 @@
   margin: auto;
   padding: 24px 16px 56px;
 
-  background-color: $black;
-
   @include onTablet {
     padding: 40px 24px 64px;
     max-width: 640px;
@@ -50,6 +48,15 @@
     color: $white;
 
     @include onTablet {
+      margin-top: 16px;
+
+      font-family: "Mont-Bold";
+      font-size: 48px;
+      line-height: 56px;
+      letter-spacing: -0.01em;
+    }
+
+    @include onDesktop {
       margin-top: 16px;
 
       font-family: "Mont-Bold";

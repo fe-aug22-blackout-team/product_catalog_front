@@ -29,7 +29,7 @@ export const CartPage: React.FC = () => {
   const handleCheckout = () => {
     if (!isCompleted && cartItems.length) {
       setCartItems([]);
-      localStorage.clear();
+      localStorage.setItem('cartItems', '[]');
       setIsCompleted(true);
 
       setTimeout(() => {

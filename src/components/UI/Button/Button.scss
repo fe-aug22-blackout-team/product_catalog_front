@@ -1,5 +1,6 @@
 @import '../../../App.scss';
 @import '../../../styles/utils/palette';
+@import '../../../styles/utils/typography';
 
 .main-button {
   display: flex;
@@ -83,5 +84,28 @@
 
   &--plus {
     background-image: url('../../../images/icons_svg/Plus.svg');
+  }
+}
+
+.btn-back {
+  display: inline-flex;
+  gap: 8px;
+
+  @extend %smallText_desktop-tablet;
+  color: $white;
+  transition: color
+  0.3s;
+
+  &__icon {
+    fill: $white;
+    transition: fill 0.3s;
+  }
+
+  &:hover {
+    color: $accent;
+  }
+
+  &:hover &__icon {
+    fill: $accent;
   }
 }

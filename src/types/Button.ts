@@ -4,4 +4,5 @@ export enum ButtonType {
   Favourite,
   CartPlus,
   CartMinus,
+  Back,
 }

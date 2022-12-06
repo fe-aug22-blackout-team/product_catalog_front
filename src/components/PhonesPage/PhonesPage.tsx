@@ -67,7 +67,7 @@ export const PhonesPage: React.FC = () => {
   const perPageOptions = [8, 16, 32, 64];
 
   return (
-    <div className="phones-page">
+    <div className="phones-page main-container">
       <div className="phones-page__navstring">
         <NavString
           links={[

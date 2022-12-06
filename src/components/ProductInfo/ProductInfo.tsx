@@ -2,6 +2,7 @@
 import React from 'react';
 // import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { appRoutes } from '../../routes/Routes';
 
 import './ProductInfo.scss';
 
@@ -17,7 +18,7 @@ export const ProductInfo: React.FC = () => {
         {/* Breadcrumbs */}
 
         <Link
-          to="/phones"
+          to={appRoutes.phones}
         >
           Back
         </Link>

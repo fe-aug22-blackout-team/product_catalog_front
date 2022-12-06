@@ -1,9 +1,83 @@
-@import '../../styles/utils/typography';
-@import '../../styles/utils/palette';
+@import "../../styles/utils/typography";
+@import "../../styles/utils/palette";
+@import "../../styles/utils/mixins";
 
-.title {
-  @extend %h1_desktop-tablet;
-  text-align: center;
-  color: teal;
-  margin-top: 50px;
+.fav-page {
+  margin: auto;
+  padding: 24px 16px 56px;
+
+  @include onTablet {
+    padding: 40px 24px 64px;
+    max-width: 640px;
+  }
+
+  @include onDesktop {
+    padding: 40px 32px 80px;
+    max-width: 1200px;
+  }
+
+  &--title {
+    @extend %h1_mobile;
+    margin: 24px 0 8px;
+    color: $white;
+
+    @include onTablet {
+      margin-top: 16px;
+
+      font-family: "Mont-Bold";
+      font-size: 48px;
+      line-height: 56px;
+      letter-spacing: -0.01em;
+    }
+
+    @include onDesktop {
+      margin-top: 16px;
+
+      font-family: "Mont-Bold";
+      font-size: 48px;
+      line-height: 56px;
+      letter-spacing: -0.01em;
+    }
+  }
+
+  &--total-items {
+    @extend %h4_mobile;
+    padding-bottom: 32px;
+    color: $secondary;
+
+    @include onTablet {
+      padding-bottom: 40px;
+    }
+
+    @include onDesktop {
+      padding-bottom: 40px;
+    }
+  }
+
+  &--empty {
+    @extend %h2_desktop-tablet;
+    color: $white;
+  }
+
+  &--items-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include onTablet {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    @include onDesktop {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+  }
+
+  &--item-container { 
+    margin-bottom: 40px;
+  }
 }

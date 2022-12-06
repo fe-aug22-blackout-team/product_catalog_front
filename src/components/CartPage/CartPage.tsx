@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import '../../App.scss';
+import cn from 'classnames';
 import { ButtonType } from '../../types/Button';
 import { Phone } from '../../types/Phone';
 import { Button } from '../UI/Button';
-import { Loader } from '../UI/Loader';
 import { CartItem } from './CartItem';
 import './CartPage.scss';
 
 export const CartPage: React.FC = () => {
   const [cartItems, setCartItems] = useState<Phone[]>([]);
   const [fullPrice, setFullPrice] = useState(0);
+  const [isCompleted, setIsCompleted] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setCartItems(JSON.parse(localStorage.getItem('cartItems') || '[]'));
@@ -23,6 +25,18 @@ export const CartPage: React.FC = () => {
 
     setFullPrice(price);
   }, [cartItems]);
+
+  const handleCheckout = () => {
+    if (!isCompleted && cartItems.length) {
+      setCartItems([]);
+      localStorage.setItem('cartItems', '[]');
+      setIsCompleted(true);
+
+      setTimeout(() => {
+        navigate('/');
+      }, 1500);
+    }
+  };
 
   return (
     <main className="cart-page main-container">
@@ -55,11 +69,23 @@ export const CartPage: React.FC = () => {
             <p className="cart-page--total-items">
               Total for {cartItems.length} items
             </p>
-            <div className="cart-page--button-container">
+            <div
+              className="cart-page--button-container"
+              onClick={() => handleCheckout()}
+            >
               <Button buttonType={ ButtonType.Main } innerText="Checkout" />
             </div>
           </section>
         </div>
+      </div>
+      <div className={cn('cart-page--completed', {
+        'cart-page--completed--active': isCompleted,
+      })}>
+        <div className="cart-page--completed-background">
+        </div>
+        <h2 className="cart-page--completed-message">
+          Order completed
+        </h2>
       </div>
     </main>
   );

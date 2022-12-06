@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useEffect, useState } from 'react';
 import './PhonesPage.scss';
 import '../../styles/grid-templates.scss';
@@ -8,6 +7,8 @@ import { Phone } from '../../types/Phone';
 import { Loader } from '../UI/Loader';
 import { Pagination } from './Pagination';
 import { Dropdown } from './Dropdown';
+import { NavString } from '../NavString';
+import { appRoutes } from '../../routes/Routes';
 
 export const PhonesPage: React.FC = () => {
   const [phones, setPhones] = useState<Phone[]>([]);
@@ -30,7 +31,7 @@ export const PhonesPage: React.FC = () => {
       setPhones(phonesFromServer.content);
       setTotalPhones(phonesFromServer.totalPhones);
       setIsLoading(false);
-    } catch {}
+    } catch { }
   };
 
   const handleSortBy = (item: string) => {
@@ -67,6 +68,15 @@ export const PhonesPage: React.FC = () => {
 
   return (
     <div className="phones-page">
+      <div className="phones-page__navstring">
+        <NavString
+          links={[
+            { title: 'home', path: appRoutes.home },
+            { title: 'Phones', path: appRoutes.phones },
+          ]}
+        />
+      </div>
+
       <h1 className="phones-page__title">
         Mobile phones
       </h1>
@@ -76,7 +86,7 @@ export const PhonesPage: React.FC = () => {
       </span>
 
       <div className="phones-page__selects">
-        <div className="grid grid--mobile grid--tablet grid--desktop">
+        <div className="grid">
           <div className="
             grid__item--mobile-1-2
             grid__item--tablet-1-4
@@ -95,7 +105,6 @@ export const PhonesPage: React.FC = () => {
             grid__item--tablet-5-7
             grid__item--desktop-5-7
           ">
-
             <Dropdown
               title={'Items on page'}
               field={phonesPerPage}
@@ -107,13 +116,17 @@ export const PhonesPage: React.FC = () => {
       </div>
 
       {isLoading
-        ? <Loader />
+        ? <div className="phones-page__loader">
+          <Loader />
+        </div>
         : (
-          <section className="phones-page__catalog">
+          <ul className="phones-page__catalog grid">
             {phones.map(phone => (
-              <ProductCard key={phone.id} phone={phone} />
+              <li key={phone.id} className='phones-page__item' >
+                <ProductCard phone={phone} />
+              </li>
             ))}
-          </section>
+          </ul>
         )
       }
 

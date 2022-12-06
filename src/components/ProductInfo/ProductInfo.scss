@@ -1,0 +1,253 @@
+@import "../../styles/utils/mixins";
+@import "../../styles/utils/typography";
+@import "../../styles/utils/palette";
+
+.product-info { 
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 25px 16px 64px;
+    
+  @include onTablet {
+    padding: 25px 24px 64px;
+  }
+    
+  @include onDesktop {
+    padding: 25px 32px 80px;
+  }
+
+  &__breadcrumbs {
+    margin-bottom: 44px;
+  }
+
+  &__back-btn {
+    display: inline-flex;
+    margin-bottom: 16px;
+    
+    text-decoration: none;
+  }
+
+  &__title {
+    @extend %h2_mobile;
+
+    margin-bottom: 32px;
+    color: $white;
+
+    @include onTablet {
+      font-size: 32px;
+      line-height: 41px;
+      letter-spacing: -0.01em;
+    }
+  }
+
+  &__details {
+    @include onDesktop {
+      display: flex;
+      gap: 64px;
+    }
+  }
+
+  &__about {
+    @include onDesktop {
+      flex-basis: 60%;
+    }
+  }
+
+  &__techspecs {
+    @include onDesktop {
+      flex-basis: 40%;
+    }
+  }
+}
+
+.choose {
+  margin-bottom: 56px;
+  
+  &__options {
+    margin-bottom: 32px;
+  }
+  
+  &__item {
+    padding-bottom: 24px;
+
+    border-bottom: 1px solid $elements;
+
+    &:not(:last-child) {
+      margin-bottom: 24px;
+    }
+  }
+  
+  &__text {
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 8px;
+    
+    @extend %smallText_desktop-tablet;
+    color: $secondary;
+  }
+
+  &__content {
+    display: flex;
+    gap: 16px;
+  }
+
+  &__btn {
+    padding: 8px;
+    
+    border: 1px solid $icons;
+
+    @extend %bodyText_desktop-tablet;
+    color: $white;
+
+    background-color: transparent;
+    transition: background-color 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      color: $black;
+      background-color: $white;
+    }
+
+    &--active {
+      color: $black;
+      background-color: $white;
+    }
+  }
+
+  &__price {
+    display: flex;
+    gap: 8px;
+
+    margin-bottom: 16px;
+  }
+
+  &__price-item {
+    @extend %h1_mobile;
+
+    color: $white;
+
+    &::before {
+      content: '$';
+    }
+
+    &--crossed {
+      @extend %h3_desktop-tablet;
+      
+      text-decoration: line-through;
+      color: $secondary;
+    }
+  }
+
+  &__controls {
+    display: flex;
+    gap: 8px;
+
+    margin-bottom: 32px;
+  }
+
+  &__info-item {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.info-item {
+  &:not(:last-child) {
+    margin-bottom: 8px;
+  }
+
+  &__text {
+    @extend %smallText_desktop-tablet;
+    color: $secondary;
+  }
+
+  &__value {
+    @extend %smallText_desktop-tablet;
+    color: $white;
+  }
+}
+
+.about {
+  margin-bottom: 56px;
+  
+  &__title {
+    margin-bottom: 30px;
+    padding-bottom: 16px;
+
+    border-bottom: 1px solid $elements;
+    
+    @extend %h3_mobile;
+    color: $white;
+
+    @include onTablet {
+      font-size: 22px;
+      line-height: 31px;
+    }
+  }
+}
+
+.article {
+  &:not(:last-child) {
+    margin-bottom: 32px;
+  }
+  
+  &__subtitle {
+    margin-bottom: 16px;
+    
+    @extend %h4_mobile;
+    color: $white;
+
+    @include onTablet {
+      font-size: 20px;
+      line-height: 26px;
+    }
+  }
+
+  &__paragraph {
+    @extend %bodyText_desktop-tablet;
+    color: $secondary;
+
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.techspecs {
+  margin-bottom: 56px;
+  
+  &__title {
+    margin-bottom: 30px;
+    padding-bottom: 16px;
+
+    border-bottom: 1px solid $elements;
+    
+    @extend %h3_mobile;
+    color: $white;
+
+    @include onTablet {
+      font-size: 22px;
+      line-height: 31px;
+    }
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 8px;
+  }
+
+  &__text {  
+    @extend %buttons_desktop-tablet;
+    color: $secondary;
+  }
+
+  &__value {
+    flex-basis: 50%;
+    
+    @extend %buttons_desktop-tablet;
+    text-align: right;
+    color: $white;
+  }
+}

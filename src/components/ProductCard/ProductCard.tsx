@@ -5,19 +5,25 @@ import './ProductCard.scss';
 import { Phone } from '../../types/Phone';
 import { ButtonType } from '../../types/Button';
 import { Button } from '../UI/Button';
+import { appRoutes } from '../../routes/Routes';
 
 interface Props {
   phone: Phone;
+  setFavItems?: React.Dispatch<React.SetStateAction<Phone[]>>;
 }
 
-export const ProductCard: React.FC<Props> = ({ phone }) => {
+export const ProductCard: React.FC<Props> = ({ phone, setFavItems }) => {
   const [isInCart, setIsInCart] = useState(false);
+  const [isFavourite, setIsFavourite] = useState(false);
 
   useEffect(() => {
     const itemsInCart: Phone[]
     = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    const itemsFavourite: Phone[]
+    = JSON.parse(localStorage.getItem('favItems') || '[]');
 
     setIsInCart(itemsInCart.some(item => item.id === phone.id));
+    setIsFavourite(itemsFavourite.some(item => item.id === phone.id));
   }, []);
 
   const handleAddCart = () => {
@@ -37,9 +43,30 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
     }
   };
 
+  const handleAddFav = () => {
+    const favItems: Phone[]
+    = JSON.parse(localStorage.getItem('favItems') || '[]');
+
+    if (!isFavourite) {
+      const newFavItems = [...favItems, { ...phone }];
+
+      localStorage.setItem('favItems', JSON.stringify(newFavItems));
+      setIsFavourite(newFavItems.some(item => item.id === phone.id));
+    } else {
+      const newCartItems = favItems.filter(item => item.id !== phone.id);
+
+      localStorage.setItem('favItems', JSON.stringify(newCartItems));
+      setIsFavourite(newCartItems.some(item => item.id === phone.id));
+    }
+
+    if (setFavItems) {
+      setFavItems(JSON.parse(localStorage.getItem('favItems') || '[]'));
+    }
+  };
+
   return (
     <article className='product'>
-      <Link to='/item'>
+      <Link to={`${appRoutes.phones}/${phone.id}`}>
         <img
           src={phone.image}
           alt="Product image"
@@ -49,7 +76,7 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
 
       <div className="product__info">
         <h3 className="product__title">
-          <Link to='/item' className='product__title-link'>
+          <Link to={`${appRoutes.phones}/${phone.id}`} className='product__title-link'>
             {phone.name}
           </Link>
         </h3>
@@ -91,8 +118,11 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
                 : 'Add to cart'}
             />
           </div>
-          <div>
-            <Button buttonType={ButtonType.Favourite} />
+          <div onClick={() => handleAddFav()}>
+            <Button
+              buttonType={ButtonType.Favourite}
+              isFavourite={isFavourite}
+            />
           </div>
         </div>
       </div>

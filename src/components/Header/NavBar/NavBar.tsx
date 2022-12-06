@@ -110,7 +110,12 @@ export const NavBar: React.FC = () => {
         </div>
       </div>
 
-      <MenuBurger isBurgerMenu={isBurgerMenuOpen} menuHandler={menuHandler} />
+      <MenuBurger
+        isBurgerMenu={isBurgerMenuOpen}
+        menuHandler={menuHandler}
+        cartItemsCount={cartItemsCount}
+        favItemsCount={favItemsCount}
+      />
     </div>
   );
 };

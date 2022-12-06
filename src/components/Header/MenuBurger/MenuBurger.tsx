@@ -10,9 +10,16 @@ import './MenuBurger.scss';
 type Props = {
   isBurgerMenu: boolean;
   menuHandler: () => void;
+  cartItemsCount: number;
+  favItemsCount: number;
 };
 
-export const MenuBurger: React.FC<Props> = ({ isBurgerMenu, menuHandler }) => {
+export const MenuBurger: React.FC<Props> = ({
+  isBurgerMenu,
+  menuHandler,
+  cartItemsCount,
+  favItemsCount,
+}) => {
   if (isBurgerMenu) {
     document.body.classList.add('page__with-menu');
   } else {
@@ -20,7 +27,9 @@ export const MenuBurger: React.FC<Props> = ({ isBurgerMenu, menuHandler }) => {
   }
 
   return (
-    <div className="menuWrapper">
+    <div
+      className={cn('MenuWrapper', { 'visibility-hidden': !isBurgerMenu })}
+    >
       <div
         className={cn('MenuBurger', { 'MenuBurger--active': isBurgerMenu })}
       >
@@ -44,26 +53,33 @@ export const MenuBurger: React.FC<Props> = ({ isBurgerMenu, menuHandler }) => {
         </div>
 
         <div className="MenuBurger__bottom">
-          <div
-            className="MenuBurger__favourites"
-            onClick={menuHandler}
-          >
+          <div className="MenuBurger__favourites" onClick={menuHandler}>
             <NavLink
               to={appRoutes.favourites}
               className="MenuBurger__link"
             >
-              <div className="MenuBurger__favourites-logo"></div>
+              <div className="MenuBurger__favourites-logo">
+                {favItemsCount > 0 && (
+                  <div className="MenuBurger__favourites-items-count">
+                    {favItemsCount}
+                  </div>
+                )}
+              </div>
             </NavLink>
           </div>
-          <div
-            className="MenuBurger__cart"
-            onClick={menuHandler}
-          >
+
+          <div className="MenuBurger__cart" onClick={menuHandler}>
             <NavLink
               to={appRoutes.cart}
               className="MenuBurger__link"
             >
-              <div className="MenuBurger__cart-logo"></div>
+              <div className="MenuBurger__cart-logo">
+                {cartItemsCount > 0 && (
+                  <div className="MenuBurger__cart-items-count">
+                    {cartItemsCount}
+                  </div>
+                )}
+              </div>
             </NavLink>
           </div>
         </div>

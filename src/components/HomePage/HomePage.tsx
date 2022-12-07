@@ -42,7 +42,7 @@ export const HomePage: React.FC = () => {
   }, [phones]);
 
   return (
-    <div className="homePage main-container">
+    <main className="homePage main-container">
       <h1 className='homePage__title'>
         Welcome to Nice Gadgets store!
       </h1>
@@ -72,6 +72,6 @@ export const HomePage: React.FC = () => {
           itemWidth={272}
         />
       }
-    </div>
+    </main>
   );
 };

@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { LocaleStorageContext } from '../../../context/localStorageContext';
 
 import { appRoutes } from '../../../routes/Routes';
 import { MenuBurger } from '../MenuBurger';
@@ -7,39 +8,10 @@ import { navbarLinksContent } from './constants';
 import './NavBar.scss';
 
 export const NavBar: React.FC = () => {
-  const [cartItemsCount, setCartItemsCount] = useState(0);
-  const [favItemsCount, setFavItemsCount] = useState(0);
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
+  const { cartItems, favItems } = useContext(LocaleStorageContext);
 
   const menuHandler = () => setIsBurgerMenuOpen(current => !current);
-
-  useEffect(() => {
-    let storeCartValue = '';
-    let storeFavValue = '';
-
-    const storageListner = setInterval(() => {
-      const newCartValue = localStorage.getItem('cartItems');
-      const newFavValue = localStorage.getItem('favItems');
-
-      if (newCartValue && storeCartValue !== newCartValue) {
-        storeCartValue = newCartValue;
-
-        setCartItemsCount(JSON.parse(storeCartValue).length);
-      }
-
-      if (newFavValue && storeFavValue !== newFavValue) {
-        storeFavValue = newFavValue;
-
-        setFavItemsCount(JSON.parse(storeFavValue).length);
-      }
-    }, 1000);
-
-    return () => {
-      if (storageListner) {
-        clearInterval(storageListner);
-      }
-    };
-  }, []);
 
   return (
     <div className='navbar'>
@@ -71,9 +43,9 @@ export const NavBar: React.FC = () => {
             }
           >
             <div className="navbar__favourites-logo">
-              {favItemsCount > 0 && (
+              {favItems.length > 0 && (
                 <div className="navbar__favourites-items-count">
-                  {favItemsCount}
+                  {favItems.length}
                 </div>
               )}
             </div>
@@ -88,9 +60,9 @@ export const NavBar: React.FC = () => {
             }
           >
             <div className="navbar__cart-logo">
-              {cartItemsCount > 0 && (
+              {cartItems.length > 0 && (
                 <div className="navbar__cart-items-count">
-                  {cartItemsCount}
+                  {cartItems.length}
                 </div>
               )}
             </div>
@@ -113,8 +85,8 @@ export const NavBar: React.FC = () => {
       <MenuBurger
         isBurgerMenu={isBurgerMenuOpen}
         menuHandler={menuHandler}
-        cartItemsCount={cartItemsCount}
-        favItemsCount={favItemsCount}
+        cartItemsCount={cartItems.length}
+        favItemsCount={favItems.length}
       />
     </div>
   );

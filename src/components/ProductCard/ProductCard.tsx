@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import './ProductCard.scss';
@@ -6,61 +6,45 @@ import { Phone } from '../../types/Phone';
 import { ButtonType } from '../../types/Button';
 import { Button } from '../UI/Button';
 import { appRoutes } from '../../routes/Routes';
+import { LocaleStorageContext } from '../../context/localStorageContext';
 
 interface Props {
   phone: Phone;
   setFavItems?: React.Dispatch<React.SetStateAction<Phone[]>>;
 }
 
-export const ProductCard: React.FC<Props> = ({ phone, setFavItems }) => {
-  const [isInCart, setIsInCart] = useState(false);
-  const [isFavourite, setIsFavourite] = useState(false);
+export const ProductCard: React.FC<Props> = ({ phone }) => {
+  const {
+    cartItems,
+    favItems,
+    updateCartItems,
+    updateFavItems,
+  } = useContext(LocaleStorageContext);
 
-  useEffect(() => {
-    const itemsInCart: Phone[]
-    = JSON.parse(localStorage.getItem('cartItems') || '[]');
-    const itemsFavourite: Phone[]
-    = JSON.parse(localStorage.getItem('favItems') || '[]');
-
-    setIsInCart(itemsInCart.some(item => item.id === phone.id));
-    setIsFavourite(itemsFavourite.some(item => item.id === phone.id));
-  }, []);
+  const isInCart = cartItems.some(item => item.id === phone.id);
+  const isFavourite = favItems.some(item => item.id === phone.id);
 
   const handleAddCart = () => {
-    const cartItems: Phone[]
-    = JSON.parse(localStorage.getItem('cartItems') || '[]');
-
     if (!isInCart) {
-      const newCartItems = [...cartItems, { ...phone, count: 1 }];
+      const newCartItems = [...cartItems, phone];
 
-      localStorage.setItem('cartItems', JSON.stringify(newCartItems));
-      setIsInCart(newCartItems.some(item => item.id === phone.id));
+      updateCartItems(newCartItems);
     } else {
       const newCartItems = cartItems.filter(item => item.id !== phone.id);
 
-      localStorage.setItem('cartItems', JSON.stringify(newCartItems));
-      setIsInCart(newCartItems.some(item => item.id === phone.id));
+      updateCartItems(newCartItems);
     }
   };
 
   const handleAddFav = () => {
-    const favItems: Phone[]
-    = JSON.parse(localStorage.getItem('favItems') || '[]');
-
     if (!isFavourite) {
-      const newFavItems = [...favItems, { ...phone }];
+      const newFavItems = [...favItems, phone];
 
-      localStorage.setItem('favItems', JSON.stringify(newFavItems));
-      setIsFavourite(newFavItems.some(item => item.id === phone.id));
+      updateFavItems(newFavItems);
     } else {
-      const newCartItems = favItems.filter(item => item.id !== phone.id);
+      const newFavItems = favItems.filter(item => item.id !== phone.id);
 
-      localStorage.setItem('favItems', JSON.stringify(newCartItems));
-      setIsFavourite(newCartItems.some(item => item.id === phone.id));
-    }
-
-    if (setFavItems) {
-      setFavItems(JSON.parse(localStorage.getItem('favItems') || '[]'));
+      updateFavItems(newFavItems);
     }
   };
 

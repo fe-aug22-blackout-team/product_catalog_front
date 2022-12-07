@@ -21,15 +21,15 @@
   transition: 0.3s;
 
   &:hover {
-      background-color: $accent-light;
-  }
-
-  &:active {
-      background-color: $surface2;
+    background-color: $accent-light;
   }
 
   &--active {
     background-color: $surface2;
+
+    &:hover {
+      background-color: $secondary;
+    }
   }
 }
 

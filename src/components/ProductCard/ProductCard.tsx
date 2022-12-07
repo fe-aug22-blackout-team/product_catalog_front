@@ -10,7 +10,6 @@ import { LocaleStorageContext } from '../../context/localStorageContext';
 
 interface Props {
   phone: Phone;
-  setFavItems?: React.Dispatch<React.SetStateAction<Phone[]>>;
 }
 
 export const ProductCard: React.FC<Props> = ({ phone }) => {

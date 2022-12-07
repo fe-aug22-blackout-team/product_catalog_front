@@ -39,7 +39,7 @@ export const CartPage: React.FC = () => {
   };
 
   return (
-    <main className="cart-page">
+    <main className="cart-page main-container">
       <NavLink to='/product_catalog_front/' className="cart-page--back" >
         Back
       </NavLink>

@@ -12,6 +12,7 @@ import { MemoizedPhoneSlider } from '../HomePage/PhonesSlider';
 import { getAllSortedPhones } from '../../api/phones';
 import { Phone } from '../../types/Phone';
 import { Loader } from '../UI/Loader';
+import { ButtonColor } from '../../types/Color';
 
 export const ProductInfo: React.FC = () => {
   const [phones, setPhones] = useState<Phone[]>([]);
@@ -58,7 +59,7 @@ export const ProductInfo: React.FC = () => {
 
         <section className="product-info__choose choose">
           <div className="choose__block">
-            {/* Slider */}
+            {/* Gallery */}
           </div>
 
           <div className="choose__block">
@@ -70,7 +71,35 @@ export const ProductInfo: React.FC = () => {
                 </p>
 
                 <div className="choose__content">
-                  {/* Color picker with buttons */}
+                  <Button
+                    color={ButtonColor.Yellow}
+                    buttonType={ButtonType.ColorPick}
+                  />
+
+                  <Button
+                    color={ButtonColor.Green}
+                    buttonType={ButtonType.ColorPick}
+                  />
+
+                  <Button
+                    color={ButtonColor.Black}
+                    buttonType={ButtonType.ColorPick}
+                  />
+
+                  <Button
+                    color={ButtonColor.White}
+                    buttonType={ButtonType.ColorPick}
+                  />
+
+                  <Button
+                    color={ButtonColor.Purple}
+                    buttonType={ButtonType.ColorPick}
+                  />
+
+                  <Button
+                    color={ButtonColor.Red}
+                    buttonType={ButtonType.ColorPick}
+                  />
                 </div>
               </div>
 

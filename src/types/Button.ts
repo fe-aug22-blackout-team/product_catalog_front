@@ -5,4 +5,5 @@ export enum ButtonType {
   CartPlus,
   CartMinus,
   Back,
+  ColorPick,
 }

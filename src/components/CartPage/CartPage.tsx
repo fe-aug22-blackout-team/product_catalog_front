@@ -1,22 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import '../../App.scss';
 import cn from 'classnames';
+
+import '../../App.scss';
 import { ButtonType } from '../../types/Button';
-import { Phone } from '../../types/Phone';
 import { Button } from '../UI/Button';
 import { CartItem } from './CartItem';
+import { LocaleStorageContext } from '../../context/localStorageContext';
 import './CartPage.scss';
 
 export const CartPage: React.FC = () => {
-  const [cartItems, setCartItems] = useState<Phone[]>([]);
   const [fullPrice, setFullPrice] = useState(0);
   const [isCompleted, setIsCompleted] = useState(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    setCartItems(JSON.parse(localStorage.getItem('cartItems') || '[]'));
-  }, []);
+  const { cartItems, updateCartItems } = useContext(LocaleStorageContext);
 
   useEffect(() => {
     const price = cartItems.reduce((prev, curr) => (
@@ -28,7 +25,7 @@ export const CartPage: React.FC = () => {
 
   const handleCheckout = () => {
     if (!isCompleted && cartItems.length) {
-      setCartItems([]);
+      updateCartItems([]);
       localStorage.setItem('cartItems', '[]');
       setIsCompleted(true);
 
@@ -53,7 +50,6 @@ export const CartPage: React.FC = () => {
                 <CartItem
                   key={item.id}
                   item={item}
-                  setCartItems={setCartItems}
                 />
               );
             })}

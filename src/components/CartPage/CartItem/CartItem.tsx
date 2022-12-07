@@ -69,7 +69,9 @@ export const CartItem: React.FC<Props> = ({ item, setCartItems }) => {
             countCartItem={count}
             setCountCartItem={handleCountChange}
           />
-          {count}
+          <p className="cart-item--count">
+            {count}
+          </p>
           <Button
             buttonType={ButtonType.CartPlus}
             countCartItem={count}

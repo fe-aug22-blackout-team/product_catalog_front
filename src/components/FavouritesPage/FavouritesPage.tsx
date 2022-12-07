@@ -14,7 +14,7 @@ export const FavouritesPage: React.FC = () => {
   }, []);
 
   return (
-    <main className="fav-page">
+    <main className="fav-page main-container">
       <h1 className="fav-page--title">Favourites</h1>
       <p className="fav-page--total-items">
         {favItems.length} items

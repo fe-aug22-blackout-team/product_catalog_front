@@ -100,8 +100,6 @@
 
     &:hover {
       cursor: pointer;
-      border-color: $secondary;
-      background-color: rgba(0, 128, 128, 0.055);
     }
 
     @include onDesktop {
@@ -115,6 +113,11 @@
 
     &__burgerMenu {
       display: none;
+
+      &:hover {
+        border-color: $secondary;
+        background-color: rgba(0, 128, 128, 0.055);
+      }
 
       @include onMobile {
         display: flex;
@@ -160,10 +163,18 @@
   &__burgerMenu-logo {
     &_clos {
       background-image: url(../../../images/icons_svg/mobile-menu_open.svg);
+
+      &:hover {
+        transform: scaleY(1.5);
+      }
     }
 
     &_open {
       background-image: url(../../../images/icons_svg/mobile-menu_close.svg);
+
+      &:hover {
+        transform: rotate(-90deg);
+      }
     }
   }
 }

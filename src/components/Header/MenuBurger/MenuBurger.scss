@@ -18,6 +18,10 @@
   height: calc(100vh - 50px);
   z-index: 8;
   overflow: hidden;
+
+  @include onTablet {
+    display: none;
+  }
 }
 
 .MenuBurger {

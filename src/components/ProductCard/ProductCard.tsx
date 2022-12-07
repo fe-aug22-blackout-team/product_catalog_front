@@ -66,7 +66,7 @@ export const ProductCard: React.FC<Props> = ({ phone, setFavItems }) => {
 
   return (
     <article className='product'>
-      <Link to={`${appRoutes.phones}/${phone.id}`}>
+      <Link to={`${appRoutes.phones}/${phone.phoneId}`}>
         <img
           src={phone.image}
           alt="Product image"

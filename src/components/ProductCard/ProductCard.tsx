@@ -27,10 +27,12 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
     if (!isInCart) {
       const newCartItems = [...cartItems, phone];
 
+      localStorage.setItem('cartItems', JSON.stringify(newCartItems));
       updateCartItems(newCartItems);
     } else {
       const newCartItems = cartItems.filter(item => item.id !== phone.id);
 
+      localStorage.setItem('cartItems', JSON.stringify(newCartItems));
       updateCartItems(newCartItems);
     }
   };
@@ -39,10 +41,12 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
     if (!isFavourite) {
       const newFavItems = [...favItems, phone];
 
+      localStorage.setItem('favItems', JSON.stringify(newFavItems));
       updateFavItems(newFavItems);
     } else {
       const newFavItems = favItems.filter(item => item.id !== phone.id);
 
+      localStorage.setItem('favItems', JSON.stringify(newFavItems));
       updateFavItems(newFavItems);
     }
   };

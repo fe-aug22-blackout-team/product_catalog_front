@@ -109,3 +109,50 @@
     fill: $accent;
   }
 }
+
+.btn-color {
+  position: relative;
+  
+  width: 32px;
+  height: 32px;
+
+  outline: 1px solid $elements;
+  border: 2px solid $black;
+  border-radius: 50%;
+
+  // background-color: $gold;
+  cursor: pointer;
+
+  &:hover {
+    outline-color: $secondary;
+    transition: outline 0.3s;
+  }
+
+  &--active {
+    outline-color: $white;
+  }
+
+  &--yellow {
+    background-color: $gold;
+  }
+
+  &--green {
+    background-color: $green;
+  }
+
+  &--black {
+    background-color: $black-phone;
+  }
+
+  &--white {
+    background-color: $white;
+  }
+
+  &--purple {
+    background-color: $accent;
+  }
+
+  &--red {
+    background-color: $red;
+  }
+}

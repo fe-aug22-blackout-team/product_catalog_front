@@ -5,6 +5,7 @@ import { ButtonType } from '../../../types/Button';
 import './Button.scss';
 import { Link } from 'react-router-dom';
 import { appRoutes } from '../../../routes/Routes';
+import { ButtonColor } from '../../../types/Color';
 
 type Props = {
   buttonType: ButtonType;
@@ -14,6 +15,7 @@ type Props = {
   setCountCartItem?: (type: string) => void;
   isInCart?: boolean;
   isFavourite?: boolean;
+  color?: string;
 }
 
 export const Button: React.FC<Props> = ({
@@ -24,7 +26,10 @@ export const Button: React.FC<Props> = ({
   setCountCartItem,
   isInCart,
   isFavourite,
+  color,
 }) => {
+  const [isActive, setActive] = useState(false);
+  
   switch (buttonType) {
     case ButtonType.Favourite:
       return (
@@ -83,7 +88,7 @@ export const Button: React.FC<Props> = ({
         <div className="btn-back">
           <div className="btn-back__icon-wrapper">
             <svg className="btn-back__icon" width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M5.47124 0.528606C5.21089 0.268256 4.78878 0.268256 4.52843 0.528606L0.528433 4.52861C0.268083 4.78896 0.268083 5.21107 0.528433 5.47141L4.52843 9.47141C4.78878 9.73176 5.21089 9.73176 5.47124 9.47141C5.73159 9.21107 5.73159 8.78896 5.47124 8.52861L1.94265 5.00001L5.47124 1.47141C5.73159 1.21107 5.73159 0.788955 5.47124 0.528606Z"/>
+              <path fillRule="evenodd" clipRule="evenodd" d="M5.47124 0.528606C5.21089 0.268256 4.78878 0.268256 4.52843 0.528606L0.528433 4.52861C0.268083 4.78896 0.268083 5.21107 0.528433 5.47141L4.52843 9.47141C4.78878 9.73176 5.21089 9.73176 5.47124 9.47141C5.73159 9.21107 5.73159 8.78896 5.47124 8.52861L1.94265 5.00001L5.47124 1.47141C5.73159 1.21107 5.73159 0.788955 5.47124 0.528606Z"/>
             </svg>
           </div>
 
@@ -91,6 +96,21 @@ export const Button: React.FC<Props> = ({
             {innerText}
           </div>
         </div>
+      )
+
+    case ButtonType.ColorPick:
+      return (
+        <button 
+          className={cn('btn-color', {
+            'btn-color--active': isActive,
+            'btn-color--yellow': color === ButtonColor.Yellow,
+            'btn-color--green': color === ButtonColor.Green,
+            'btn-color--black': color === ButtonColor.Black,
+            'btn-color--white': color === ButtonColor.White,
+            'btn-color--purple': color === ButtonColor.Purple,
+            'btn-color--red': color === ButtonColor.Red,
+          })}
+        />
       )
   }
 

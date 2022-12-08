@@ -1,0 +1,30 @@
+@import '../../../styles/utils/mixins';
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+
+  @include onTablet {
+    flex-direction: row;
+  }
+
+  &__active-window {
+    margin-bottom: 16px;
+
+    @include onTablet {
+      order: 1;
+    }
+  }
+
+  &__thumbnails {      
+    @include onTablet {
+      flex-basis: 34%;
+
+      max-width: 50px;
+    }
+
+    @include onDesktop {
+      max-width: 78px;
+    }
+  }
+}

@@ -16,4 +16,5 @@ export interface PhoneInfo {
   resolution: string;
   screen: string;
   zoom: string;
+  camera: string;
 }

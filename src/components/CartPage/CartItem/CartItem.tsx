@@ -3,11 +3,11 @@ import React, { useContext, useState } from 'react';
 import './CartItem.scss';
 import { Button } from '../../UI/Button';
 import { ButtonType } from '../../../types/Button';
-import { Phone } from '../../../types/Phone';
+import { Product } from '../../../types/Product';
 import { LocaleStorageContext } from '../../../context/localStorageContext';
 
 interface Props {
-  item: Phone;
+  item: Product;
 }
 
 export const CartItem: React.FC<Props> = ({ item }) => {

@@ -5,12 +5,12 @@ import { SliderWrapper } from './SliderWrapper';
 import { MemoizedPhoneSlider } from './PhonesSlider';
 import { MemoizedCategories } from './Categories';
 import { Loader } from '../UI/Loader';
+import { Product } from '../../types/Product';
 import { getNewProducts, getProductsByDiscount } from '../../api/phones';
-import { Phone } from '../../types/Phone';
 
 export const HomePage: React.FC = () => {
-  const [newPhones, setNewPhones] = useState<Phone[]>([]);
-  const [discountPhones, setDiscountPhones] = useState<Phone[]>([]);
+  const [newPhones, setNewPhones] = useState<Product[]>([]);
+  const [discountPhones, setDiscountPhones] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const get15newPhones = useCallback(async() => {

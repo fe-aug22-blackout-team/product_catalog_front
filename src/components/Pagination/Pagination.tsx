@@ -3,8 +3,8 @@ import cn from 'classnames';
 import './Pagination.scss';
 
 interface Props {
-  totalPhones: number;
-  phonesPerPage: number;
+  totalProducts: number;
+  productsPerPage: number;
   onCurrentPage: (numberOfPage: number) => void;
   onPrevPage: () => void;
   onNextPage: (paginationLength: number) => void;
@@ -24,14 +24,14 @@ const getNumbers = (to: number) => {
 const scrollToTop = () => window.scrollTo({ top: 0 });
 
 export const Pagination: React.FC<Props> = ({
-  totalPhones,
-  phonesPerPage,
+  totalProducts,
+  productsPerPage,
   onCurrentPage,
   onPrevPage,
   onNextPage,
   currentPage,
 }) => {
-  const paginationLength = Math.ceil(totalPhones / phonesPerPage);
+  const paginationLength = Math.ceil(totalProducts / productsPerPage);
   const paginationItems = getNumbers(paginationLength);
   const prevPageIsDisabled = currentPage === 1;
   const nextPageIsDisabled = currentPage === paginationLength;

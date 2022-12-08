@@ -2,14 +2,14 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import './ProductCard.scss';
-import { Phone } from '../../types/Phone';
+import { Product } from '../../types/Product';
 import { ButtonType } from '../../types/Button';
 import { Button } from '../UI/Button';
 import { appRoutes } from '../../routes/Routes';
 import { LocaleStorageContext } from '../../context/localStorageContext';
 
 interface Props {
-  phone: Phone;
+  phone: Product;
 }
 
 export const ProductCard: React.FC<Props> = ({ phone }) => {

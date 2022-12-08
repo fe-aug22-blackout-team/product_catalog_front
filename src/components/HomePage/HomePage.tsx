@@ -5,23 +5,19 @@ import { SliderWrapper } from './SliderWrapper';
 import { MemoizedPhoneSlider } from './PhonesSlider';
 import { MemoizedCategories } from './Categories';
 import { Loader } from '../UI/Loader';
-import { getNewPhones, getPhonesByDiscount } from '../../api/phones';
 import { Product } from '../../types/Product';
+import { getNewProducts, getProductsByDiscount } from '../../api/phones';
 
 export const HomePage: React.FC = () => {
   const [newPhones, setNewPhones] = useState<Product[]>([]);
   const [discountPhones, setDiscountPhones] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const phonesCount = 75;
-  const tabletsCount = 0;
-  const accessoriesCount = 0;
-
   const get15newPhones = useCallback(async() => {
     try {
       setIsLoading(true);
 
-      const phonesFromServer = await getNewPhones();
+      const phonesFromServer = await getNewProducts();
 
       setNewPhones(phonesFromServer);
     } catch (error) {
@@ -35,7 +31,7 @@ export const HomePage: React.FC = () => {
     try {
       setIsLoading(true);
 
-      const phonesFromServer = await getPhonesByDiscount();
+      const phonesFromServer = await getProductsByDiscount();
 
       setDiscountPhones(phonesFromServer);
     } catch (error) {
@@ -67,11 +63,7 @@ export const HomePage: React.FC = () => {
         />
       }
 
-      <MemoizedCategories
-        phonesCount={phonesCount}
-        tabletCount={tabletsCount}
-        accessoriesCount={accessoriesCount}
-      />
+      <MemoizedCategories />
 
       {isLoading
         ? <Loader />

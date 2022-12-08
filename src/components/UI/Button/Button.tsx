@@ -3,9 +3,6 @@ import React, { useState } from 'react';
 import cn from 'classnames';
 import { ButtonType } from '../../../types/Button';
 import './Button.scss';
-import { Link } from 'react-router-dom';
-import { appRoutes } from '../../../routes/Routes';
-import { ButtonColor } from '../../../types/Color';
 
 type Props = {
   buttonType: ButtonType;
@@ -100,18 +97,15 @@ export const Button: React.FC<Props> = ({
 
     case ButtonType.ColorPick:
       return (
-        <button 
-          className={cn('btn-color', {
-            'btn-color--active': isActive,
-            'btn-color--yellow': color === ButtonColor.Yellow,
-            'btn-color--green': color === ButtonColor.Green,
-            'btn-color--black': color === ButtonColor.Black,
-            'btn-color--white': color === ButtonColor.White,
-            'btn-color--purple': color === ButtonColor.Purple,
-            'btn-color--red': color === ButtonColor.Red,
-          })}
-        />
-      )
+        <>
+          {color && (
+            <button 
+              className='btn-color'
+              style={{backgroundColor: color}}
+            />
+          )}
+        </>
+      );
   }
 
   return (

@@ -9,12 +9,14 @@ import { ButtonType } from '../../types/Button';
 import { Button } from '../UI/Button';
 import { NavString } from '../NavString';
 import { MemoizedPhoneSlider } from '../HomePage/PhonesSlider';
-import { getPhoneById } from '../../api/phones';
 import { Product } from '../../types/Product';
+import { getProductById, getRecommendedProducts } from '../../api/phones';
 import { Loader } from '../UI/Loader';
-import { ButtonColor } from '../../types/Color';
 import { ItemGallery } from './ItemGallery';
 import { PhoneInfo } from '../../types/PhoneInfo';
+import { ColorPicker } from './ColorPicker';
+import { CapacitySelector } from './CapacitySelector';
+import { AboutSection } from './AboutSection';
 
 export const ProductInfo: React.FC = () => {
   const [selectedPhone, setSelectedPhone] = useState<PhoneInfo | null>(null);
@@ -27,10 +29,11 @@ export const ProductInfo: React.FC = () => {
       if (phoneId) {
         setIsLoading(true);
 
-        const response = await getPhoneById(phoneId);
+        const phoneFromServer = await getProductById(phoneId);
+        const recommendedPhonesFromServer = await getRecommendedProducts(phoneId);
 
-        setSelectedPhone(response.selectedPhone);
-        setSimilarPhones(response.similarPhones);
+        setSelectedPhone(phoneFromServer);
+        setSimilarPhones(recommendedPhonesFromServer);
       }
     } catch (error) {
       throw new Error(`Something went wrong ${error}`);
@@ -50,7 +53,7 @@ export const ProductInfo: React.FC = () => {
           <NavString links={[
             { title: 'home', path: appRoutes.home },
             { title: 'Phones', path: appRoutes.phones },
-            { title: 'Apple iPhone 11 Pro Max 64GB Gold', path: `${appRoutes.phones}/${phoneId}` },
+            { title: selectedPhone?.name || '', path: `${appRoutes.phones}/${phoneId}` },
           ]} />
         </div>
 
@@ -61,12 +64,14 @@ export const ProductInfo: React.FC = () => {
           <Button buttonType={ButtonType.Back} innerText='Back' />
         </Link>
 
-        <h2 className='product-info__title'>Apple iPhone 11 Pro Max 64GB Gold (iMT9G2FS/A)</h2>
+        <h2 className='product-info__title'>{selectedPhone?.name}</h2>
 
         <section className="product-info__choose choose">
           <div className="choose__block">
             <div className="choose__gallery-wrapper">
-              <ItemGallery />
+              {selectedPhone && (
+                <ItemGallery images={selectedPhone.images} />
+              )}
             </div>
           </div>
 
@@ -79,35 +84,9 @@ export const ProductInfo: React.FC = () => {
                 </p>
 
                 <div className="choose__content">
-                  <Button
-                    color={ButtonColor.Yellow}
-                    buttonType={ButtonType.ColorPick}
-                  />
-
-                  <Button
-                    color={ButtonColor.Green}
-                    buttonType={ButtonType.ColorPick}
-                  />
-
-                  <Button
-                    color={ButtonColor.Black}
-                    buttonType={ButtonType.ColorPick}
-                  />
-
-                  <Button
-                    color={ButtonColor.White}
-                    buttonType={ButtonType.ColorPick}
-                  />
-
-                  <Button
-                    color={ButtonColor.Purple}
-                    buttonType={ButtonType.ColorPick}
-                  />
-
-                  <Button
-                    color={ButtonColor.Red}
-                    buttonType={ButtonType.ColorPick}
-                  />
+                  {selectedPhone && (
+                    <ColorPicker id={selectedPhone.id} colors={selectedPhone?.colorsAvailable} />
+                  )}
                 </div>
               </div>
 
@@ -117,17 +96,18 @@ export const ProductInfo: React.FC = () => {
                 </p>
 
                 <div className="choose__content">
-                  <button className='choose__btn choose__btn--active'>64 GB</button>
-                  <button className='choose__btn'>256 GB</button>
-                  <button className='choose__btn'>512 GB</button>
+                  {selectedPhone && (
+                    <CapacitySelector id={selectedPhone.id} capacities={selectedPhone?.capacityAvailable} />
+                  )}
                 </div>
               </div>
             </div>
 
             <div className="choose__price">
-              <p className="choose__price-item">799</p>
+              <p className="choose__price-item">{selectedPhone?.priceDiscount}</p>
+
               <p className="choose__price-item choose__price-item--crossed">
-                1199
+                {selectedPhone?.priceRegular}
               </p>
             </div>
 
@@ -144,22 +124,22 @@ export const ProductInfo: React.FC = () => {
             <div className="choose__info">
               <div className="choose__info-item info-item">
                 <p className="info-item__text">Screen</p>
-                <p className="info-item__value">6.5” OLED</p>
+                <p className="info-item__value">{selectedPhone?.screen}</p>
               </div>
 
               <div className="choose__info-item info-item">
                 <p className="info-item__text">Resolution</p>
-                <p className="info-item__value">2688x1242</p>
+                <p className="info-item__value">{selectedPhone?.resolution}</p>
               </div>
 
               <div className="choose__info-item info-item">
                 <p className="info-item__text">Processor</p>
-                <p className="info-item__value">Apple A12 Bionic</p>
+                <p className="info-item__value">{selectedPhone?.processor}</p>
               </div>
 
               <div className="choose__info-item info-item">
                 <p className="info-item__text">RAM</p>
-                <p className="info-item__value">3 GB</p>
+                <p className="info-item__value">{selectedPhone?.ram}</p>
               </div>
             </div>
           </div>
@@ -167,34 +147,9 @@ export const ProductInfo: React.FC = () => {
 
         <section className="product-info__details">
           <div className="product-info__about about">
-            <h3 className='about__title'>About</h3>
-            <article className="about__article article">
-              <h4 className="article__subtitle">And then there was Pro</h4>
-              <div className="article__content">
-                <p className="article__paragraph">
-                  A transformative triple-camera system that adds tons of capability without complexity.
-                </p>
-                <p className='article__paragraph'>
-                  An unprecedented leap in battery life. And a mind blowing chip that doubles down on machine learning and pushes the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.
-                </p>
-              </div>
-            </article>
-            <article className="about__article article">
-              <h4 className="article__subtitle">Camera</h4>
-              <div className="article__content">
-                <p className="article__paragraph">
-                  Meet the first triple-camera system to combine cutting-edge technology with the legendary simplicity of iPhone. Capture up to four times more scene. Get beautiful images in drastically lower light. Shoot the highest-quality video in a smartphone — then edit with the same tools you love for photos. You&apos;ve never shot with anything like it.
-                </p>
-              </div>
-            </article>
-            <article className="about__article article">
-              <h4 className="article__subtitle">Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it. Love it.</h4>
-              <div className="article__content">
-                <p className="article__paragraph">
-                  iPhone 11 Pro lets you capture videos that are beautifully true to life, with greater detail and smoother motion. Epic processing power means it can shoot 4K video with extended dynamic range and cinematic video stabilization — all at 60 fps. You get more creative control, too, with four times more scene and powerful new editing tools to play with.
-                </p>
-              </div>
-            </article>
+            {selectedPhone && (
+              <AboutSection id={selectedPhone.id} articles={selectedPhone?.description} />
+            )}
           </div>
 
           <div className='product-info__techspecs techspecs'>
@@ -202,35 +157,37 @@ export const ProductInfo: React.FC = () => {
             <div className="techspecs__content">
               <div className="techspecs__item">
                 <p className="techspecs__text">Screen</p>
-                <p className="techspecs__value">6.5” OLED</p>
+                <p className="techspecs__value">{selectedPhone?.screen}</p>
               </div>
               <div className="techspecs__item">
                 <p className="techspecs__text">Resolution</p>
-                <p className="techspecs__value">2688x1242</p>
+                <p className="techspecs__value">{selectedPhone?.resolution}</p>
               </div>
               <div className="techspecs__item">
                 <p className="techspecs__text">Processor</p>
-                <p className="techspecs__value">Apple A12 Bionic</p>
+                <p className="techspecs__value">{selectedPhone?.processor}</p>
               </div>
               <div className="techspecs__item">
                 <p className="techspecs__text">RAM</p>
-                <p className="techspecs__value">3 GB</p>
+                <p className="techspecs__value">{selectedPhone?.ram}</p>
               </div>
               <div className="techspecs__item">
                 <p className="techspecs__text">Built in memory</p>
-                <p className="techspecs__value">64 GB</p>
+                <p className="techspecs__value">{selectedPhone?.capacity}</p>
               </div>
               <div className="techspecs__item">
                 <p className="techspecs__text">Camera</p>
-                <p className="techspecs__value">12 Mp + 12 Mp + 12 Mp (Triple)</p>
+                <p className="techspecs__value">{selectedPhone?.camera}</p>
               </div>
               <div className="techspecs__item">
                 <p className="techspecs__text">Zoom</p>
-                <p className="techspecs__value">Optical, 2x</p>
+                <p className="techspecs__value">{selectedPhone?.zoom}</p>
               </div>
               <div className="techspecs__item">
                 <p className="techspecs__text">Cell</p>
-                <p className="techspecs__value">GSM, LTE, UMTS</p>
+                <p className="techspecs__value">
+                  {selectedPhone?.cell.join(', ')}
+                </p>
               </div>
             </div>
           </div>

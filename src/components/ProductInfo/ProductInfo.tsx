@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import React, { useCallback, useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, Navigate } from 'react-router-dom';
 import { appRoutes } from '../../routes/Routes';
 
 import './ProductInfo.scss';
@@ -21,6 +21,12 @@ export const ProductInfo: React.FC = () => {
   const [similarPhones, setSimilarPhones] = useState<Phone[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const { phoneId } = useParams();
+
+  if (phoneId && !phoneId.includes('apple-iphone')) {
+    return (
+      <Navigate to={appRoutes.not_found} />
+    );
+  }
 
   const getSelectedPhoneAndSimilarPhones = useCallback(async() => {
     try {

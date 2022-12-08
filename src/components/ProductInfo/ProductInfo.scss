@@ -48,7 +48,7 @@
 
   &__about {
     @include onDesktop {
-      flex-basis: 60%;
+      flex-basis: 50%;
     }
   }
 
@@ -67,16 +67,31 @@
 
   @include onTablet {
     flex-direction: row;
-    gap: 24px;
+    gap: 32px;
+  }
+
+  @include onDesktop {
+    gap: 64px;
   }
 
   &__block {
-    @include onTablet {
-      flex-basis: 50%;
-    }
-    
     &:not(:last-child) {
       margin-bottom: 40px;
+    }
+
+    @include onTablet {
+      flex-basis: content;
+    }
+
+    @include onDesktop {
+      flex-basis: 50%;
+    }
+
+    &--options {
+      @include onTablet {
+        // width: 320px;
+        flex-basis: content;
+      }
     }
   }
   

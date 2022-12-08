@@ -65,7 +65,7 @@ export const ProductInfo: React.FC = () => {
             </div>
           </div>
 
-          <div className="choose__block">
+          <div className="choose__block choose__block--options">
             <div className="choose__options">
               <div className="choose__item">
                 <p className="choose__text">

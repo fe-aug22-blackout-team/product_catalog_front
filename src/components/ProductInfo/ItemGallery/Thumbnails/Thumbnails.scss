@@ -1,0 +1,13 @@
+@import '../../../../styles/utils/mixins';
+
+.thumbnails {
+  display: inline-flex;
+  justify-content: center;
+  gap: 8px;
+
+  width: 100%;
+
+  @include onTablet {
+    flex-direction: column;
+  }
+}

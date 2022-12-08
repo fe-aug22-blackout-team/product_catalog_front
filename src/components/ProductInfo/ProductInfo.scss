@@ -60,7 +60,25 @@
 }
 
 .choose {
+  display: flex;
+  flex-direction: column;
+
   margin-bottom: 56px;
+
+  @include onTablet {
+    flex-direction: row;
+    gap: 24px;
+  }
+
+  &__block {
+    @include onTablet {
+      flex-basis: 50%;
+    }
+    
+    &:not(:last-child) {
+      margin-bottom: 40px;
+    }
+  }
   
   &__options {
     margin-bottom: 32px;

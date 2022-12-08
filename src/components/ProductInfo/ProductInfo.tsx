@@ -13,6 +13,7 @@ import { getAllSortedPhones } from '../../api/phones';
 import { Phone } from '../../types/Phone';
 import { Loader } from '../UI/Loader';
 import { ButtonColor } from '../../types/Color';
+import { ItemGallery } from './ItemGallery';
 
 export const ProductInfo: React.FC = () => {
   const [phones, setPhones] = useState<Phone[]>([]);
@@ -59,7 +60,9 @@ export const ProductInfo: React.FC = () => {
 
         <section className="product-info__choose choose">
           <div className="choose__block">
-            {/* Gallery */}
+            <div className="choose__gallery-wrapper">
+              <ItemGallery />
+            </div>
           </div>
 
           <div className="choose__block">

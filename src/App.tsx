@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './App.scss';
 import { AccessoriesPage } from './components/AccessoriesPage';
 import { CartPage } from './components/CartPage';
@@ -15,7 +15,7 @@ import { appRoutes } from './routes/Routes';
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className="App">
         <Header />
 
@@ -39,7 +39,7 @@ const App: React.FC = () => {
 
         <Footer />
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 

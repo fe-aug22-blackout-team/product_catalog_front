@@ -1,45 +1,54 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
-import { SliderWrapper } from './SliderWrapper';
 import './HomePage.scss';
-import { MemoizedCategories } from './Categories';
-import { getAllSortedPhones } from '../../api/phones';
+import { SliderWrapper } from './SliderWrapper';
 import { MemoizedPhoneSlider } from './PhonesSlider';
+import { MemoizedCategories } from './Categories';
 import { Loader } from '../UI/Loader';
+import { getNewPhones, getPhonesByDiscount } from '../../api/phones';
 import { Phone } from '../../types/Phone';
 
 export const HomePage: React.FC = () => {
-  const [phones, setPhones] = useState<Phone[]>([]);
+  const [newPhones, setNewPhones] = useState<Phone[]>([]);
+  const [discountPhones, setDiscountPhones] = useState<Phone[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const phonesCount = phones.length;
+  const phonesCount = 75;
   const tabletsCount = 0;
   const accessoriesCount = 0;
 
-  const getAllPhones = useCallback(async() => {
+  const get15newPhones = useCallback(async() => {
     try {
       setIsLoading(true);
 
-      const phonesFromServer = await getAllSortedPhones('Newest');
+      const phonesFromServer = await getNewPhones();
 
-      setPhones(phonesFromServer.content);
-      setIsLoading(false);
+      setNewPhones(phonesFromServer);
     } catch (error) {
-      setIsLoading(false);
       throw new Error(`Something went wrong ${error}`);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  const getDiscountPhones = useCallback(async() => {
+    try {
+      setIsLoading(true);
+
+      const phonesFromServer = await getPhonesByDiscount();
+
+      setDiscountPhones(phonesFromServer);
+    } catch (error) {
+      throw new Error(`Something went wrong ${error}`);
+    } finally {
+      setIsLoading(false);
     }
   }, []);
 
   useEffect(() => {
-    getAllPhones();
+    get15newPhones();
+    getDiscountPhones();
   }, []);
-
-  const phonesForHotPricesSlider = useMemo(() => {
-    return [...phones].sort((ph1, ph2) => {
-      return (ph2.fullPrice - ph2.price) / ph2.fullPrice * 100
-        - (ph1.fullPrice - ph1.price) / ph1.fullPrice * 100;
-    });
-  }, [phones]);
 
   return (
     <main className="homePage main-container">
@@ -52,7 +61,7 @@ export const HomePage: React.FC = () => {
       {isLoading
         ? <Loader />
         : <MemoizedPhoneSlider
-          phones={phones.slice(0, 15)}
+          phones={newPhones}
           title='Brand new models'
           itemWidth={272}
         />
@@ -67,7 +76,7 @@ export const HomePage: React.FC = () => {
       {isLoading
         ? <Loader />
         : <MemoizedPhoneSlider
-          phones={phonesForHotPricesSlider.slice(0, 15)}
+          phones={discountPhones}
           title='Hot prices'
           itemWidth={272}
         />

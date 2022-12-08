@@ -7,6 +7,7 @@ import { FavouritesPage } from './components/FavouritesPage';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
 import { HomePage } from './components/HomePage';
+import { NotFoundPage } from './components/NotFoundPage';
 import { PhonesPage } from './components/PhonesPage';
 import { ProductInfo } from './components/ProductInfo';
 import { TabletsPage } from './components/TabletsPage';
@@ -32,6 +33,8 @@ const App: React.FC = () => {
           <Route path={appRoutes.accessories} element={<AccessoriesPage />} />
           <Route path={appRoutes.favourites} element={<FavouritesPage />} />
           <Route path={appRoutes.cart} element={<CartPage />} />
+          <Route path={appRoutes.not_found} element={<NotFoundPage />} />
+          <Route path="*" element={<Navigate to={appRoutes.not_found} />} />
         </Routes>
 
         <Footer />

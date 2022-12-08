@@ -1,5 +1,5 @@
 export const appRoutes = {
-  home: '/',
+  home: '/home',
   phones: '/phones',
   tablets: '/tablets',
   accessories: '/accessories',

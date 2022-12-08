@@ -14,20 +14,18 @@ import { Phone } from '../../types/Phone';
 import { Loader } from '../UI/Loader';
 import { ButtonColor } from '../../types/Color';
 import { ItemGallery } from './ItemGallery';
+import { PhoneInfo } from '../../types/PhoneInfo';
 
 export const ProductInfo: React.FC = () => {
-  const [selectedPhone, setSelectedPhone] = useState({});
+  const [selectedPhone, setSelectedPhone] = useState<PhoneInfo | null>(null);
   const [similarPhones, setSimilarPhones] = useState<Phone[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const { phoneId } = useParams();
 
-  const getSelectedPhoneAdSimilarPhones = useCallback(async() => {
+  const getSelectedPhoneAndSimilarPhones = useCallback(async() => {
     try {
       if (phoneId) {
         setIsLoading(true);
-
-        // eslint-disable-next-line no-console
-        console.log(phoneId);
 
         const response = await getPhoneById(phoneId);
 
@@ -39,11 +37,11 @@ export const ProductInfo: React.FC = () => {
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [phoneId]);
 
   useEffect(() => {
-    getSelectedPhoneAdSimilarPhones();
-  }, []);
+    getSelectedPhoneAndSimilarPhones();
+  }, [phoneId]);
 
   return (
     <main className='product-info'>

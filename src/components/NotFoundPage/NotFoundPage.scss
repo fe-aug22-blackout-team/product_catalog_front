@@ -1,0 +1,30 @@
+@import "../../styles/utils/palette";
+@import "../../styles/utils/typography";
+
+.not-found-page {
+  padding: 16px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &--title {
+    margin-bottom: 30px;
+
+    @extend %h1_desktop-tablet;
+    text-align: center;
+    color: $white;
+  }
+
+  &--back {
+    @extend %h3_desktop-tablet;
+    color: $white;
+
+    transition: 0.3s;
+
+    &:hover {
+      color: $accent;
+    }
+  }
+}

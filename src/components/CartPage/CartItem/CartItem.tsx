@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 
-import { Button } from '../../UI/Button';
 import './CartItem.scss';
+import { Button } from '../../UI/Button';
 import { ButtonType } from '../../../types/Button';
 import { Phone } from '../../../types/Phone';
+import { LocaleStorageContext } from '../../../context/localStorageContext';
 
 interface Props {
   item: Phone;
-  setCartItems: React.Dispatch<React.SetStateAction<Phone[]>>;
 }
 
-export const CartItem: React.FC<Props> = ({ item, setCartItems }) => {
+export const CartItem: React.FC<Props> = ({ item }) => {
   const { image, price } = item;
   const [count, setCount] = useState(item.count || 1);
+  const { cartItems, updateCartItems } = useContext(LocaleStorageContext);
 
   const handleCountChange = (type: string) => {
     if (count > 1 && type === 'minus') {
@@ -24,29 +25,13 @@ export const CartItem: React.FC<Props> = ({ item, setCartItems }) => {
     }
   };
 
-  const getItemsFromStorage = () => {
-    return JSON.parse(localStorage.getItem('cartItems') || '[]');
-  };
-
   const handleRemove = () => {
-    const cartItems: Phone[] = getItemsFromStorage();
     const filteredItems
     = cartItems.filter(storageItem => storageItem.id !== item.id);
 
     localStorage.setItem('cartItems', JSON.stringify(filteredItems));
-    setCartItems(filteredItems);
+    updateCartItems(filteredItems);
   };
-
-  useEffect(() => {
-    const cartItems: Phone[] = getItemsFromStorage();
-    const currentItem
-    = cartItems.findIndex(storageItem => storageItem.id === item.id);
-
-    cartItems[currentItem] = { ...item, count };
-
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-    setCartItems(cartItems);
-  }, [count]);
 
   return (
     <section className="cart-item">

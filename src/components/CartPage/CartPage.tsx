@@ -8,6 +8,7 @@ import { Button } from '../UI/Button';
 import { CartItem } from './CartItem';
 import { LocaleStorageContext } from '../../context/localStorageContext';
 import './CartPage.scss';
+import { appRoutes } from '../../routes/Routes';
 
 export const CartPage: React.FC = () => {
   const [fullPrice, setFullPrice] = useState(0);
@@ -37,7 +38,7 @@ export const CartPage: React.FC = () => {
 
   return (
     <main className="cart-page main-container">
-      <NavLink to='/product_catalog_front/' className="cart-page--back" >
+      <NavLink to={appRoutes.home} className="cart-page--back" >
         Back
       </NavLink>
       <h1 className="cart-page--title">Cart</h1>

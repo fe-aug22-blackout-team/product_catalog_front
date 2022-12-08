@@ -1,0 +1,22 @@
+@import '../../../styles/utils/mixins';
+@import '../../../styles/utils/typography';
+@import '../../../styles/utils/palette';
+
+.about {
+  margin-bottom: 56px;
+  
+  &__title {
+    margin-bottom: 30px;
+    padding-bottom: 16px;
+
+    border-bottom: 1px solid $elements;
+    
+    @extend %h3_mobile;
+    color: $white;
+
+    @include onTablet {
+      font-size: 22px;
+      line-height: 31px;
+    }
+  }
+}

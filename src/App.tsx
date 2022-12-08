@@ -20,7 +20,6 @@ const App: React.FC = () => {
         <Header />
 
         <Routes>
-          <Route path="/" element={<Navigate to={appRoutes.home} />} />
           <Route path={appRoutes.home} element={<HomePage />} />
 
           <Route path={appRoutes.phones}>

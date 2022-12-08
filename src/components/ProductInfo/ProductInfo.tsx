@@ -50,7 +50,7 @@ export const ProductInfo: React.FC = () => {
           <NavString links={[
             { title: 'home', path: appRoutes.home },
             { title: 'Phones', path: appRoutes.phones },
-            { title: 'Apple iPhone 11 Pro Max 64GB Gold', path: `${appRoutes.phones}/${phoneId}` },
+            { title: selectedPhone?.name || '', path: `${appRoutes.phones}/${phoneId}` },
           ]} />
         </div>
 
@@ -61,12 +61,14 @@ export const ProductInfo: React.FC = () => {
           <Button buttonType={ButtonType.Back} innerText='Back' />
         </Link>
 
-        <h2 className='product-info__title'>Apple iPhone 11 Pro Max 64GB Gold (iMT9G2FS/A)</h2>
+        <h2 className='product-info__title'>{selectedPhone?.name}</h2>
 
         <section className="product-info__choose choose">
           <div className="choose__block">
             <div className="choose__gallery-wrapper">
-              <ItemGallery />
+              {selectedPhone && (
+                <ItemGallery images={selectedPhone.images}/>
+              )}
             </div>
           </div>
 
@@ -125,9 +127,10 @@ export const ProductInfo: React.FC = () => {
             </div>
 
             <div className="choose__price">
-              <p className="choose__price-item">799</p>
+              <p className="choose__price-item">{selectedPhone?.priceDiscount}</p>
+
               <p className="choose__price-item choose__price-item--crossed">
-                1199
+                {selectedPhone?.priceRegular}
               </p>
             </div>
 
@@ -144,22 +147,22 @@ export const ProductInfo: React.FC = () => {
             <div className="choose__info">
               <div className="choose__info-item info-item">
                 <p className="info-item__text">Screen</p>
-                <p className="info-item__value">6.5” OLED</p>
+                <p className="info-item__value">{selectedPhone?.screen}</p>
               </div>
 
               <div className="choose__info-item info-item">
                 <p className="info-item__text">Resolution</p>
-                <p className="info-item__value">2688x1242</p>
+                <p className="info-item__value">{selectedPhone?.resolution}</p>
               </div>
 
               <div className="choose__info-item info-item">
                 <p className="info-item__text">Processor</p>
-                <p className="info-item__value">Apple A12 Bionic</p>
+                <p className="info-item__value">{selectedPhone?.processor}</p>
               </div>
 
               <div className="choose__info-item info-item">
                 <p className="info-item__text">RAM</p>
-                <p className="info-item__value">3 GB</p>
+                <p className="info-item__value">{selectedPhone?.ram}</p>
               </div>
             </div>
           </div>

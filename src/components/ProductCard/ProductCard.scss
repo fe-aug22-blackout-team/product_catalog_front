@@ -8,11 +8,35 @@ $card-width: 272px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   min-width: $card-width;
   padding: 32px;
-
   background-color: $surface1;
+  position: relative;
+
+  transition: all 0.3s;
+
+  &::before,
+  &::after {
+    content: '';
+    width: 2px;
+    height: 1px;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    background-color: transparent;
+    transition: transform 0.5s;
+  }
+
+  &::after {
+    top: 0;
+  }
+
+  &:hover::before,
+  &:hover::after {
+    transform: scaleX(136);
+    background-color: $accent;
+  }
+
 
   &__img {
     display: block;

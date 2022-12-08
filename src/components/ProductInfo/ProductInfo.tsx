@@ -10,7 +10,7 @@ import { Button } from '../UI/Button';
 import { NavString } from '../NavString';
 import { MemoizedPhoneSlider } from '../HomePage/PhonesSlider';
 import { getPhoneById } from '../../api/phones';
-import { Phone } from '../../types/Phone';
+import { Product } from '../../types/Product';
 import { Loader } from '../UI/Loader';
 import { ButtonColor } from '../../types/Color';
 import { ItemGallery } from './ItemGallery';
@@ -18,7 +18,7 @@ import { PhoneInfo } from '../../types/PhoneInfo';
 
 export const ProductInfo: React.FC = () => {
   const [selectedPhone, setSelectedPhone] = useState<PhoneInfo | null>(null);
-  const [similarPhones, setSimilarPhones] = useState<Phone[]>([]);
+  const [similarPhones, setSimilarPhones] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const { phoneId } = useParams();
 

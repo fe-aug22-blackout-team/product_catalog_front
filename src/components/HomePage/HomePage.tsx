@@ -6,11 +6,11 @@ import { MemoizedPhoneSlider } from './PhonesSlider';
 import { MemoizedCategories } from './Categories';
 import { Loader } from '../UI/Loader';
 import { getNewPhones, getPhonesByDiscount } from '../../api/phones';
-import { Phone } from '../../types/Phone';
+import { Product } from '../../types/Product';
 
 export const HomePage: React.FC = () => {
-  const [newPhones, setNewPhones] = useState<Phone[]>([]);
-  const [discountPhones, setDiscountPhones] = useState<Phone[]>([]);
+  const [newPhones, setNewPhones] = useState<Product[]>([]);
+  const [discountPhones, setDiscountPhones] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const phonesCount = 75;

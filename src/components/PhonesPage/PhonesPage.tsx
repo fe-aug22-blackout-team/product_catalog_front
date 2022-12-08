@@ -3,15 +3,15 @@ import './PhonesPage.scss';
 import '../../styles/grid-templates.scss';
 import { ProductCard } from '../ProductCard';
 import { getPhonesByPagination } from '../../api/phones';
-import { Phone } from '../../types/Phone';
+import { Product } from '../../types/Product';
 import { Loader } from '../UI/Loader';
-import { Pagination } from './Pagination';
-import { Dropdown } from './Dropdown';
+import { Pagination } from '../Pagination';
+import { Dropdown } from '../Dropdown';
 import { NavString } from '../NavString';
 import { appRoutes } from '../../routes/Routes';
 
 export const PhonesPage: React.FC = () => {
-  const [phones, setPhones] = useState<Phone[]>([]);
+  const [phones, setPhones] = useState<Product[]>([]);
   const [totalPhones, setTotalPhones] = useState(0);
   const [sortBy, setSortBy] = useState('Newest');
   const [phonesPerPage, setPhonesPerPage] = useState(16);
@@ -131,8 +131,8 @@ export const PhonesPage: React.FC = () => {
       }
 
       <Pagination
-        totalPhones={totalPhones}
-        phonesPerPage={phonesPerPage}
+        totalProducts={totalPhones}
+        productsPerPage={phonesPerPage}
         onCurrentPage={handleCurrentPage}
         onPrevPage={handlePrevPage}
         onNextPage={handleNextPage}

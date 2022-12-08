@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
 
 import { LocaleStorageContext } from '../../context/localStorageContext';
-import { Phone } from '../../types/Phone';
+import { Product } from '../../types/Product';
 
 type Props = {
   children: React.ReactNode;
 }
 
 export const LocaleStorageProvider: React.FC<Props> = ({ children }) => {
-  const [cartItems, setCartItems] = useState<Phone[]>([]);
-  const [favItems, setFavItems] = useState<Phone[]>([]);
+  const [cartItems, setCartItems] = useState<Product[]>([]);
+  const [favItems, setFavItems] = useState<Product[]>([]);
 
-  const updateCartItems = (newItems: Phone[]) => {
+  const updateCartItems = (newItems: Product[]) => {
     setCartItems(newItems);
   };
 
-  const updateFavItems = (newItems: Phone[]) => {
+  const updateFavItems = (newItems: Product[]) => {
     setFavItems(newItems);
   };
 

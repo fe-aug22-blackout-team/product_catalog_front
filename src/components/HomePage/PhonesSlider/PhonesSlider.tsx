@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { useSwipeable } from 'react-swipeable';
 import cn from 'classnames';
 
-import { Phone } from '../../../types/Phone';
+import { Product } from '../../../types/Product';
 import { ProductCard } from '../../ProductCard';
 import './PhonesSlider.scss';
 
 type Props = {
-  phones: Phone[];
+  phones: Product[];
   title: string;
   itemWidth: number;
 };

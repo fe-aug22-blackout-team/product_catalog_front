@@ -1,8 +1,8 @@
-import { Phone } from './Phone';
+import { Product } from './Product';
 
 export type LocStorContextType = {
-  favItems: Phone[],
-  cartItems: Phone[],
-  updateFavItems: (value: Phone[]) => void,
-  updateCartItems: (value: Phone[]) => void,
+  favItems: Product[],
+  cartItems: Product[],
+  updateFavItems: (value: Product[]) => void,
+  updateCartItems: (value: Product[]) => void,
 };

@@ -2,6 +2,15 @@ import React from 'react';
 import cn from 'classnames';
 import './Pagination.scss';
 
+interface Props {
+  totalPhones: number;
+  phonesPerPage: number;
+  onCurrentPage: (numberOfPage: number) => void;
+  onPrevPage: () => void;
+  onNextPage: (paginationLength: number) => void;
+  currentPage: number;
+}
+
 const getNumbers = (to: number) => {
   const numbers = [];
 
@@ -14,15 +23,6 @@ const getNumbers = (to: number) => {
 
 const scrollToTop = () => window.scrollTo({ top: 0 });
 
-interface Props {
-  totalPhones: number;
-  phonesPerPage: number;
-  onCurrentPage: (numberOfPage: number) => void;
-  onPrevPage: () => void;
-  onNextPage: (paginationLength: number) => void;
-  currentPage: number;
-}
-
 export const Pagination: React.FC<Props> = ({
   totalPhones,
   phonesPerPage,
@@ -33,6 +33,8 @@ export const Pagination: React.FC<Props> = ({
 }) => {
   const paginationLength = Math.ceil(totalPhones / phonesPerPage);
   const paginationItems = getNumbers(paginationLength);
+  const prevPageIsDisabled = currentPage === 1;
+  const nextPageIsDisabled = currentPage === paginationLength;
 
   return (
     <ul className='pagination'>
@@ -42,12 +44,15 @@ export const Pagination: React.FC<Props> = ({
             'pagination__button',
             'pagination__button--prev',
             {
-              'pagination__button--disabled': currentPage === 1,
+              'pagination__button--disabled': prevPageIsDisabled,
             },
           )}
           onClick={() => {
             onPrevPage();
-            scrollToTop();
+
+            if (!prevPageIsDisabled) {
+              scrollToTop();
+            }
           }}
         >
           <svg
@@ -97,12 +102,15 @@ export const Pagination: React.FC<Props> = ({
             'pagination__button',
             'pagination__button--next',
             {
-              'pagination__button--disabled': currentPage === paginationLength,
+              'pagination__button--disabled': nextPageIsDisabled,
             },
           )}
           onClick={() => {
             onNextPage(paginationLength);
-            scrollToTop();
+
+            if (!nextPageIsDisabled) {
+              scrollToTop();
+            }
           }}
         >
           <svg

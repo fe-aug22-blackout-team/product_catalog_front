@@ -3,17 +3,17 @@
 @import "../../styles/utils/palette";
 
 .phones-page {
-  padding: 25px 16px 16px;
+  padding: 25px 16px 0;
 
   @include onTablet {
-    padding: 25px 24px 24px;
+    padding: 25px 24px 0;
   }
 
   @include onDesktop {
     max-width: 1180px;
 
     margin: 0 auto;
-    padding: 25px 32px 32px;
+    padding: 25px 32px 0;
   }
 
   &__navstring {

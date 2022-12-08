@@ -1,19 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Categories.scss';
 import { NavLink } from 'react-router-dom';
 import { appRoutes } from '../../../routes/Routes';
+import { ProductsQuantity } from '../../../types/ProductsQuantity';
+import { getProductsQuantity } from '../../../api/phones';
 
-type Props = {
-  phonesCount: number;
-  tabletCount: number;
-  accessoriesCount: number;
-};
+export const Categories: React.FC = () => {
+  const [productsQuantity, setProductsQuantity] = useState<ProductsQuantity>();
 
-export const Categories: React.FC<Props> = ({
-  phonesCount,
-  tabletCount,
-  accessoriesCount,
-}) => {
+  const loadProductsQuantity = async() => {
+    try {
+      const productsQuantityFromServer = await getProductsQuantity();
+
+      setProductsQuantity(productsQuantityFromServer);
+    } catch {}
+  };
+
+  useEffect(() => {
+    loadProductsQuantity();
+  }, []);
+
   return (
     <section className="Categories">
       <h2 className="Categories__title">Shop by category</h2>
@@ -32,7 +38,7 @@ export const Categories: React.FC<Props> = ({
             <h4 className="Categories__subtitle">Mobile phones</h4>
           </NavLink>
           <span className="Categories__info">
-            {`${phonesCount} models`}
+            {`${productsQuantity?.phonesQuantity} models`}
           </span>
         </div>
 
@@ -49,7 +55,7 @@ export const Categories: React.FC<Props> = ({
             <h4 className="Categories__subtitle">Tablets</h4>
           </NavLink>
           <span className="Categories__info">
-            {`${tabletCount} models`}
+            {`${productsQuantity?.tabletsQuantity} models`}
           </span>
         </div>
 
@@ -66,7 +72,7 @@ export const Categories: React.FC<Props> = ({
             <h4 className="Categories__subtitle">Accessories</h4>
           </NavLink>
           <span className="Categories__info">
-            {`${accessoriesCount} models`}
+            {`${productsQuantity?.accessoriesQuantity} models`}
           </span>
         </div>
       </div>

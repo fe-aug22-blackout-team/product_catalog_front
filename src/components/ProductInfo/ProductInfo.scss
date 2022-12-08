@@ -1,6 +1,6 @@
-@import "../../styles/utils/mixins";
-@import "../../styles/utils/typography";
-@import "../../styles/utils/palette";
+@import '../../styles/utils/mixins';
+@import '../../styles/utils/typography';
+@import '../../styles/utils/palette';
 
 .product-info { 
   max-width: 1200px;
@@ -122,29 +122,6 @@
   &__content {
     display: flex;
     gap: 8px;
-  }
-
-  &__btn {
-    padding: 8px;
-    
-    border: 1px solid $icons;
-
-    @extend %bodyText_desktop-tablet;
-    color: $white;
-
-    background-color: transparent;
-    transition: background-color 0.3s;
-    cursor: pointer;
-
-    &:hover {
-      color: $black;
-      background-color: $white;
-    }
-
-    &--active {
-      color: $black;
-      background-color: $white;
-    }
   }
 
   &__price {

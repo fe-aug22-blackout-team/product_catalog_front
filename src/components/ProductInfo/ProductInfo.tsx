@@ -9,7 +9,7 @@ import { ButtonType } from '../../types/Button';
 import { Button } from '../UI/Button';
 import { NavString } from '../NavString';
 import { MemoizedPhoneSlider } from '../HomePage/PhonesSlider';
-import { getPhoneById } from '../../api/phones';
+import { getProductById, getRecommendedProducts } from '../../api/phones';
 import { Phone } from '../../types/Phone';
 import { Loader } from '../UI/Loader';
 import { ItemGallery } from './ItemGallery';
@@ -29,10 +29,11 @@ export const ProductInfo: React.FC = () => {
       if (phoneId) {
         setIsLoading(true);
 
-        const response = await getPhoneById(phoneId);
+        const phoneFromServer = await getProductById(phoneId);
+        const recommendedPhonesFromServer = await getRecommendedProducts(phoneId);
 
-        setSelectedPhone(response.selectedPhone);
-        setSimilarPhones(response.similarPhones);
+        setSelectedPhone(phoneFromServer);
+        setSimilarPhones(recommendedPhonesFromServer);
       }
     } catch (error) {
       throw new Error(`Something went wrong ${error}`);
@@ -69,7 +70,7 @@ export const ProductInfo: React.FC = () => {
           <div className="choose__block">
             <div className="choose__gallery-wrapper">
               {selectedPhone && (
-                <ItemGallery images={selectedPhone.images}/>
+                <ItemGallery images={selectedPhone.images} />
               )}
             </div>
           </div>

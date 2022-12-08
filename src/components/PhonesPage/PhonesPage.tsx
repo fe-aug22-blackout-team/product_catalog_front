@@ -2,13 +2,17 @@ import React, { useEffect, useState } from 'react';
 import './PhonesPage.scss';
 import '../../styles/grid-templates.scss';
 import { ProductCard } from '../ProductCard';
-import { getPhonesByPagination } from '../../api/phones';
+import {
+  getProductsQuantity,
+  getSortedProductsByPagination,
+} from '../../api/phones';
 import { Phone } from '../../types/Phone';
 import { Loader } from '../UI/Loader';
 import { Pagination } from './Pagination';
 import { Dropdown } from './Dropdown';
 import { NavString } from '../NavString';
 import { appRoutes } from '../../routes/Routes';
+import { Categories } from '../../types/Categories';
 
 export const PhonesPage: React.FC = () => {
   const [phones, setPhones] = useState<Phone[]>([]);
@@ -22,16 +26,19 @@ export const PhonesPage: React.FC = () => {
     setIsLoading(true);
 
     try {
-      const phonesFromServer = await getPhonesByPagination(
+      const phonesFromServer = await getSortedProductsByPagination(
+        Categories.PHONES,
         sortBy,
         currentPage,
         phonesPerPage,
       );
 
-      setPhones(phonesFromServer.content);
-      setTotalPhones(phonesFromServer.totalPhones);
+      const quantityFromServer = await getProductsQuantity();
+
+      setPhones(phonesFromServer);
+      setTotalPhones(quantityFromServer.phonesQuantity);
       setIsLoading(false);
-    } catch { }
+    } catch {}
   };
 
   const handleSortBy = (item: string) => {

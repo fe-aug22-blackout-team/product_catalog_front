@@ -9,34 +9,39 @@ import { ButtonType } from '../../types/Button';
 import { Button } from '../UI/Button';
 import { NavString } from '../NavString';
 import { MemoizedPhoneSlider } from '../HomePage/PhonesSlider';
-import { getAllSortedPhones } from '../../api/phones';
+import { getPhoneById } from '../../api/phones';
 import { Phone } from '../../types/Phone';
 import { Loader } from '../UI/Loader';
 import { ButtonColor } from '../../types/Color';
 import { ItemGallery } from './ItemGallery';
+import { PhoneInfo } from '../../types/PhoneInfo';
 
 export const ProductInfo: React.FC = () => {
-  const [phones, setPhones] = useState<Phone[]>([]);
+  const [selectedPhone, setSelectedPhone] = useState<PhoneInfo | null>(null);
+  const [similarPhones, setSimilarPhones] = useState<Phone[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const { phoneId } = useParams();
 
-  const getAllPhones = useCallback(async() => {
+  const getSelectedPhoneAndSimilarPhones = useCallback(async() => {
     try {
-      setIsLoading(true);
+      if (phoneId) {
+        setIsLoading(true);
 
-      const phonesFromServer = await getAllSortedPhones('Alfabetically');
+        const response = await getPhoneById(phoneId);
 
-      setPhones(phonesFromServer.content);
-      setIsLoading(false);
+        setSelectedPhone(response.selectedPhone);
+        setSimilarPhones(response.similarPhones);
+      }
     } catch (error) {
-      setIsLoading(false);
       throw new Error(`Something went wrong ${error}`);
+    } finally {
+      setIsLoading(false);
     }
-  }, []);
+  }, [phoneId]);
 
   useEffect(() => {
-    getAllPhones();
-  }, []);
+    getSelectedPhoneAndSimilarPhones();
+  }, [phoneId]);
 
   return (
     <main className='product-info'>
@@ -235,7 +240,7 @@ export const ProductInfo: React.FC = () => {
       {isLoading
         ? <Loader />
         : <MemoizedPhoneSlider
-          phones={phones.slice(5, 20)}
+          phones={similarPhones}
           title='You may also like'
           itemWidth={272}
         />

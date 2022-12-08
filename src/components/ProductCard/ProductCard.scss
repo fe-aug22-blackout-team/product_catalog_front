@@ -13,8 +13,6 @@ $card-width: 272px;
   background-color: $surface1;
   position: relative;
 
-  transition: all 0.3s;
-
   &::before,
   &::after {
     content: '';

@@ -8,7 +8,11 @@ import { Dropdown } from '../Dropdown';
 import { NavString } from '../NavString';
 import { appRoutes } from '../../routes/Routes';
 import { Product } from '../../types/Product';
-import { getTabletsByPagination } from '../../api/tablets';
+import { Categories } from '../../types/Categories';
+import {
+  getProductsQuantity,
+  getSortedProductsByPagination,
+} from '../../api/phones';
 
 export const TabletsPage: React.FC = () => {
   const [tablets, setTablets] = useState<Product[]>([]);
@@ -22,16 +26,19 @@ export const TabletsPage: React.FC = () => {
     setIsLoading(true);
 
     try {
-      const tabletsFromServer = await getTabletsByPagination(
+      const tabletsFromServer = await getSortedProductsByPagination(
+        Categories.TABLETS,
         sortBy,
         currentPage,
         tabletsPerPage,
       );
 
-      setTablets(tabletsFromServer.content);
-      setTotalTablets(tabletsFromServer.totalTablets);
+      const quantityFromServer = await getProductsQuantity();
+
+      setTablets(tabletsFromServer);
+      setTotalTablets(quantityFromServer.phonesQuantity);
       setIsLoading(false);
-    } catch { }
+    } catch {}
   };
 
   const handleSortBy = (item: string) => {

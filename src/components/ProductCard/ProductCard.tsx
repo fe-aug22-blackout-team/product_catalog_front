@@ -104,7 +104,7 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
         </div>
 
         <div className="product__controls">
-          <div onClick={() => handleAddCart()}>
+          <div onClick={handleAddCart}>
             <Button
               buttonType={ButtonType.Main}
               isInCart={isInCart}
@@ -113,7 +113,7 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
                 : 'Add to cart'}
             />
           </div>
-          <div onClick={() => handleAddFav()}>
+          <div onClick={handleAddFav}>
             <Button
               buttonType={ButtonType.Favourite}
               isFavourite={isFavourite}

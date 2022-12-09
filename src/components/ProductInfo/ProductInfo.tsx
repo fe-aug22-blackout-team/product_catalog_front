@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { appRoutes } from '../../routes/Routes';
 
@@ -18,12 +18,52 @@ import { ColorPicker } from './ColorPicker';
 import { CapacitySelector } from './CapacitySelector';
 import { AboutSection } from './AboutSection';
 import classNames from 'classnames';
+import { LocaleStorageContext } from '../../context/localStorageContext';
 
 export const ProductInfo: React.FC = () => {
   const [selectedPhone, setSelectedPhone] = useState<PhoneInfo | null>(null);
   const [similarPhones, setSimilarPhones] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const { phoneId } = useParams();
+
+  const {
+    cartItems,
+    favItems,
+    updateCartItems,
+    updateFavItems,
+  } = useContext(LocaleStorageContext);
+
+  const isInCart = cartItems.some(item => item.phoneId === phoneId);
+  const isFavourite = favItems.some(item => item.phoneId === phoneId);
+  const chosenPhone = similarPhones.find(phone => phone.phoneId === phoneId);
+
+  const handleAddCart = () => {
+    if (!isInCart && chosenPhone) {
+      const newCartItems = [...cartItems, chosenPhone];
+
+      localStorage.setItem('cartItems', JSON.stringify(newCartItems));
+      updateCartItems(newCartItems);
+    } else {
+      const newCartItems = cartItems.filter(item => item.phoneId !== phoneId);
+
+      localStorage.setItem('cartItems', JSON.stringify(newCartItems));
+      updateCartItems(newCartItems);
+    }
+  };
+
+  const handleAddFav = () => {
+    if (!isFavourite && chosenPhone) {
+      const newFavItems = [...favItems, chosenPhone];
+
+      localStorage.setItem('favItems', JSON.stringify(newFavItems));
+      updateFavItems(newFavItems);
+    } else {
+      const newFavItems = favItems.filter(item => item.phoneId !== phoneId);
+
+      localStorage.setItem('favItems', JSON.stringify(newFavItems));
+      updateFavItems(newFavItems);
+    }
+  };
 
   const getSelectedPhoneAndSimilarPhones = useCallback(async() => {
     try {
@@ -123,13 +163,22 @@ export const ProductInfo: React.FC = () => {
             </div>
 
             <div className="choose__controls">
-              <Button
-                buttonType={ButtonType.Main}
-                isInCart={false}
-                innerText={'Add to cart'}
-              />
+              <div onClick={handleAddCart}>
+                <Button
+                  buttonType={ButtonType.Main}
+                  isInCart={isInCart}
+                  innerText={isInCart
+                    ? 'Remove from cart'
+                    : 'Add to cart'}
+                />
+              </div>
 
-              <Button buttonType={ButtonType.Favourite} />
+              <div onClick={handleAddFav}>
+                <Button
+                  buttonType={ButtonType.Favourite}
+                  isFavourite={isFavourite}
+                />
+              </div>
             </div>
 
             <div className="choose__info">

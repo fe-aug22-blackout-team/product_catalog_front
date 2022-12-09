@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { appRoutes } from '../../routes/Routes';
 
@@ -17,6 +17,7 @@ import { PhoneInfo } from '../../types/PhoneInfo';
 import { ColorPicker } from './ColorPicker';
 import { CapacitySelector } from './CapacitySelector';
 import { AboutSection } from './AboutSection';
+import classNames from 'classnames';
 
 export const ProductInfo: React.FC = () => {
   const [selectedPhone, setSelectedPhone] = useState<PhoneInfo | null>(null);
@@ -45,6 +46,10 @@ export const ProductInfo: React.FC = () => {
   useEffect(() => {
     getSelectedPhoneAndSimilarPhones();
   }, [phoneId]);
+
+  const isDiscount = useMemo(() => {
+    return selectedPhone?.priceDiscount !== selectedPhone?.priceRegular;
+  }, [selectedPhone]);
 
   return (
     <main className='product-info'>
@@ -104,9 +109,15 @@ export const ProductInfo: React.FC = () => {
             </div>
 
             <div className="choose__price">
-              <p className="choose__price-item">{selectedPhone?.priceDiscount}</p>
+              {isDiscount && (
+                <p className="choose__price-item">
+                  {selectedPhone?.priceDiscount}
+                </p>
+              )}
 
-              <p className="choose__price-item choose__price-item--crossed">
+              <p className={classNames('choose__price-item', {
+                'choose__price-item--crossed': isDiscount,
+              })}>
                 {selectedPhone?.priceRegular}
               </p>
             </div>

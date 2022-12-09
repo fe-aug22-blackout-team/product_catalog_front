@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 import './ProductCard.scss';
@@ -7,6 +7,7 @@ import { ButtonType } from '../../types/Button';
 import { Button } from '../UI/Button';
 import { appRoutes } from '../../routes/Routes';
 import { LocaleStorageContext } from '../../context/localStorageContext';
+import cn from 'classnames';
 
 interface Props {
   phone: Product;
@@ -22,6 +23,9 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
 
   const isInCart = cartItems.some(item => item.id === phone.id);
   const isFavourite = favItems.some(item => item.id === phone.id);
+  const isDiscount = useMemo(() => {
+    return phone?.price !== phone?.fullPrice;
+  }, [phone]);
 
   const handleAddCart = () => {
     if (!isInCart) {
@@ -69,11 +73,15 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
         </h3>
 
         <div className="product__price">
-          <p className="product__price-item">
-            {phone.price}
-          </p>
+          {isDiscount && (
+            <p className="product__price-item">
+              {phone.price}
+            </p>
+          )}
 
-          <p className="product__price-item product__price-item--crossed">
+          <p className={cn('product__price-item', {
+            'product__price-item--crossed': isDiscount,
+          })}>
             {phone.fullPrice}
           </p>
         </div>

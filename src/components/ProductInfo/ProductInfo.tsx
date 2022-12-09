@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { appRoutes } from '../../routes/Routes';
 
@@ -47,7 +47,9 @@ export const ProductInfo: React.FC = () => {
     getSelectedPhoneAndSimilarPhones();
   }, [phoneId]);
 
-  const isDiscount = selectedPhone?.priceDiscount !== selectedPhone?.priceRegular;
+  const isDiscount = useMemo(() => {
+    return selectedPhone?.priceDiscount !== selectedPhone?.priceRegular;
+  }, [selectedPhone]);
 
   return (
     <main className='product-info'>
@@ -112,10 +114,6 @@ export const ProductInfo: React.FC = () => {
                   {selectedPhone?.priceDiscount}
                 </p>
               )}
-
-              {/* <p className="choose__price-item">
-                {selectedPhone?.priceDiscount}
-              </p> */}
 
               <p className={classNames('choose__price-item', {
                 'choose__price-item--crossed': isDiscount,

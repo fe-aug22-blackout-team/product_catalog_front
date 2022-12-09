@@ -104,7 +104,9 @@ export const ProductInfo: React.FC = () => {
             </div>
 
             <div className="choose__price">
-              <p className="choose__price-item">{selectedPhone?.priceDiscount}</p>
+              <p className="choose__price-item">
+                {selectedPhone?.priceDiscount}
+              </p>
 
               <p className="choose__price-item choose__price-item--crossed">
                 {selectedPhone?.priceRegular}

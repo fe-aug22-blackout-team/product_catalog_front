@@ -63,7 +63,7 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
 
       <div className="product__info">
         <h3 className="product__title">
-          <Link to={`${appRoutes.phones}/${phone.id}`} className='product__title-link'>
+          <Link to={`${appRoutes.phones}/${phone.phoneId}`} className='product__title-link'>
             {phone.name}
           </Link>
         </h3>

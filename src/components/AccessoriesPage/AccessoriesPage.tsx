@@ -36,7 +36,7 @@ export const AccessoriesPage: React.FC = () => {
       const quantityFromServer = await getProductsQuantity();
 
       setAccessories(accessoriesFromServer);
-      setTotalAccessories(quantityFromServer.phonesQuantity);
+      setTotalAccessories(quantityFromServer.accessoriesQuantity);
       setIsLoading(false);
     } catch {}
   };

@@ -46,7 +46,7 @@ export const CartItem: React.FC<Props> = ({ item, updateFullPrice }) => {
           onClick={() => handleRemove()}
         ></span>
         <Link
-          to={`${appRoutes.phones}/${item.phoneId}`}
+          to={`/${item.category}/${item.phoneId}`}
           style={{ textDecoration: 'none' }}
         >
           <div className="cart-item--name-description">

@@ -5,7 +5,6 @@ import './ProductCard.scss';
 import { Product } from '../../types/Product';
 import { ButtonType } from '../../types/Button';
 import { Button } from '../UI/Button';
-import { appRoutes } from '../../routes/Routes';
 import { LocaleStorageContext } from '../../context/localStorageContext';
 import cn from 'classnames';
 
@@ -14,8 +13,6 @@ interface Props {
 }
 
 export const ProductCard: React.FC<Props> = ({ phone }) => {
-  const productLocation = useLocation();
-
   const {
     cartItems,
     favItems,
@@ -59,7 +56,7 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
 
   return (
     <article className='product'>
-      <Link to={`${productLocation.pathname}/${phone.phoneId}`}>
+      <Link to={`/${phone.category}/${phone.phoneId}`}>
         <img
           src={phone.image}
           alt="Product image"
@@ -69,7 +66,7 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
 
       <div className="product__info">
         <h3 className="product__title">
-          <Link to={`${productLocation.pathname}/${phone.phoneId}`} className='product__title-link'>
+          <Link to={`/${phone.category}/${phone.phoneId}`} className='product__title-link'>
             {phone.name}
           </Link>
         </h3>

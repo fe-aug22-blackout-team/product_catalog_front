@@ -16,6 +16,10 @@ export const CartPage: React.FC = () => {
   const navigate = useNavigate();
   const { cartItems, updateCartItems } = useContext(LocaleStorageContext);
 
+  const updateFullPrice = (newPrice: number) => {
+    setFullPrice(curr => curr + newPrice);
+  };
+
   useEffect(() => {
     const price = cartItems.reduce((prev, curr) => (
       prev + (curr.count || 1) * curr.price
@@ -46,14 +50,13 @@ export const CartPage: React.FC = () => {
       <div className="cart-page--content">
         {cartItems.length
           ? <section className="cart-page--list">
-            {cartItems.map(item => {
-              return (
-                <CartItem
-                  key={item.id}
-                  item={item}
-                />
-              );
-            })}
+            {cartItems.map(item => (
+              <CartItem
+                key={item.id}
+                item={item}
+                updateFullPrice={updateFullPrice}
+              />
+            ))}
           </section>
           : <h2 className="cart-page--empty">
               There are no items

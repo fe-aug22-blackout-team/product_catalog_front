@@ -52,7 +52,10 @@
   }
 
   &--name {
-    @extend %bodyText_desktop-tablet;
+    font-family: "Mont-Regular";
+    font-size: 14px;
+    line-height: 21px;
+    color: $white;
   }
 
   &--image {

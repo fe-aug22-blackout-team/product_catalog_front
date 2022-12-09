@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 
 import './ProductCard.scss';
 import { Product } from '../../types/Product';
@@ -14,6 +14,8 @@ interface Props {
 }
 
 export const ProductCard: React.FC<Props> = ({ phone }) => {
+  const productLocation = useLocation();
+
   const {
     cartItems,
     favItems,
@@ -57,7 +59,7 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
 
   return (
     <article className='product'>
-      <Link to={`${appRoutes.phones}/${phone.phoneId}`}>
+      <Link to={`${productLocation.pathname}/${phone.phoneId}`}>
         <img
           src={phone.image}
           alt="Product image"
@@ -67,7 +69,7 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
 
       <div className="product__info">
         <h3 className="product__title">
-          <Link to={`${appRoutes.phones}/${phone.phoneId}`} className='product__title-link'>
+          <Link to={`${productLocation.pathname}/${phone.phoneId}`} className='product__title-link'>
             {phone.name}
           </Link>
         </h3>

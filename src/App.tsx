@@ -29,8 +29,18 @@ const App: React.FC = () => {
             <Route path=":phoneId" element={<ProductInfo />} />
           </Route>
 
-          <Route path={appRoutes.tablets} element={<TabletsPage />} />
-          <Route path={appRoutes.accessories} element={<AccessoriesPage />} />
+          <Route path={appRoutes.tablets}>
+            <Route index element={<TabletsPage />} />
+
+            <Route path=":phoneId" element={<ProductInfo />} />
+          </Route>
+
+          <Route path={appRoutes.accessories}>
+            <Route index element={<AccessoriesPage />} />
+
+            <Route path=":phoneId" element={<ProductInfo />} />
+          </Route>
+
           <Route path={appRoutes.favourites} element={<FavouritesPage />} />
           <Route path={appRoutes.cart} element={<CartPage />} />
           <Route path={appRoutes.not_found} element={<NotFoundPage />} />

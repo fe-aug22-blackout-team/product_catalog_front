@@ -91,13 +91,16 @@ export const ProductInfo: React.FC = () => {
     return selectedPhone?.priceDiscount !== selectedPhone?.priceRegular;
   }, [selectedPhone]);
 
+  const upperCategory = similarPhones[0]?.category.slice(0, 1).toUpperCase()
+    + similarPhones[0]?.category.slice(1);
+
   return (
     <main className='product-info'>
       <div className="product-info__container">
         <div className="product-info__breadcrumbs">
           <NavString links={[
             { title: 'home', path: appRoutes.home },
-            { title: similarPhones[0]?.category || '', path: appRoutes.phones },
+            { title: upperCategory || '', path: `/${similarPhones[0]?.category}` },
             { title: selectedPhone?.name || '', path: `${appRoutes.phones}/${phoneId}` },
           ]} />
         </div>

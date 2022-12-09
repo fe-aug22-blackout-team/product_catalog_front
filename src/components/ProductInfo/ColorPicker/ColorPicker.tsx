@@ -1,6 +1,5 @@
 import React from 'react';
-import { ButtonType } from '../../../types/Button';
-import { Button } from '../../UI/Button';
+import { ColorItem } from './ColorItem';
 
 import './ColorPicker.scss';
 
@@ -12,11 +11,16 @@ type Props = {
 export const ColorPicker: React.FC<Props> = ({ id, colors }) => {
   return (
     <div className='color-picker'>
-      {colors.map(color => (
-        <div className='btn-color__wrapper' key={id}>
-          <Button buttonType={ButtonType.ColorPick} color={color} />
-        </div>
-      ))}
+      {colors.map(color => {
+        const activeColor = id.split('-').slice(-1).join('');
+        const isActive = activeColor === color;
+
+        return (
+          <React.Fragment key={color}>
+            <ColorItem color={color} isActive={isActive} />
+          </React.Fragment>
+        );
+      })}
     </div>
   );
 };

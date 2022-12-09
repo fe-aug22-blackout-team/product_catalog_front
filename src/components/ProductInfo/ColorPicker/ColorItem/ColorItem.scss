@@ -1,0 +1,21 @@
+@import '../../../../styles/utils/palette';
+
+.color-item {
+  width: 32px;
+  height: 32px;
+
+  outline: 1px solid $elements;
+  border: 2px solid $black;
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  &:hover {
+    outline-color: $secondary;
+    transition: outline 0.3s;
+  }
+
+  &--active {
+    outline-color: $white;
+  }
+}

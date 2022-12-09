@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from 'react';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import './ProductCard.scss';
 import { Product } from '../../types/Product';

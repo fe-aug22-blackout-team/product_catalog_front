@@ -6,7 +6,6 @@ import { Button } from '../../UI/Button';
 import { ButtonType } from '../../../types/Button';
 import { Product } from '../../../types/Product';
 import { LocaleStorageContext } from '../../../context/localStorageContext';
-import { appRoutes } from '../../../routes/Routes';
 
 interface Props {
   item: Product;

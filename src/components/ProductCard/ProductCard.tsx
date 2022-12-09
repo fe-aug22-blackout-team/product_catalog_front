@@ -57,7 +57,7 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
 
   return (
     <article className='product'>
-      <Link to={`${appRoutes.phones}/${phone.phoneId}`}>
+      <Link to={`${appRoutes.phones}/parameters?model=${phone.model}&capacity=${phone.capacity}&color=${phone.color}`}>
         <img
           src={phone.image}
           alt="Product image"

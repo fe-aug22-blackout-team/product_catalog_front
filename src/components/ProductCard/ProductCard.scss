@@ -12,17 +12,18 @@ $card-width: 272px;
   padding: 32px;
   background-color: $surface1;
   position: relative;
+  overflow: hidden;
 
   &::before,
   &::after {
     content: '';
-    width: 2px;
+    width: 1%;
     height: 1px;
     position: absolute;
-    left: 50%;
+    left: 45%;
     bottom: 0;
     background-color: transparent;
-    transition: transform 0.5s;
+    transition: transform 0.8s;
   }
 
   &::after {
@@ -31,7 +32,7 @@ $card-width: 272px;
 
   &:hover::before,
   &:hover::after {
-    transform: scaleX(136);
+    transform: scaleX(140);
     background-color: $accent;
   }
 

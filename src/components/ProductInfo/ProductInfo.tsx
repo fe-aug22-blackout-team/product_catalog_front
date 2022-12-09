@@ -97,7 +97,7 @@ export const ProductInfo: React.FC = () => {
         <div className="product-info__breadcrumbs">
           <NavString links={[
             { title: 'home', path: appRoutes.home },
-            { title: 'Phones', path: appRoutes.phones },
+            { title: similarPhones[0]?.category || '', path: appRoutes.phones },
             { title: selectedPhone?.name || '', path: `${appRoutes.phones}/${phoneId}` },
           ]} />
         </div>

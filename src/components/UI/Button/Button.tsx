@@ -12,7 +12,6 @@ type Props = {
   setCountCartItem?: (type: string) => void;
   isInCart?: boolean;
   isFavourite?: boolean;
-  color?: string;
 }
 
 export const Button: React.FC<Props> = ({
@@ -23,7 +22,6 @@ export const Button: React.FC<Props> = ({
   setCountCartItem,
   isInCart,
   isFavourite,
-  color,
 }) => {
   const [isActive, setActive] = useState(false);
   
@@ -94,18 +92,6 @@ export const Button: React.FC<Props> = ({
           </div>
         </div>
       )
-
-    case ButtonType.ColorPick:
-      return (
-        <>
-          {color && (
-            <button 
-              className='btn-color'
-              style={{backgroundColor: color}}
-            />
-          )}
-        </>
-      );
   }
 
   return (

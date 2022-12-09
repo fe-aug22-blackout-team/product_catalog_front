@@ -17,6 +17,7 @@ import { PhoneInfo } from '../../types/PhoneInfo';
 import { ColorPicker } from './ColorPicker';
 import { CapacitySelector } from './CapacitySelector';
 import { AboutSection } from './AboutSection';
+import classNames from 'classnames';
 
 export const ProductInfo: React.FC = () => {
   const [selectedPhone, setSelectedPhone] = useState<PhoneInfo | null>(null);
@@ -45,6 +46,8 @@ export const ProductInfo: React.FC = () => {
   useEffect(() => {
     getSelectedPhoneAndSimilarPhones();
   }, [phoneId]);
+
+  const isDiscount = selectedPhone?.priceDiscount !== selectedPhone?.priceRegular;
 
   return (
     <main className='product-info'>
@@ -104,11 +107,19 @@ export const ProductInfo: React.FC = () => {
             </div>
 
             <div className="choose__price">
-              <p className="choose__price-item">
-                {selectedPhone?.priceDiscount}
-              </p>
+              {isDiscount && (
+                <p className="choose__price-item">
+                  {selectedPhone?.priceDiscount}
+                </p>
+              )}
 
-              <p className="choose__price-item choose__price-item--crossed">
+              {/* <p className="choose__price-item">
+                {selectedPhone?.priceDiscount}
+              </p> */}
+
+              <p className={classNames('choose__price-item', {
+                'choose__price-item--crossed': isDiscount,
+              })}>
                 {selectedPhone?.priceRegular}
               </p>
             </div>

@@ -4,11 +4,10 @@ import { Article } from '../../../types/Article';
 import './AboutSection.scss';
 
 type Props = {
-  id: string;
   articles: Article[];
 };
 
-export const AboutSection: React.FC<Props> = ({ id, articles }) => {
+export const AboutSection: React.FC<Props> = ({ articles }) => {
   return (
     <div className='about'>
       <h3 className='about__title'>About</h3>

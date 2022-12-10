@@ -26,12 +26,17 @@ export const ProductInfo: React.FC = () => {
   const { model } = useParams();
   const [searchParams] = useSearchParams();
   const [color, setColor] = useState(searchParams.get('color'));
+  const [capacity, setCapacity] = useState(searchParams.get('capacity'));
 
-  const capacity = searchParams.get('capacity');
+  // const capacity = searchParams.get('capacity');
   const phoneId = [model, capacity?.toLowerCase(), color].join('-');
 
   const handleColorChange = (newColor: string) => {
     setColor(newColor);
+  };
+
+  const handleCapacityChange = (newCapacity: string) => {
+    setCapacity(newCapacity);
   };
 
   const getSelectedPhoneAndSimilarPhones = useCallback(async() => {
@@ -51,11 +56,11 @@ export const ProductInfo: React.FC = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [phoneId, color]);
+  }, [phoneId, color, capacity]);
 
   useEffect(() => {
     getSelectedPhoneAndSimilarPhones();
-  }, [phoneId, color]);
+  }, [phoneId, color, capacity]);
 
   const isDiscount = useMemo(() => {
     return selectedPhone?.priceDiscount !== selectedPhone?.priceRegular;
@@ -112,7 +117,7 @@ export const ProductInfo: React.FC = () => {
 
                 <div className="choose__content">
                   {selectedPhone && (
-                    <CapacitySelector id={selectedPhone.id} capacities={selectedPhone?.capacityAvailable} />
+                    <CapacitySelector capacities={selectedPhone?.capacityAvailable} phone={selectedPhone} handleCapacityChange={handleCapacityChange} />
                   )}
                 </div>
               </div>
@@ -169,7 +174,7 @@ export const ProductInfo: React.FC = () => {
         <section className="product-info__details">
           <div className="product-info__about about">
             {selectedPhone && (
-              <AboutSection id={selectedPhone.id} articles={selectedPhone?.description} />
+              <AboutSection articles={selectedPhone?.description} />
             )}
           </div>
 

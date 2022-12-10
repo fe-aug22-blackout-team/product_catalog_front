@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { appRoutes } from '../../routes/Routes';
 
 import './ProductInfo.scss';
@@ -23,32 +23,23 @@ export const ProductInfo: React.FC = () => {
   const [selectedPhone, setSelectedPhone] = useState<PhoneInfo | null>(null);
   const [similarPhones, setSimilarPhones] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const { model } = useParams();
   const [searchParams] = useSearchParams();
-  const model = searchParams.get('model');
-  const capacity = searchParams.get('capacity');
-  const color = searchParams.get('color');
-  const phoneId = [model, capacity, color].join('-');
+  const [color, setColor] = useState(searchParams.get('color'));
 
-  // eslint-disable-next-line no-console
-  // console.log('model', model);
-  // eslint-disable-next-line no-console
-  // console.log('capacity', capacity);
-  // eslint-disable-next-line no-console
-  // console.log('color', color);
-  // eslint-disable-next-line no-console
-  console.log('phoneId', phoneId);
+  const capacity = searchParams.get('capacity');
+  const phoneId = [model, capacity?.toLowerCase(), color].join('-');
+
+  const handleColorChange = (newColor: string) => {
+    setColor(newColor);
+  };
 
   const getSelectedPhoneAndSimilarPhones = useCallback(async() => {
     try {
       if (phoneId) {
-        // eslint-disable-next-line no-console
-        console.log('inside');
         setIsLoading(true);
 
         const phoneFromServer = await getProductById(phoneId);
-
-        // eslint-disable-next-line no-console
-        console.log('phone from server:', phoneFromServer);
 
         const recommendedPhonesFromServer = await getRecommendedProducts(phoneId);
 
@@ -60,11 +51,11 @@ export const ProductInfo: React.FC = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [phoneId]);
+  }, [phoneId, color]);
 
   useEffect(() => {
     getSelectedPhoneAndSimilarPhones();
-  }, [phoneId]);
+  }, [phoneId, color]);
 
   const isDiscount = useMemo(() => {
     return selectedPhone?.priceDiscount !== selectedPhone?.priceRegular;
@@ -109,7 +100,7 @@ export const ProductInfo: React.FC = () => {
 
                 <div className="choose__content">
                   {selectedPhone && (
-                    <ColorPicker id={selectedPhone.id} colors={selectedPhone?.colorsAvailable} />
+                    <ColorPicker id={selectedPhone.id} colors={selectedPhone?.colorsAvailable} phone={selectedPhone} handleColorChange={handleColorChange} />
                   )}
                 </div>
               </div>

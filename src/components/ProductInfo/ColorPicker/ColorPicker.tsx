@@ -1,4 +1,5 @@
 import React from 'react';
+import { PhoneInfo } from '../../../types/PhoneInfo';
 import { ColorItem } from './ColorItem';
 
 import './ColorPicker.scss';
@@ -6,9 +7,16 @@ import './ColorPicker.scss';
 type Props = {
   id: string;
   colors: string[];
+  phone: PhoneInfo;
+  handleColorChange: (newColor: string) => void;
 };
 
-export const ColorPicker: React.FC<Props> = ({ id, colors }) => {
+export const ColorPicker: React.FC<Props> = ({
+  id,
+  colors,
+  phone,
+  handleColorChange,
+}) => {
   return (
     <div className='color-picker'>
       {colors.map(color => {
@@ -17,7 +25,12 @@ export const ColorPicker: React.FC<Props> = ({ id, colors }) => {
 
         return (
           <React.Fragment key={color}>
-            <ColorItem color={color} isActive={isActive} />
+            <ColorItem
+              color={color}
+              isActive={isActive}
+              phone={phone}
+              handleColorChange={handleColorChange}
+            />
           </React.Fragment>
         );
       })}

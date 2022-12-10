@@ -14,11 +14,11 @@ export const AboutSection: React.FC<Props> = ({ id, articles }) => {
       <h3 className='about__title'>About</h3>
 
       {articles.map(({ title, text }) => (
-        <article key={id} className="about__article article">
+        <article key={title} className="about__article article">
           <h4 className="article__subtitle">{title}</h4>
           <div className="article__content">
             {text.map(item => (
-              <p key={id} className="article__paragraph">
+              <p key={item} className="article__paragraph">
                 {item}
               </p>
             ))}

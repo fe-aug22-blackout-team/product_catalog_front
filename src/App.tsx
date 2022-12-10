@@ -26,7 +26,7 @@ const App: React.FC = () => {
           <Route path={appRoutes.phones}>
             <Route index element={<PhonesPage />} />
 
-            <Route path=":phoneId" element={<ProductInfo />} />
+            <Route path=":model" element={<ProductInfo />} />
           </Route>
 
           <Route path={appRoutes.tablets} element={<TabletsPage />} />

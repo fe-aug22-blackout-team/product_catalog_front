@@ -12,7 +12,7 @@ export const CapacitySelector: React.FC<Props> = ({ id, capacities }) => {
     <div className='capacity-selector'>
       {capacities.map(capacity => (
         <button
-          key={id}
+          key={capacity}
           className='capacity-selector__btn'
         >
           {capacity}

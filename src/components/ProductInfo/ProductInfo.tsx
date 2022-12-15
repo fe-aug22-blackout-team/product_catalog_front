@@ -25,11 +25,13 @@ export const ProductInfo: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { model } = useParams();
   const [searchParams] = useSearchParams();
-  const [color, setColor] = useState(searchParams.get('color'));
-  const [capacity, setCapacity] = useState(searchParams.get('capacity'));
+  const [color, setColor] = useState('');
+  const [capacity, setCapacity] = useState('');
 
-  // const capacity = searchParams.get('capacity');
   const phoneId = [model, capacity?.toLowerCase(), color].join('-');
+
+  // eslint-disable-next-line no-console
+  console.log(phoneId);
 
   const handleColorChange = (newColor: string) => {
     setColor(newColor);
@@ -58,9 +60,28 @@ export const ProductInfo: React.FC = () => {
     }
   }, [phoneId, color, capacity]);
 
+  const paramColor = searchParams.get('color');
+  const paramCapacity = searchParams.get('capacity');
+
   useEffect(() => {
     getSelectedPhoneAndSimilarPhones();
   }, [phoneId, color, capacity]);
+
+  useEffect(() => {
+    if (!paramColor) {
+      return;
+    }
+
+    setColor(paramColor);
+  }, [paramColor]);
+
+  useEffect(() => {
+    if (!paramCapacity) {
+      return;
+    }
+
+    setCapacity(paramCapacity);
+  }, [paramCapacity]);
 
   const isDiscount = useMemo(() => {
     return selectedPhone?.priceDiscount !== selectedPhone?.priceRegular;

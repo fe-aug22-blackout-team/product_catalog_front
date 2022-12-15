@@ -62,12 +62,20 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
           src={phone.image}
           alt="Product image"
           className="product__img"
+          onClick={() => {
+            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+          }}
         />
       </Link>
 
       <div className="product__info">
-        <h3 className="product__title">
-          <Link to={`${appRoutes.phones}/${phone.phoneId}`} className='product__title-link'>
+        <h3
+          className="product__title"
+          onClick={() => {
+            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+          }}
+        >
+          <Link to={`${appRoutes.phones}/${phone.model}?capacity=${phone.capacity}&color=${phone.color}`} className='product__title-link'>
             {phone.name}
           </Link>
         </h3>

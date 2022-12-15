@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
-import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React, { useCallback, useEffect, useMemo, useState, useContext } from 'react';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { appRoutes } from '../../routes/Routes';
 
 import './ProductInfo.scss';
@@ -24,7 +24,20 @@ export const ProductInfo: React.FC = () => {
   const [selectedPhone, setSelectedPhone] = useState<PhoneInfo | null>(null);
   const [similarPhones, setSimilarPhones] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const { phoneId } = useParams();
+  const { model } = useParams();
+  const [searchParams] = useSearchParams();
+  const [color, setColor] = useState('');
+  const [capacity, setCapacity] = useState('');
+
+  const phoneId = [model, capacity?.toLowerCase(), color].join('-');
+
+  const handleColorChange = (newColor: string) => {
+    setColor(newColor);
+  };
+
+  const handleCapacityChange = (newCapacity: string) => {
+    setCapacity(newCapacity);
+  };
 
   const {
     cartItems,
@@ -71,6 +84,7 @@ export const ProductInfo: React.FC = () => {
         setIsLoading(true);
 
         const phoneFromServer = await getProductById(phoneId);
+
         const recommendedPhonesFromServer = await getRecommendedProducts(phoneId);
 
         setSelectedPhone(phoneFromServer);
@@ -81,11 +95,30 @@ export const ProductInfo: React.FC = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [phoneId]);
+  }, [phoneId, color, capacity]);
+
+  const paramColor = searchParams.get('color');
+  const paramCapacity = searchParams.get('capacity');
 
   useEffect(() => {
     getSelectedPhoneAndSimilarPhones();
-  }, [phoneId]);
+  }, [phoneId, color, capacity]);
+
+  useEffect(() => {
+    if (!paramColor) {
+      return;
+    }
+
+    setColor(paramColor);
+  }, [paramColor]);
+
+  useEffect(() => {
+    if (!paramCapacity) {
+      return;
+    }
+
+    setCapacity(paramCapacity);
+  }, [paramCapacity]);
 
   const isDiscount = useMemo(() => {
     return selectedPhone?.priceDiscount !== selectedPhone?.priceRegular;
@@ -133,7 +166,7 @@ export const ProductInfo: React.FC = () => {
 
                 <div className="choose__content">
                   {selectedPhone && (
-                    <ColorPicker id={selectedPhone.id} colors={selectedPhone?.colorsAvailable} />
+                    <ColorPicker id={selectedPhone.id} colors={selectedPhone?.colorsAvailable} phone={selectedPhone} handleColorChange={handleColorChange} />
                   )}
                 </div>
               </div>
@@ -145,7 +178,7 @@ export const ProductInfo: React.FC = () => {
 
                 <div className="choose__content">
                   {selectedPhone && (
-                    <CapacitySelector id={selectedPhone.id} capacities={selectedPhone?.capacityAvailable} />
+                    <CapacitySelector capacities={selectedPhone?.capacityAvailable} phone={selectedPhone} handleCapacityChange={handleCapacityChange} />
                   )}
                 </div>
               </div>
@@ -211,7 +244,7 @@ export const ProductInfo: React.FC = () => {
         <section className="product-info__details">
           <div className="product-info__about about">
             {selectedPhone && (
-              <AboutSection id={selectedPhone.id} articles={selectedPhone?.description} />
+              <AboutSection articles={selectedPhone?.description} />
             )}
           </div>
 

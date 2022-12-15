@@ -6,6 +6,7 @@ import { Product } from '../../types/Product';
 import { ButtonType } from '../../types/Button';
 import { Button } from '../UI/Button';
 import { LocaleStorageContext } from '../../context/localStorageContext';
+import { appRoutes } from '../../routes/Routes';
 import cn from 'classnames';
 
 interface Props {
@@ -56,17 +57,25 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
 
   return (
     <article className='product'>
-      <Link to={`/${phone.category}/${phone.phoneId}`}>
+      <Link to={`${appRoutes.phones}/${phone.model}?capacity=${phone.capacity}&color=${phone.color}`}>
         <img
           src={phone.image}
           alt="Product image"
           className="product__img"
+          onClick={() => {
+            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+          }}
         />
       </Link>
 
       <div className="product__info">
-        <h3 className="product__title">
-          <Link to={`/${phone.category}/${phone.phoneId}`} className='product__title-link'>
+        <h3
+          className="product__title"
+          onClick={() => {
+            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+          }}
+        >
+          <Link to={`${appRoutes.phones}/${phone.model}?capacity=${phone.capacity}&color=${phone.color}`} className='product__title-link'>
             {phone.name}
           </Link>
         </h3>

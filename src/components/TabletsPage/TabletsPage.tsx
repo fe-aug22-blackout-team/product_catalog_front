@@ -36,7 +36,7 @@ export const TabletsPage: React.FC = () => {
       const quantityFromServer = await getProductsQuantity();
 
       setTablets(tabletsFromServer);
-      setTotalTablets(quantityFromServer.phonesQuantity);
+      setTotalTablets(quantityFromServer.tabletsQuantity);
       setIsLoading(false);
     } catch {}
   };

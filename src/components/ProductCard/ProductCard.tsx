@@ -5,8 +5,8 @@ import './ProductCard.scss';
 import { Product } from '../../types/Product';
 import { ButtonType } from '../../types/Button';
 import { Button } from '../UI/Button';
-import { appRoutes } from '../../routes/Routes';
 import { LocaleStorageContext } from '../../context/localStorageContext';
+import { appRoutes } from '../../routes/Routes';
 import cn from 'classnames';
 
 interface Props {
@@ -112,7 +112,7 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
         </div>
 
         <div className="product__controls">
-          <div onClick={() => handleAddCart()}>
+          <div onClick={handleAddCart}>
             <Button
               buttonType={ButtonType.Main}
               isInCart={isInCart}
@@ -121,7 +121,7 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
                 : 'Add to cart'}
             />
           </div>
-          <div onClick={() => handleAddFav()}>
+          <div onClick={handleAddFav}>
             <Button
               buttonType={ButtonType.Favourite}
               isFavourite={isFavourite}

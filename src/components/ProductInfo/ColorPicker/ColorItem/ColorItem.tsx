@@ -19,13 +19,15 @@ export const ColorItem: React.FC<Props> = ({
   phone,
   handleColorChange,
 }) => {
+  // eslint-disable-next-line no-console
+  console.log(color);
+
   return (
     <Link to={`${appRoutes.phones}/${phone.namespaceId}?capacity=${phone.capacity}&color=${color}`}>
       <button
-        className={cn('color-item', {
+        className={cn('color-item', `color-item--${color}`, {
           'color-item--active': isActive,
         })}
-        style={{ backgroundColor: color }}
         onClick={() => {
           handleColorChange(color);
         }}

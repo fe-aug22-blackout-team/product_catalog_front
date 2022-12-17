@@ -18,4 +18,48 @@
   &--active {
     outline-color: $white;
   }
+
+  &--black {
+    background-color: #444;
+  }
+
+  &--green {
+    background-color: #07f782;
+  }
+
+  &--yellow {
+    background-color: #ffff00;
+  }
+
+  &--white {
+    background-color: #f3f6f4;
+  }
+
+  &--purple {
+    background-color: #d9d2e9;
+  }
+
+  &--red {
+    background-color: #d80000;
+  }
+
+  &--spacegray {
+    background-color: 	#48473e;
+  }
+
+  &--midnightgreen {
+    background-color: 	#767767;
+  }
+
+  &--gold {
+    background-color: 	#cfbe55;
+  }
+
+  &--silver {
+    background-color: 	#f1f1f1;
+  }
+
+  &--blue {
+    background-color: 	#88accc;
+  }
 }

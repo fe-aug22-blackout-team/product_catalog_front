@@ -4,19 +4,22 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
+  width: 300px;
+  margin: 0 auto;
   padding: 8px 60px;
 
-  @include onTablet {
-    padding: 8px 16px;
+  @include onDesktop {
+    width: 360px;
   }
-  
+ 
   &__img {
-    width: 100%;
-    max-width: 274px;
+    background-size: contain;
+    max-height: 274px;
+    object-fit: contain;
 
     @include onDesktop {
-      max-width: 442px;
+      max-height: 424px;
     }
   }
 }
